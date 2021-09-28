@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "planejamento-constel123",
+  "private_key_id": "1b8f07026a82999266a42a64501f35daf6732af8",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCqISKSACXjAeGk\ng3JiU+sI+/CrxXCsylTz0rCWLUDRRNf0nlnqgqqM6Cz4Dvxf9te2Hs34L6irpf82\nr+TTUfAtfp57APQNIhl+SkaEi5FRSQBAeORtDkoZkSOJo/Fho/VuUGji92ysd5PE\nVN9wiVTozQDRmUxM67Nb7RttRVnaT9p0XdJ+SNpuzTbQIFvJYQPSXhKeOapgEVKz\nqguKp88tpA5Uiqnnlb9bwCgfeJKvRffQVveq4pG7AGvRWaWtVZLh9Gmjbq0n4pc8\nPCMZp70N66JYHPhV03oCQBHAVrAvVpoWba4CBTyLrlhgj9YIgxuucZ0yl33RaNK9\nsER0fyspAgMBAAECggEAEi7JFL+X964bdqC8gzki1T/6q0ZxJ2vXLoP7GYyBRpx2\nqY9EXuWo4rcXGfVIEIg/lRhaZ8ci3iLh/ESfo9zjBYm92GRJW8n5iDTaBTqBb9A/\nNaTLYm3KNPdSdq3N6ONEIjkigfdzEZpqHEFR7CN8BAbnqn8ZgjMYD/VvHqZF1yjQ\nZ4rndhPzoRJs38P9Gt3sAHU5fgD3Qix2WkfFwQd2PBr/mWCbqP8mJg52zsucd725\nn8TW+GNr342mDT3f90EjC1VSlFa9c0aZtpKMMZQ6IFN94kegm5hAt6bGtBKWY+V3\niQUgmyWOZ1QNfnQ9OKi1b5L4obufERrf4RUnttZJHQKBgQDSXUNPFFBiKF3+mbOh\nzpGkncsNAVbjEar20kqs6cLJe27FkkJs81ldMIMojIaKkGwjmM0hEsLLCJpZejry\nSg1D1j3MTzeB5KyOZ4ulbQ0rWw7/czI2kSz5qwO44NjzcSvF8W9xbnw4xW2vFsEo\ni1K/B7twszGQWeyESkcr6bKZ+wKBgQDPCWYPQBUu+1Mdkt+zmeTRk7oYK9kYgBqv\nA5DCDGnOfJg+q34V1j+bTKI4F+UI/Bw8quTUd1A31ziIudQob82BjRtoPGX7yPpT\nit0NbaCDU7PmrRzYVcQ0P+lnqyrBLAOMHQaPHivLkQuTFayTzIbYWK1exnbSCnAy\nevmRixqKKwKBgA71OrgAxcZ1AFn+K9uxiIGgBrQiCD+VHgb25QBujr8s26+Iuths\nZUpPDMRxWY+4vTe6wbs8TkWJkxARtOdNhKvyK+q/Jz9BN1PY4QEeQ/V1QBfB5Swk\nHoKSOm2G72ZAAdDNXhM+u+59e1Mb1xg+799NeXKGC1wsSLkPXwgsUdrJAoGBAIBg\n9ZYzSG9vjGRkNK6rmMWT8usWFXIpzWIEtfh9tgZCIC2MLYzg42QrKtPZjT37Bo9f\n8LEGowldPUMa58GDQk048Gu8OAje4Mp46wVumv+UIZPCeIZ0+Erl7pdH/iT2Y+S4\nAt8v+DwsXp7/65liU6NHqYmBSyCHNHc45hQny3ctAoGBAMXJ3DRIqBFfmfHQcJjR\nGJeVOvaH9UidMLAJ/aijmnmFVfd4/Ld9PtnYpYnlXvL2XPEB+jufOztE1NZ2Hcoi\nUgenSeB50VzZMh+K8hq6c8MpCpeexhO+XoKz7NTfVSHpg3+57NmQS/KoP2w6QfaA\nyFDlz9UER6JBaFKa0z8XpSS2\n-----END PRIVATE KEY-----\n",
+  "client_email": "constel-home@planejamento-constel123.iam.gserviceaccount.com",
+  "client_id": "115010003017046155647",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/constel-home%40planejamento-constel123.iam.gserviceaccount.com"
+}
