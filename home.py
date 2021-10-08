@@ -3,7 +3,7 @@ import pandas as pd
 from PIL import Image
 import gspread
 from google.oauth2 import service_account
-import numpy as np
+
 
 json_file = "./planejamento-constel123-1b8f07026a82.json"
 scopes = ["https://www.googleapis.com/auth/spreadsheets",
@@ -77,22 +77,42 @@ def desempenho_seg_trabalho(df):
 
 logo_C = Image.open("./LogoC.png")
 logo_Capa = Image.open("./Logo_C_capa.png")
+header = Image.open("./header.png")
 logo_Cinza = Image.open("./Logo_Site.png")
-st.sidebar.image(logo_C, caption=None, width=75)
+fluxograma = Image.open("./Fluxograma.jpg")
+contigencia = open("planodecontingencia.pdf")
+organograma = open("organograma.pdf")
+
 
 # Barra lateral
+st.sidebar.image(logo_C, caption=None, width=75)
 st.sidebar.title('**Home**')
-option = st.sidebar.selectbox('Selecione a página desejada', ['Início', 'Indicadores', 'Desempenho', 'Sobre'])
+option = st.sidebar.selectbox('Selecione a página desejada', ['Início', 'Indicadores', 'Desempenho', 'Documentos', 'Sobre'])
 if option == 'Início':
     # Página inicial
-    st.image(logo_Cinza, caption=None, width=150)
+    st.image(header, caption=None, width=800)
     st.header('**Bem vindo!**')
-    st.markdown('Nesta plataforma você encontrará os indicadores e o desempenho dos processos da Constel')
+    st.markdown('Nesta plataforma você encontrará os indicadores do Plano de Objetivos e Metas e o desempenho dos processos da Constel')
     st.markdown('Clique na aba lateral para navegar pelo site')
+
+if option == 'Documentos':
+    st.markdown('**Fluxograma de Entradas e Saídas**')
+    st.markdown('O documento contém as entradas e saídas dos processos da empresa')
+    with open('Fluxograma.jpg', 'rb') as f:
+	    st.download_button('Baixar', f, file_name='Fluxograma.jpg')
+    st.markdown('**Plano de Contingência**')
+    st.markdown('O documento contém o plano de contingêcia da empresa')
+    with open('planodecontingencia.pdf', 'rb') as f:
+	    st.download_button('Baixar', f, file_name='planodecontingencia.pdf')
+    st.markdown('**Organograma**')
+    st.markdown('O documento contém a hierarquia dos cargos da empresa')
+    with open('organograma.pdf', 'rb') as f:
+	    st.download_button('Baixar', f, file_name='organograma.pdf')
+
 
 if option == 'Desempenho':
     worksheet = "Desempenho do Processo 2021"
-    choice = st.selectbox('Escolha o setor: ',('Selecione', 'Instalação','Almoxarifado','Planejamento',
+    choice = st.selectbox('Escolha o processo: ',('Selecione', 'Instalação','Almoxarifado','Planejamento',
     'Seg. Trabalho','Projetos', 'Manutenção', 'RH'))
     # Desempenho do setor de Manutenção
     if choice == 'Manutenção':
