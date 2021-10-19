@@ -4,6 +4,10 @@ from PIL import Image
 from functions import leitor, indicador, desempenho_manutencao, desempenho_instalação_rh
 from functions import desempenho_almoxarifado, desempenho_plan_proj, desempenho_seg_trabalho
 import streamlit.components.v1 as components
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
+
 
 logo_C = Image.open("./LogoC.png")
 logo_Capa = Image.open("./Logo_C_capa.png")
@@ -12,7 +16,8 @@ logo_Cinza = Image.open("./Logo_Site.png")
 fluxograma = Image.open("./Fluxograma.jpg")
 contigencia = open("planodecontingencia.pdf")
 organograma = open("organograma.pdf")
-
+legend_site_emandamento = Image.open("./legenda_site_em_andamento.png")
+legend_site_aguardando = Image.open("./legenda_site_aguardando.png")
 
 
 # Barra lateral
@@ -37,15 +42,64 @@ if option == "Início":
     #     st.write('Senha incorreta!')
 
 if option == "Atuação":
-    option1 = st.sidebar.selectbox('Selecione a página desejada', ['Selecione', 'Site Survey'])
-    if option1 == 'Site Survey':
-        st.markdown('**Sites de atuação da Constel**')
-        components.iframe(src="https://www.google.com/maps/d/u/0/embed?mid=1r6xzmsAeiSD3cniV-oXD_MWHGMPyYVZ8", width=640, height=480)
+    worksheet = option
+    choice = st.sidebar.selectbox('Selecione a área de atuação', ['Selecione', 'Huawey'])
+    if choice == 'Huawey':
+        st.markdown('**Instalação WL**')
+        check1 = st.checkbox('Mostrar estatísticas:')
+        if check1 == 1:
+            sheet = "Dados"
+            df = leitor(worksheet, sheet)
+            st.markdown('**Status dos Sites**')
+            df2 = df.T
+            s_concluido = df2[2][1]
+            s_andamento = df2[3][1]
+            s_mos = df2[4][1]
+            s_agint = df2[5][1]
+            t_mes = df2[6][1]
+            # Imprime o status Concluído 
+            st.markdown('*' + list(df.iloc[2])[0]+ '*' + ': ' + s_concluido)
+            # Imprime o status Em andamento 
+            st.markdown('*' + list(df.iloc[3])[0]+ '*' + ': ' + s_andamento)
+            # Imprime o status Entrega do material 
+            st.markdown('*' + list(df.iloc[4])[0]+ '*' + ': ' + s_mos)
+            # Imprime o status Aguardando início 
+            st.markdown('*' + list(df.iloc[5])[0]+ '*' + ': ' + s_agint)
+            # Imprime a quantidade mês
+            st.markdown('*' + list(df.iloc[6])[0]+ '*' + ': ' + t_mes)
+     
+        check2 = st.checkbox('Ver no mapa:')
+        if check2 == 1:
+            components.iframe(src="https://www.google.com/maps/d/u/0/embed?mid=1r6xzmsAeiSD3cniV-oXD_MWHGMPyYVZ8", width=640, height=480)
+            st.markdown("**Simbologia do mapa**")
+            st.write("Em andamento: ")
+            st.image(legend_site_emandamento, width=30, )
+            st.write("Aguardando início: ")
+            st.image(legend_site_aguardando, width=30)
+        
+    
+        sheet = "Instalação WL"
+        df = leitor(worksheet, sheet)
+        # Alterar cabeçalho para primeira linha e excluir   
+        df.columns = df.iloc[0]
+        df = df.drop(df.index[0])
+        fig, ax =plt.subplots(figsize=(12,4))
+        ax.axis('tight')
+        ax.axis('off')
+        the_table = ax.table(cellText=df.values,colLabels=df.columns,loc='center')
+        pp = PdfPages("foo.pdf")
+        pp.savefig(fig, bbox_inches='tight')
+        pp.close()
+        st.markdown('**Baixar relatório de instalação WL**')
+        with open('foo.pdf', 'rb') as f:
+            st.download_button('Baixar', f, file_name='Relatório Instalação WL.pdf')
+            
+    else:
+        st.image(logo_Capa, caption=None, width=150)
+        st.markdown("Nesta aba é possível visualizar as diversas frentes de atuação da empresa, conferindo estatísticas e mapas")
 
 if option == "Gestão da Qualidade":
     option2 = st.sidebar.selectbox('Selecione a página desejada', ['Selecione', 'Indicadores', 'Desempenho', 'Documentos'])
-            
-
     if option2 == 'Documentos':
         st.markdown('**Fluxograma de Entradas e Saídas**')
         st.markdown('O documento contém as entradas e saídas dos processos da empresa')
