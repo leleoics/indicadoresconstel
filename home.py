@@ -324,66 +324,66 @@ if option == 'Desempenho':
         st.table(desempenho)
 
 
-    if option == 'Indicadores':
-        st.markdown('Nesta aba é possível visualizar os indicadores dos processos da empresa.')
-        choice = st.selectbox('Escolha o setor: ',('Selecione', 'Instalação', 'Manutenção','Planejamento','Comercial','Controle de Qualidade', 
-        'Seg. do Trabalho', 'Fechamento', 'Projetos', 'RH'))
-        # Indicador geral da empresa, mostrando os processos que puxam pra baixo, se for preciso definir pesos para os processos
-        worksheet = "Plano de Objetivos e Metas 2021 e Controle de Documentos"
-        sheet = choice
-        if choice == 'Instalação':
-            st.markdown('**Indicador:** Instalação')
-            df = leitor(worksheet, sheet)
-            ind = indicador(df)
-            st.table(ind)
-            
-        if choice == 'Manutenção':
-            st.markdown('**Indicador:** Manutenção')
-            df = leitor(worksheet, sheet)
-            ind = indicador(df)
-            st.table(ind)
+if option == 'Indicadores':
+    st.markdown('Nesta aba é possível visualizar os indicadores dos processos da empresa.')
+    choice = st.selectbox('Escolha o setor: ',('Selecione', 'Instalação', 'Manutenção','Planejamento','Comercial','Controle de Qualidade', 
+    'Seg. do Trabalho', 'Fechamento', 'Projetos', 'RH'))
+    # Indicador geral da empresa, mostrando os processos que puxam pra baixo, se for preciso definir pesos para os processos
+    worksheet = "Plano de Objetivos e Metas 2021 e Controle de Documentos"
+    sheet = choice
+    if choice == 'Instalação':
+        st.markdown('**Indicador:** Instalação')
+        df = leitor(worksheet, sheet)
+        ind = indicador(df)
+        st.table(ind)
+        
+    if choice == 'Manutenção':
+        st.markdown('**Indicador:** Manutenção')
+        df = leitor(worksheet, sheet)
+        ind = indicador(df)
+        st.table(ind)
 
-        if choice == 'Planejamento':
-            st.markdown('**Indicador:** Planejamento')
-            df = leitor(worksheet, sheet)
-            ind = indicador(df)
-            st.table(ind)
+    if choice == 'Planejamento':
+        st.markdown('**Indicador:** Planejamento')
+        df = leitor(worksheet, sheet)
+        ind = indicador(df)
+        st.table(ind)
 
-        if choice == 'Comercial':
-            st.markdown('**Indicador:** Comercial')
-            df = leitor(worksheet, sheet)
-            ind = indicador(df)
-            st.table(ind)
+    if choice == 'Comercial':
+        st.markdown('**Indicador:** Comercial')
+        df = leitor(worksheet, sheet)
+        ind = indicador(df)
+        st.table(ind)
 
-        if choice == 'Qualidade':
-            st.markdown('**Indicador:** Qualidade')
-            df = leitor(worksheet, sheet)
-            ind = indicador(df)
-            st.table(ind)
+    if choice == 'Qualidade':
+        st.markdown('**Indicador:** Qualidade')
+        df = leitor(worksheet, sheet)
+        ind = indicador(df)
+        st.table(ind)
 
-        if choice == 'Seg. do Trabalho':
-            st.markdown('**Indicador:** Seg. do Trabalho')
-            df = leitor(worksheet, sheet)
-            ind = indicador(df)
-            st.table(ind)
+    if choice == 'Seg. do Trabalho':
+        st.markdown('**Indicador:** Seg. do Trabalho')
+        df = leitor(worksheet, sheet)
+        ind = indicador(df)
+        st.table(ind)
 
-        if choice == 'Fechamento':
-            st.markdown('**Indicador:** Fechamento')
-            df = leitor(worksheet, sheet)
-            ind = indicador(df)
-            st.table(ind)
+    if choice == 'Fechamento':
+        st.markdown('**Indicador:** Fechamento')
+        df = leitor(worksheet, sheet)
+        ind = indicador(df)
+        st.table(ind)
 
-        if choice == 'Projetos':
-            st.markdown('**Indicador:** Projetos')
-            df = leitor(worksheet, sheet)
-            ind = indicador(df)
-            st.table(ind)
+    if choice == 'Projetos':
+        st.markdown('**Indicador:** Projetos')
+        df = leitor(worksheet, sheet)
+        ind = indicador(df)
+        st.table(ind)
 
-        if choice == 'RH':
-            st.markdown('**Indicador:** RH')
-            df = leitor(worksheet, sheet)
-            ind = indicador(df)
-            st.table(ind)
+    if choice == 'RH':
+        st.markdown('**Indicador:** RH')
+        df = leitor(worksheet, sheet)
+        ind = indicador(df)
+        st.table(ind)
 
 if option == "Sobre":
     st.markdown('**Autor:** Leonardo de Oliveira Melo')
