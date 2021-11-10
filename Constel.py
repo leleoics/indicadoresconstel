@@ -8,6 +8,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 
+# This code is different for each deployed app.
+CURRENT_THEME = "light"
+IS_DARK_THEME = False
+EXPANDER_TEXT = """
+    This is Streamlit's default *Light* theme. It should be enabled by default 🎈
+    If not, you can enable it in the app menu (☰ -> Settings -> Theme).
+    """
+
 
 logo_C = Image.open("./LogoC.png")
 logo_Capa = Image.open("./Logo_C_capa.png")
