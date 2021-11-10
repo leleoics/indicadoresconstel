@@ -14,5 +14,5 @@ port = $PORT\n\
 
 echo "\
 [theme]\n\
-base = \"light\"\n\
+base = $light\n\
 " > ~/.streamlit/config.toml
