@@ -3,7 +3,7 @@ import gspread
 from google.oauth2 import service_account
 import streamlit as st
 
-json_file = "./planejamento-constel123-1b8f07026a82.json"
+json_file = "./json/planejamento-constel123-1b8f07026a82.json"
 scopes = ["https://www.googleapis.com/auth/spreadsheets",
           "https://www.googleapis.com/auth/drive"]
 
@@ -24,7 +24,7 @@ def leitor(worksheet,sheet): # Acessa a planilha, a aba específica e retorna um
 def indicador(df):
     head = df.iloc[3]
     header = list(head[:5])
-    dfc = df[4:16]
+    dfc = df[4:13]
     dfc = dfc.rename(columns={0: header[0], 1: header[1], 2: header[2], 3: header[3], 4: header[4]})
     filtered_df = dfc.loc[:,header]
     return filtered_df
