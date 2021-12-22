@@ -32,7 +32,7 @@ def indicador(df):
 def desempenho_manutencao(df):
     head = df.iloc[0]
     header = list(head[:18])
-    dfc = df[1:13]
+    dfc = df[1:10]
     dfc = dfc.rename(columns={0: header[0], 1: header[1], 2: header[2], 3: header[3], 4: header[4],
     5: header[5], 6: header[6], 7: header[7], 8: header[8], 9: header[9], 10: header[10], 11: header[11],
     12: header[12], 13: header[13], 14: header[14], 15: header[15], 16: header[16], 17: header[17]})
@@ -42,7 +42,7 @@ def desempenho_manutencao(df):
 def desempenho_instalação_rh(df):
     head = df.iloc[0]
     header = list(head[:6])
-    dfc = df[1:13]
+    dfc = df[1:10]
     dfc = dfc.rename(columns={0: header[0], 1: header[1], 2: header[2], 3: header[3], 4: header[4],
     5: header[5]})
     filtered_df = dfc.loc[:,header]
@@ -60,7 +60,7 @@ def desempenho_almoxarifado(df):
 def desempenho_plan_proj(df):
     head = df.iloc[0]
     header = list(head[:5])
-    dfc = df[1:13]
+    dfc = df[1:10]
     dfc = dfc.rename(columns={0: header[0], 1: header[1], 2: header[2], 3: header[3], 4: header[4]})
     filtered_df = dfc.loc[:,header]
     return filtered_df
@@ -68,7 +68,7 @@ def desempenho_plan_proj(df):
 def desempenho_seg_trabalho(df):
     head = df.iloc[3]
     header = list(head[:5])
-    dfc = df[4:16]
+    dfc = df[4:13]
     dfc = dfc.rename(columns={0: header[0], 1: header[1], 2: header[2], 3: header[3], 4: header[4]})
     filtered_df = dfc.loc[:,header]
     return filtered_df

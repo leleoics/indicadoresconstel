@@ -45,7 +45,6 @@ if option == "Início":
     if acting == 'Construção de prumadas':
         components.iframe("https://www.google.com/maps/d/embed?mid=18q5jUlCf0BM9RQ-gygQDPUcvLq_OcwxU&ehbc=2E312F", width=700, height=380)
 
-
 if option == 'Indicadores':
     st.image(header_indicadores, caption=None, width=650)
     year = st.selectbox('Selecione o ano desejado: ',('Selecione','2021','2022'))
@@ -274,236 +273,219 @@ if option == 'Indicadores':
         if year == '2022':
             st.markdown('Aguardando a definição.')
 
-
 if option == 'Desempenho':
     st.image(header_desempenho, caption=None, width=650)
-    worksheet = "Desempenho do Processo 2021"
-    choice = st.selectbox('Escolha o processo: ',('Selecione', 'Instalação','Almoxarifado','Planejamento',
-    'Seg. Trabalho','Projetos', 'Manutenção', 'RH'))
-    # Desempenho do setor de Manutenção
-    if choice == 'Manutenção':
-        sheet = choice
-        df = leitor(worksheet, sheet)
-        # Avaliação primeiro trimestre
-        check1t = st.checkbox('1º Trimestre/2021')
-        if check1t == 1:
-            st.markdown('**'+list(df.iloc[42])[0]+'**')
-            st.write(list(df.iloc[43])[0])
-        # Avaliação segundo trimestre
-        check2t = st.checkbox('2º Trimestre/2021')
-        if check2t == 1:
-            st.markdown('**'+list(df.iloc[44])[0]+'**')
-            st.write(list(df.iloc[45])[0])
-        # Avaliação terceiro trimestre
-        check3t = st.checkbox('3º Trimestre/2021')
-        if check3t == 1:
-            st.markdown('**'+list(df.iloc[46])[0]+'**')
-            st.write(list(df.iloc[47])[0])
-        # Avaliação quarto trimestre
-        check4t = st.checkbox('4º Trimestre/2021')
-        if check4t == 1:
-            st.markdown('**'+list(df.iloc[48])[0]+'**')
-            st.write(list(df.iloc[49])[0])
-        # Desempenho
-        st.markdown('**Tabela do desempenho por mês do ano de 2021**')
-        desempenho = desempenho_manutencao(df)
-        st.table(desempenho)
+    year = st.selectbox('Selecione o ano desejado: ',('Selecione','2021','2022'))
+    if year != "Selecione":
+        if year == '2021':
+            st.markdown("<h6 style='text-align: center; color: black;'>⚠️ Observação!</h6>", unsafe_allow_html=True)
+            st.markdown("")
+            st.markdown("<p style='text-align: justify; color: black;'>Em 2021 ocorreu uma reestruturação da empresa, com o encerramento do contrato com a Copel Telecom.</p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: justify; color: black;'>Os indicadores de desempenho sofreram alterações, atendendo as novas demandas da empresa.</p>", unsafe_allow_html=True)
+            st.markdown("")
+            period = st.selectbox('Selecione o período para visualizar: ',('Selecione','1º ao 3º trimestre','4º trimestre'))
+                        
+            if period != 'Selecione':
+                
+                if period == '1º ao 3º trimestre':
+                    worksheet = "Desempenho do Processo 2021"
+                    choice = st.selectbox('Escolha o processo: ',('Selecione', 'Instalação','Almoxarifado','Planejamento',
+                    'Seg. Trabalho','Projetos', 'Manutenção', 'RH'))
+                    sheet = choice
 
-    if choice == 'Instalação':
-        sheet = choice
-        df = leitor(worksheet, sheet)
-        st.markdown('**Avaliações de desempenho**')
-        # Avaliação primeiro trimestre
-        check1t = st.checkbox('1º Trimestre/2021')
-        if check1t == 1:
-            st.markdown('**'+list(df.iloc[29])[0]+'**')
-            st.write(list(df.iloc[30])[0])
-        # Avaliação segundo trimestre
-        check2t = st.checkbox('2º Trimestre/2021')
-        if check2t == 1:
-            st.markdown('**'+list(df.iloc[31])[0]+'**')
-            st.write(list(df.iloc[32])[0])
-        # Avaliação terceiro trimestre
-        check3t = st.checkbox('3º Trimestre/2021')
-        if check3t == 1:
-            st.markdown('**'+list(df.iloc[33])[0]+'**')
-            st.write(list(df.iloc[34])[0])
-        # Avaliação quarto trimestre
-        check4t = st.checkbox('4º Trimestre/2021')
-        if check4t == 1:
-            st.markdown('**'+list(df.iloc[35])[0]+'**')
-            st.write(list(df.iloc[36])[0])
-        # Desempenho
-        st.markdown('**Tabela do desempenho por mês do ano de 2021**')
-        desempenho = desempenho_instalação_rh(df)
-        st.table(desempenho)
+                if period == '4º trimestre':
+                    st.markdown("<p style='text-align: center; color: black;'> Em definição...</p>", unsafe_allow_html=True)
+                    worksheet = "Desempenho do Processo 2021" #inserir planilha readequação
+                    choice = 'Selecione'
+                    # choice = st.selectbox('Selecione o processo: ',('Selecione',''))
+                    sheet = choice
 
-    if choice == 'Almoxarifado':
-        sheet = choice
-        df = leitor(worksheet, sheet)
-                # Avaliação primeiro trimestre
-        check1t = st.checkbox('1º Trimestre/2021')
-        if check1t == 1:
-            st.markdown('**'+list(df.iloc[95])[0]+'**')
-            st.write(list(df.iloc[96])[0])
-        # Avaliação segundo trimestre
-        check2t = st.checkbox('2º Trimestre/2021')
-        if check2t == 1:
-            st.markdown('**'+list(df.iloc[97])[0]+'**')
-            st.write(list(df.iloc[98])[0])
-        # Avaliação terceiro trimestre
-        check3t = st.checkbox('3º Trimestre/2021')
-        if check3t == 1:
-            st.markdown('**'+list(df.iloc[99])[0]+'**')
-            st.write(list(df.iloc[100])[0])
-        # Avaliação quarto trimestre
-        check4t = st.checkbox('4º Trimestre/2021')
-        if check4t == 1:
-            st.markdown('**'+list(df.iloc[101])[0]+'**')
-            st.write(list(df.iloc[102])[0])
-        # Desempenho
-        st.markdown('**Tabela do desempenho por mês do ano de 2021**')
-        desempenho = desempenho_almoxarifado(df)
-        # Filtra o df pelo mês e retorna df com base no intervalo mensal
-        month = st.selectbox('Selecione o mês:', ('Selecione', 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
-        'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'))
-        if month == 'Janeiro':
-            st.table(desempenho[0:6])
-        if month == 'Fevereiro':
-            st.table(desempenho[6:12])
-        if month == 'Março':
-            st.table(desempenho[12:18])
-        if month == 'Abril':
-            st.table(desempenho[18:24])
-        if month == 'Maio':
-            st.table(desempenho[24:30])
-        if month == 'Junho':
-            st.table(desempenho[30:36])
-        if month == 'Julho':
-            st.table(desempenho[36:42])
-        if month == 'Agosto':
-            st.table(desempenho[42:48])
-        if month == 'Setembro':
-            st.table(desempenho[48:54])
-        if month == 'Outubro':
-            st.table(desempenho[54:60])
-        if month == 'Novembro':
-            st.table(desempenho[60:66])
-        if month == 'Dezembro':
-            st.table(desempenho[66:72])
+                if choice == 'Instalação':
+                    df = leitor(worksheet, sheet)
+                    st.markdown('**Avaliações de desempenho**')
+                    # Avaliação primeiro trimestre
+                    check1t = st.checkbox('1º Trimestre/2021')
+                    if check1t == 1:
+                        st.markdown('**'+list(df.iloc[29])[0]+'**')
+                        st.write(list(df.iloc[30])[0])
+                    # Avaliação segundo trimestre
+                    check2t = st.checkbox('2º Trimestre/2021')
+                    if check2t == 1:
+                        st.markdown('**'+list(df.iloc[31])[0]+'**')
+                        st.write(list(df.iloc[32])[0])
+                    # Avaliação terceiro trimestre
+                    check3t = st.checkbox('3º Trimestre/2021')
+                    if check3t == 1:
+                        st.markdown('**'+list(df.iloc[33])[0]+'**')
+                        st.write(list(df.iloc[34])[0])
+                    # Desempenho
+                    st.markdown('**Tabela do desempenho por mês do ano de 2021**')
+                    desempenho = desempenho_instalação_rh(df)
+                    st.table(desempenho)
 
-    if choice == 'Planejamento':
-        sheet = choice
-        df = leitor(worksheet, sheet)
-                # Avaliação primeiro trimestre
-        check1t = st.checkbox('1º Trimestre/2021')
-        if check1t == 1:
-            st.markdown('**'+list(df.iloc[38])[0]+'**')
-            st.write(list(df.iloc[39])[0])
-        # Avaliação segundo trimestre
-        check2t = st.checkbox('2º Trimestre/2021')
-        if check2t == 1:
-            st.markdown('**'+list(df.iloc[40])[0]+'**')
-            st.write(list(df.iloc[41])[0])
-        # Avaliação terceiro trimestre
-        check3t = st.checkbox('3º Trimestre/2021')
-        if check3t == 1:
-            st.markdown('**'+list(df.iloc[42])[0]+'**')
-            st.write(list(df.iloc[43])[0])
-        # Avaliação quarto trimestre
-        check4t = st.checkbox('4º Trimestre/2021')
-        if check4t == 1:
-            st.markdown('**'+list(df.iloc[44])[0]+'**')
-            st.write(list(df.iloc[45])[0])
-        # Desempenho
-        st.markdown('**Tabela do desempenho por mês do ano de 2021**')
-        desempenho = desempenho_plan_proj(df)
-        st.table(desempenho)
+                # Desempenho do setor de Manutenção
+                if choice == 'Manutenção':
+                    df = leitor(worksheet, sheet)
+                    # Avaliação primeiro trimestre
+                    check1t = st.checkbox('1º Trimestre/2021')
+                    if check1t == 1:
+                        st.markdown('**'+list(df.iloc[42])[0]+'**')
+                        st.write(list(df.iloc[43])[0])
+                    # Avaliação segundo trimestre
+                    check2t = st.checkbox('2º Trimestre/2021')
+                    if check2t == 1:
+                        st.markdown('**'+list(df.iloc[44])[0]+'**')
+                        st.write(list(df.iloc[45])[0])
+                    # Avaliação terceiro trimestre
+                    check3t = st.checkbox('3º Trimestre/2021')
+                    if check3t == 1:
+                        st.markdown('**'+list(df.iloc[46])[0]+'**')
+                        st.write(list(df.iloc[47])[0])
+                    # Desempenho
+                    st.markdown('**Tabela do desempenho por mês do ano de 2021**')
+                    desempenho = desempenho_manutencao(df)
+                    st.table(desempenho)
 
-    if choice == 'Projetos':
-        sheet = choice
-        df = leitor(worksheet, sheet)
-                # Avaliação primeiro trimestre
-        check1t = st.checkbox('1º Trimestre/2021')
-        if check1t == 1:
-            st.markdown('**'+list(df.iloc[34])[0]+'**')
-            st.write(list(df.iloc[35])[0])
-        # Avaliação segundo trimestre
-        check2t = st.checkbox('2º Trimestre/2021')
-        if check2t == 1:
-            st.markdown('**'+list(df.iloc[36])[0]+'**')
-            st.write(list(df.iloc[37])[0])
-        # Avaliação terceiro trimestre
-        check3t = st.checkbox('3º Trimestre/2021')
-        if check3t == 1:
-            st.markdown('**'+list(df.iloc[38])[0]+'**')
-            st.write(list(df.iloc[39])[0])
-        # Avaliação quarto trimestre
-        check4t = st.checkbox('4º Trimestre/2021')
-        if check4t == 1:
-            st.markdown('**'+list(df.iloc[40])[0]+'**')
-            st.write(list(df.iloc[41])[0])
-        # Desempenho
-        st.markdown('**Tabela do desempenho por mês do ano de 2021**')
-        desempenho = desempenho_plan_proj(df)
-        st.table(desempenho)
+                if choice == 'Almoxarifado':
+                    df = leitor(worksheet, sheet)
+                            # Avaliação primeiro trimestre
+                    check1t = st.checkbox('1º Trimestre/2021')
+                    if check1t == 1:
+                        st.markdown('**'+list(df.iloc[95])[0]+'**')
+                        st.write(list(df.iloc[96])[0])
+                    # Avaliação segundo trimestre
+                    check2t = st.checkbox('2º Trimestre/2021')
+                    if check2t == 1:
+                        st.markdown('**'+list(df.iloc[97])[0]+'**')
+                        st.write(list(df.iloc[98])[0])
+                    # Avaliação terceiro trimestre
+                    check3t = st.checkbox('3º Trimestre/2021')
+                    if check3t == 1:
+                        st.markdown('**'+list(df.iloc[99])[0]+'**')
+                        st.write(list(df.iloc[100])[0])
+                    # Desempenho
+                    st.markdown('**Tabela do desempenho por mês do ano de 2021**')
+                    desempenho = desempenho_almoxarifado(df)
+                    # Filtra o df pelo mês e retorna df com base no intervalo mensal
+                    months = ['Selecione', 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
+                    'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+                    i = st.slider('Arraste para o mês desejado: ', 1, 10)
+                    month = months[i]
+                    st.write("Selecionado o mês de ", month)                  
+                    if month == 'Janeiro':
+                        st.table(desempenho[0:6])
+                    if month == 'Fevereiro':
+                        st.table(desempenho[6:12])
+                    if month == 'Março':
+                        st.table(desempenho[12:18])
+                    if month == 'Abril':
+                        st.table(desempenho[18:24])
+                    if month == 'Maio':
+                        st.table(desempenho[24:30])
+                    if month == 'Junho':
+                        st.table(desempenho[30:36])
+                    if month == 'Julho':
+                        st.table(desempenho[36:42])
+                    if month == 'Agosto':
+                        st.table(desempenho[42:48])
+                    if month == 'Setembro':
+                        st.table(desempenho[48:54])
 
-    if choice == 'Seg. Trabalho':
-        sheet = choice
-        df = leitor(worksheet, sheet)
-                # Avaliação primeiro trimestre
-        check1t = st.checkbox('1º Trimestre/2021')
-        if check1t == 1:
-            st.markdown('**'+list(df.iloc[17])[0]+'**')
-            st.write(list(df.iloc[18])[0])
-        # Avaliação segundo trimestre
-        check2t = st.checkbox('2º Trimestre/2021')
-        if check2t == 1:
-            st.markdown('**'+list(df.iloc[19])[0]+'**')
-            st.write(list(df.iloc[20])[0])
-        # Avaliação terceiro trimestre
-        check3t = st.checkbox('3º Trimestre/2021')
-        if check3t == 1:
-            st.markdown('**'+list(df.iloc[21])[0]+'**')
-            st.write(list(df.iloc[22])[0])
-        # Avaliação quarto trimestre
-        check4t = st.checkbox('4º Trimestre/2021')
-        if check4t == 1:
-            st.markdown('**'+list(df.iloc[23])[0]+'**')
-            st.write(list(df.iloc[24])[0])
-        # Desempenho
-        st.markdown('**Tabela do desempenho por mês do ano de 2021**')
-        desempenho = desempenho_seg_trabalho(df)
-        st.table(desempenho)
-    
-    if choice == 'RH':
-        sheet = choice
-        df = leitor(worksheet, sheet)
-                # Avaliação primeiro trimestre
-        check1t = st.checkbox('1º Trimestre/2021')
-        if check1t == 1:
-            st.markdown('**'+list(df.iloc[29])[0]+'**')
-            st.write(list(df.iloc[30])[0])
-        # Avaliação segundo trimestre
-        check2t = st.checkbox('2º Trimestre/2021')
-        if check2t == 1:
-            st.markdown('**'+list(df.iloc[31])[0]+'**')
-            st.write(list(df.iloc[32])[0])
-        # Avaliação terceiro trimestre
-        check3t = st.checkbox('3º Trimestre/2021')
-        if check3t == 1:
-            st.markdown('**'+list(df.iloc[33])[0]+'**')
-            st.write(list(df.iloc[34])[0])
-        # Avaliação quarto trimestre
-        check4t = st.checkbox('4º Trimestre/2021')
-        if check4t == 1:
-            st.markdown('**'+list(df.iloc[35])[0]+'**')
-            st.write(list(df.iloc[36])[0])
-        # Desempenho
-        st.markdown('**Tabela do desempenho por mês do ano de 2021**')
-        desempenho = desempenho_instalação_rh(df)
-        st.table(desempenho)
 
+                if choice == 'Planejamento':
+                    sheet = choice
+                    df = leitor(worksheet, sheet)
+                            # Avaliação primeiro trimestre
+                    check1t = st.checkbox('1º Trimestre/2021')
+                    if check1t == 1:
+                        st.markdown('**'+list(df.iloc[38])[0]+'**')
+                        st.write(list(df.iloc[39])[0])
+                    # Avaliação segundo trimestre
+                    check2t = st.checkbox('2º Trimestre/2021')
+                    if check2t == 1:
+                        st.markdown('**'+list(df.iloc[40])[0]+'**')
+                        st.write(list(df.iloc[41])[0])
+                    # Avaliação terceiro trimestre
+                    check3t = st.checkbox('3º Trimestre/2021')
+                    if check3t == 1:
+                        st.markdown('**'+list(df.iloc[42])[0]+'**')
+                        st.write(list(df.iloc[43])[0])
+                    # Desempenho
+                    st.markdown('**Tabela do desempenho por mês do ano de 2021**')
+                    desempenho = desempenho_plan_proj(df)
+                    st.table(desempenho)
+
+                if choice == 'Projetos':
+                    sheet = choice
+                    df = leitor(worksheet, sheet)
+                            # Avaliação primeiro trimestre
+                    check1t = st.checkbox('1º Trimestre/2021')
+                    if check1t == 1:
+                        st.markdown('**'+list(df.iloc[34])[0]+'**')
+                        st.write(list(df.iloc[35])[0])
+                    # Avaliação segundo trimestre
+                    check2t = st.checkbox('2º Trimestre/2021')
+                    if check2t == 1:
+                        st.markdown('**'+list(df.iloc[36])[0]+'**')
+                        st.write(list(df.iloc[37])[0])
+                    # Avaliação terceiro trimestre
+                    check3t = st.checkbox('3º Trimestre/2021')
+                    if check3t == 1:
+                        st.markdown('**'+list(df.iloc[38])[0]+'**')
+                        st.write(list(df.iloc[39])[0])
+                    # Desempenho
+                    st.markdown('**Tabela do desempenho por mês do ano de 2021**')
+                    desempenho = desempenho_plan_proj(df)
+                    st.table(desempenho)
+
+                if choice == 'Seg. Trabalho':
+                    sheet = choice
+                    df = leitor(worksheet, sheet)
+                            # Avaliação primeiro trimestre
+                    check1t = st.checkbox('1º Trimestre/2021')
+                    if check1t == 1:
+                        st.markdown('**'+list(df.iloc[17])[0]+'**')
+                        st.write(list(df.iloc[18])[0])
+                    # Avaliação segundo trimestre
+                    check2t = st.checkbox('2º Trimestre/2021')
+                    if check2t == 1:
+                        st.markdown('**'+list(df.iloc[19])[0]+'**')
+                        st.write(list(df.iloc[20])[0])
+                    # Avaliação terceiro trimestre
+                    check3t = st.checkbox('3º Trimestre/2021')
+                    if check3t == 1:
+                        st.markdown('**'+list(df.iloc[21])[0]+'**')
+                        st.write(list(df.iloc[22])[0])
+                    # Desempenho
+                    st.markdown('**Tabela do desempenho por mês do ano de 2021**')
+                    desempenho = desempenho_seg_trabalho(df)
+                    st.table(desempenho)
+                
+                if choice == 'RH':
+                    sheet = choice
+                    df = leitor(worksheet, sheet)
+                            # Avaliação primeiro trimestre
+                    check1t = st.checkbox('1º Trimestre/2021')
+                    if check1t == 1:
+                        st.markdown('**'+list(df.iloc[29])[0]+'**')
+                        st.write(list(df.iloc[30])[0])
+                    # Avaliação segundo trimestre
+                    check2t = st.checkbox('2º Trimestre/2021')
+                    if check2t == 1:
+                        st.markdown('**'+list(df.iloc[31])[0]+'**')
+                        st.write(list(df.iloc[32])[0])
+                    # Avaliação terceiro trimestre
+                    check3t = st.checkbox('3º Trimestre/2021')
+                    if check3t == 1:
+                        st.markdown('**'+list(df.iloc[33])[0]+'**')
+                        st.write(list(df.iloc[34])[0])
+                    # Desempenho
+                    st.markdown('**Tabela do desempenho por mês do ano de 2021**')
+                    desempenho = desempenho_instalação_rh(df)
+                    st.table(desempenho)
+
+        if year == '2022':
+            st.markdown('Aguardando a definição.')
 
 if option == 'Documentos':
     st.markdown("<h3 style='text-align: center; color: black;'>Documentos</h3>", unsafe_allow_html=True)
@@ -555,7 +537,6 @@ if option == 'Documentos':
     st.markdown("<h6 style='text-align: left; color: black;'>Análise SWOT com Riscos</h6>", unsafe_allow_html=True)
     st.write("<p style='text-align: justify; color: black;'>    Qual o risco do seu processo para o negócio? Qual é o grau desse risco? Quais as ações que visam mitigá-lo? O plano de ação é para 1 ou 2 anos? A matriz SWOT, ou FOFA é uma ferramenta de planejamento estratégico, a qual contém os pontos fortes e fracos, relacionados ao ambiente interno (Forças e Fraquezas) e externo da empresa (Oportunidades e Ameaças). Assim como os indicadores, as ações presentes no planejamento estratégico devem ser analisadas periodicamente (semestral), fazendo uma análise completa sobre tudo o que foi feito durante o período e quais serão as próximas ações. A planilha está disponível de forma online a fim de facilitar a edição simultânea por parte dos gestores. TODOS que fazem parte do seu processo devem ter conhecimento do(s) risco(s) que pode(m) impactar de forma positiva ou negativa o planejamento estratégico da empresa. </p>", unsafe_allow_html=True)
     st.write('')
-
 
 if option == "Sobre":
     st.markdown('**Autor:** Leonardo de Oliveira Melo')
