@@ -27,7 +27,6 @@ logo_Cinza = Image.open("./thumbnail/Logo_Site.png")
 # Barra lateral
 st.sidebar.image(logo_C, caption=None, width=75)
 st.sidebar.title('**Constel Engenharia Elétrica**')
-
 option = st.sidebar.selectbox('Selecione a página desejada', ["Início", "Indicadores", "Desempenho", "Documentos", "Sobre"])
 
 if option == "Início":
