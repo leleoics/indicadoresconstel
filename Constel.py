@@ -1,20 +1,14 @@
 import streamlit as st
-import pandas as pd
 from PIL import Image
 from functions import leitor, indicador, desempenho_manutencao, desempenho_instalação_rh
 from functions import desempenho_almoxarifado, desempenho_plan_proj, desempenho_seg_trabalho
 import streamlit.components.v1 as components
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_pdf import PdfPages
+# import pandas as pd
+# import numpy as np
+# import matplotlib.pyplot as plt
+# from matplotlib.backends.backend_pdf import PdfPages
 
-# This code is different for each deployed app.
-CURRENT_THEME = "light"
-IS_DARK_THEME = False
-EXPANDER_TEXT = """
-    This is Streamlit's default *Light* theme. It should be enabled by default 🎈
-    If not, you can enable it in the app menu (☰ -> Settings -> Theme).
-    """
+
 # Abre arquivos de imagem
 logo_C = Image.open("./thumbnail/LogoC.png")
 logo_Capa = Image.open("./thumbnail/Logo_C_capa.png")
@@ -29,6 +23,8 @@ st.sidebar.image(logo_C, caption=None, width=75)
 st.sidebar.title('**Constel Engenharia Elétrica**')
 option = st.sidebar.selectbox('Selecione a página desejada', ["Início", "Indicadores", "Desempenho", "Documentos", "Sobre"])
 
+
+# Abas da aplicação
 if option == "Início":
     # Página inicial
     st.image(header, caption=None, width=650)
