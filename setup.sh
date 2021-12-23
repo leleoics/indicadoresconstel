@@ -7,6 +7,11 @@ email = \"leonardocartografica@gmail.com\"\n\
 echo "\
 [theme]\n\
 base = "light"\n\
+primaryColor = "white"\n\
+backgroundColor = "white"\n\
+secondaryBackgroundColor = "purple"\n\
+textColor = "black"\n\
+font = "sans serif"\n\
 " > ~/.streamlit/config.toml
 
 echo "\
