@@ -10,9 +10,6 @@ echo "\
 headless = true\n\
 enableCORS=false\n\
 port = $PORT\n\
-" > ~/.streamlit/config.toml
-
-echo "\
 [theme]\n\
 primaryColor=#F63366\n\
 backgroundColor=#FFFFFF\n\
