@@ -193,16 +193,16 @@ keyPrefix = ""
 base ="light"
 
 # Primary accent color for interactive elements.
-#primaryColor =#F63366
+primaryColor =#F63366
 
 # Background color for the main content area.
-#backgroundColor =#FFFFFF
+backgroundColor =#FFFFFF
 
 # Background color used for the sidebar and most interactive widgets.
-#secondaryBackgroundColor =#F0F2F6
+secondaryBackgroundColor =#F0F2F6
 
 # Color used for almost all text.
-#textColor =#262730
+textColor =#262730
 
 # Font family for all text in the app, except code blocks. One of "sans serif", "serif", or "monospace".
-#font ="sans serif"
+font ="sans serif"
