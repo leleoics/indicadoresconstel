@@ -6,7 +6,7 @@ email = \"leonardocartografica@gmail.com\"\n\
 
 echo "\
 [theme]\n\
-base = "light"\n\
+base = "dark"\n\
 primaryColor = "white"\n\
 backgroundColor = "white"\n\
 secondaryBackgroundColor = "purple"\n\
