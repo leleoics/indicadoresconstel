@@ -1,7 +1,7 @@
 import pandas as pd
 import gspread
 from google.oauth2 import service_account
-import streamlit as st
+
 
 json_file = "./json/planejamento-constel123-1b8f07026a82.json"
 scopes = ["https://www.googleapis.com/auth/spreadsheets",

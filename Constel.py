@@ -3,11 +3,11 @@ from PIL import Image
 from functions import leitor, indicador, desempenho_manutencao, desempenho_instalação_rh
 from functions import desempenho_almoxarifado, desempenho_plan_proj, desempenho_seg_trabalho
 import streamlit.components.v1 as components
+import streamlit_authenticator as stauth
 # import pandas as pd
 # import numpy as np
 # import matplotlib.pyplot as plt
 # from matplotlib.backends.backend_pdf import PdfPages
-
 
 # Abre arquivos de imagem
 logo_C = Image.open("./thumbnail/LogoC.png")
@@ -17,12 +17,14 @@ header_indicadores = Image.open("./thumbnail/header_indicadores.png")
 header_desempenho = Image.open("./thumbnail/header_desempenho.png")
 logo_Cinza = Image.open("./thumbnail/Logo_Site.png")
 
+# Define os acessos para cada colaborador
+huawei_wl = ['Leonardo Oliveira','Daniel Souza']
+constr_prumadas = ['Leandro Scheidt','Nêne']
 
 # Barra lateral
 st.sidebar.image(logo_C, caption=None, width=75)
 st.sidebar.title('**Constel Engenharia Elétrica**')
-option = st.sidebar.selectbox('Selecione a página desejada', ["Início", "Indicadores", "Desempenho", "Documentos", "Sobre"])
-
+option = st.sidebar.selectbox('Selecione a página desejada', ["Início", "Login", "Indicadores", "Desempenho", "Documentos", "Sobre"])
 
 # Abas da aplicação
 if option == "Início":
@@ -32,13 +34,35 @@ if option == "Início":
     st.markdown("<p style='text-align: justify; color: black;'>Nesta plataforma você encontrará os indicadores dos processos, desempenho dos processos e também documentos relacionados a Gestão da Qualidade.</p>", unsafe_allow_html=True)
     st.markdown('       ')
     st.markdown("<p style='text-align: center; color: black;'>👈 Clique na aba lateral para navegar pelo site.</p>", unsafe_allow_html=True)
-    st.markdown('       ')
-    st.markdown("<p style='text-align: center; color: black;'>Abaixo é possível visualizar as áreas de atuação da empresa: </p>", unsafe_allow_html=True)
-    acting = st.selectbox('Selecione a área de atuação para ver o mapa: ', ('Instalação de Sites', 'Construção de prumadas', 'Instalação de internet'))
-    if acting == 'Instalação de Sites':
-        components.iframe("https://www.google.com/maps/d/embed?mid=1r6xzmsAeiSD3cniV-oXD_MWHGMPyYVZ8&ehbc=2E312F", width=700, height=380)
-    if acting == 'Construção de prumadas':
-        components.iframe("https://www.google.com/maps/d/embed?mid=18q5jUlCf0BM9RQ-gygQDPUcvLq_OcwxU&ehbc=2E312F", width=700, height=380)
+
+if option == "Login":
+    names = ['Leonardo Oliveira','Leandro Scheidt','Nêne','Daniel Souza']
+    usernames = ['loliveira','lscheidt','lwinikes', 'dsouza']
+    passwords = ['plan2022','plan2022','gest2022','coord2022']
+    hashed_passwords = stauth.hasher(passwords).generate()
+    authenticator = stauth.authenticate(names,usernames,hashed_passwords,
+    'some_cookie_name','some_signature_key',cookie_expiry_days=30)
+    name, authentication_status = authenticator.login('Login','main')
+    if authentication_status:
+        st.write('Olá **%s**' % (name))
+        if name in huawei_wl:
+            st.markdown("")
+            st.markdown("<h3 style='text-align: center; color: black;'>Dashboard Huawei WL</h3>", unsafe_allow_html=True)
+            st.markdown("")
+            worksheet = "Controle Geral"
+            sheet = "Sites"
+            df = leitor(worksheet, sheet)
+            st.table(df)
+            st.markdown("Mapa de localização dos Sites")
+            components.iframe("https://www.google.com/maps/d/embed?mid=1r6xzmsAeiSD3cniV-oXD_MWHGMPyYVZ8&ehbc=2E312F", width=700, height=380)
+
+
+        if name in constr_prumadas:
+            st.write('Mãaaae')
+    elif authentication_status == False:
+        st.error('Usuário ou senha incorretos')
+    elif authentication_status == None:
+        st.warning('Por favor entre com o usuário e senha!')
 
 if option == 'Indicadores':
     st.image(header_indicadores, caption=None, width=650)
