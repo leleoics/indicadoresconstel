@@ -4,6 +4,7 @@ from functions import leitor, indicador, desempenho_manutencao, desempenho_insta
 from functions import desempenho_almoxarifado, desempenho_plan_proj, desempenho_seg_trabalho
 import streamlit.components.v1 as components
 import streamlit_authenticator as stauth
+import plotly.express as px
 # import pandas as pd
 # import numpy as np
 # import matplotlib.pyplot as plt
@@ -24,7 +25,7 @@ constr_prumadas = ['Leandro Scheidt','Nêne']
 # Barra lateral
 st.sidebar.image(logo_C, caption=None, width=75)
 st.sidebar.title('**Constel Engenharia Elétrica**')
-option = st.sidebar.selectbox('Selecione a página desejada', ["Início", "Login", "Indicadores", "Desempenho", "Documentos", "Sobre"])
+option = st.sidebar.selectbox('Selecione a página desejada', ["Início", "Dashboard", "Indicadores", "Desempenho", "Documentos", "Sobre"])
 
 # Abas da aplicação
 if option == "Início":
@@ -35,7 +36,7 @@ if option == "Início":
     st.markdown('       ')
     st.markdown("<p style='text-align: center; color: black;'>👈 Clique na aba lateral para navegar pelo site.</p>", unsafe_allow_html=True)
 
-if option == "Login":
+if option == "Dashboard":
     names = ['Leonardo Oliveira','Leandro Scheidt','Nêne','Daniel Souza']
     usernames = ['loliveira','lscheidt','lwinikes', 'dsouza']
     passwords = ['plan2022','plan2022','gest2022','coord2022']
@@ -43,25 +44,54 @@ if option == "Login":
     authenticator = stauth.authenticate(names,usernames,hashed_passwords,
     'some_cookie_name','some_signature_key',cookie_expiry_days=30)
     name, authentication_status = authenticator.login('Login','main')
-    if authentication_status:
-        st.write('Olá **%s**' % (name))
+    if st.session_state['authentication_status']:
+        st.write('Olá **%s**' % (st.session_state['name']))
         if name in huawei_wl:
             st.markdown("")
             st.markdown("<h3 style='text-align: center; color: black;'>Dashboard Huawei WL</h3>", unsafe_allow_html=True)
-            st.markdown("")
+            st.markdown("---")
             worksheet = "Controle Geral"
             sheet = "Sites"
             df = leitor(worksheet, sheet)
-            st.table(df)
-            st.markdown("Mapa de localização dos Sites")
+            head = df.iloc[0]
+            header = list(head[:6])
+            dfc = df.rename(columns={0: header[0], 1: header[1], 2: header[2], 3: header[3], 4: header[4], 5: header[5]})
+            adjusted_df = dfc.loc[:,header].drop(0)
+            df_masked = adjusted_df['Status']=='Finalizado'
+            df_finished =  adjusted_df[df_masked]
+            finished = df_finished['Sigla'].count()
+            df_masked = adjusted_df['Status']=='Projeto'
+            df_project =  adjusted_df[df_masked]
+            project = df_project['Sigla'].count()
+            df_masked = adjusted_df['Status']=='Construção'
+            df_construction =  adjusted_df[df_masked]
+            construction = df_construction['Sigla'].count()
+            box_finished = st.checkbox('Sites finalizados: %s' % (finished))
+            if box_finished == 1:
+                st.dataframe(df_finished)
+            box_construction = st.checkbox('Sites em construção: %s' % (construction))
+            if box_construction == 1:
+                st.dataframe(df_construction)
+            box_project = st.checkbox('Sites em construção: %s' % (project))
+            if box_project == 1:
+                st.dataframe(df_project)
+            fig = px.bar(x = [project, construction, finished],
+            y = ['Projetado', 'Em construção', 'Finalizado'],
+            orientation='h', title=" Instalação de sites",
+            labels={'x':'Quantidade','y':'Status'})
+            st.plotly_chart(fig)
+            st.markdown("---")
+            st.markdown("<h6 style='text-align: center; color: black;'>Mapa de localização dos Sites</h6>", unsafe_allow_html=True)
             components.iframe("https://www.google.com/maps/d/embed?mid=1r6xzmsAeiSD3cniV-oXD_MWHGMPyYVZ8&ehbc=2E312F", width=700, height=380)
-
-
         if name in constr_prumadas:
-            st.write('Mãaaae')
-    elif authentication_status == False:
+            st.write('Mãaaae')        
+            st.write('E o coxa?')        
+            st.write('Vim de moto hoje, minha moto faz ran dan dan')        
+        
+    
+    elif st.session_state['authentication_status'] == False:
         st.error('Usuário ou senha incorretos')
-    elif authentication_status == None:
+    elif st.session_state['authentication_status'] == None:
         st.warning('Por favor entre com o usuário e senha!')
 
 if option == 'Indicadores':
