@@ -1,10 +1,10 @@
 import streamlit as st
 from PIL import Image
 from functions import leitor, indicador, desempenho_manutencao, desempenho_instalação_rh
-from functions import desempenho_almoxarifado, desempenho_plan_proj, desempenho_seg_trabalho
+from functions import desempenho_almoxarifado, desempenho_plan_proj, desempenho_seg_trabalho, graphic
 import streamlit.components.v1 as components
 import streamlit_authenticator as stauth
-import plotly.express as px
+from numpy import sum
 # import pandas as pd
 # import numpy as np
 # import matplotlib.pyplot as plt
@@ -67,22 +67,38 @@ if option == "Dashboard":
             df_construction =  adjusted_df[df_masked]
             construction = df_construction['Sigla'].count()
             box_finished = st.checkbox('Sites finalizados: %s' % (finished))
+            list_sites = df_finished['Sigla'].tolist()
+            list_duration = df_finished['Duração'].tolist()
+            days = [int(val) for val in list_duration]
+            days.sort()
+            mean_days = (sum(days) / len(days))
+            max_day = days[0]
+            min_day = days[-1]
             if box_finished == 1:
-                st.dataframe(df_finished)
+                st.markdown('Média de dias de construção dos Sites: **%s** dias' % (int(mean_days)))
+                st.markdown('Maior duração: **%s** dias' % (min_day))
+                st.markdown('Menor duração: **%s** dias' % (max_day))
+                st.table(df_finished)
+                values2, description2, orient2, label2 = list_duration, list_sites, 'h', "Duração por Site Finalizado"
+                subtitle2 = {'x':'Duração','y':'Site'}
+                fig2 = graphic(values2, description2, orient2, label2, subtitle2)
+                st.plotly_chart(fig2)
+
             box_construction = st.checkbox('Sites em construção: %s' % (construction))
             if box_construction == 1:
                 st.dataframe(df_construction)
             box_project = st.checkbox('Sites em construção: %s' % (project))
             if box_project == 1:
                 st.dataframe(df_project)
-            fig = px.bar(x = [project, construction, finished],
-            y = ['Projetado', 'Em construção', 'Finalizado'],
-            orientation='h', title=" Instalação de sites",
-            labels={'x':'Quantidade','y':'Status'})
+            values, description, orient, label = [project, construction, finished], ['Projetado', 'Em construção', 'Finalizado'], 'h', " Instalação de sites"
+            subtitle = {'x':'Quantidade','y':'Status'}
+            fig = graphic(values, description, orient, label, subtitle)
             st.plotly_chart(fig)
+ 
             st.markdown("---")
             st.markdown("<h6 style='text-align: center; color: black;'>Mapa de localização dos Sites</h6>", unsafe_allow_html=True)
             components.iframe("https://www.google.com/maps/d/embed?mid=1r6xzmsAeiSD3cniV-oXD_MWHGMPyYVZ8&ehbc=2E312F", width=700, height=380)
+
         if name in constr_prumadas:
             st.write('Mãaaae')        
             st.write('E o coxa?')        
