@@ -49,55 +49,56 @@ if option == "Dashboard":
         if name in huawei_wl:
             st.markdown("")
             st.markdown("<h3 style='text-align: center; color: black;'>Dashboard Huawei WL</h3>", unsafe_allow_html=True)
-            st.markdown("---")
-            worksheet = "Controle Geral"
-            sheet = "Sites"
-            df = leitor(worksheet, sheet)
-            head = df.iloc[0]
-            header = list(head[:6])
-            dfc = df.rename(columns={0: header[0], 1: header[1], 2: header[2], 3: header[3], 4: header[4], 5: header[5]})
-            adjusted_df = dfc.loc[:,header].drop(0)
-            df_masked = adjusted_df['Status']=='Finalizado'
-            df_finished =  adjusted_df[df_masked]
-            finished = df_finished['Sigla'].count()
-            df_masked = adjusted_df['Status']=='Projeto'
-            df_project =  adjusted_df[df_masked]
-            project = df_project['Sigla'].count()
-            df_masked = adjusted_df['Status']=='Construção'
-            df_construction =  adjusted_df[df_masked]
-            construction = df_construction['Sigla'].count()
-            box_finished = st.checkbox('Sites finalizados: %s' % (finished))
-            list_sites = df_finished['Sigla'].tolist()
-            list_duration = df_finished['Duração'].tolist()
-            days = [int(val) for val in list_duration]
-            days.sort()
-            mean_days = (sum(days) / len(days))
-            max_day = days[0]
-            min_day = days[-1]
-            if box_finished == 1:
-                st.markdown('Média de dias de construção dos Sites: **%s** dias' % (int(mean_days)))
-                st.markdown('Maior duração: **%s** dias' % (min_day))
-                st.markdown('Menor duração: **%s** dias' % (max_day))
-                st.table(df_finished)
-                values2, description2, orient2, label2 = list_duration, list_sites, 'h', "Duração por Site Finalizado"
-                subtitle2 = {'x':'Duração','y':'Site'}
-                fig2 = graphic(values2, description2, orient2, label2, subtitle2)
-                st.plotly_chart(fig2)
 
-            box_construction = st.checkbox('Sites em construção: %s' % (construction))
-            if box_construction == 1:
-                st.dataframe(df_construction)
-            box_project = st.checkbox('Sites em construção: %s' % (project))
-            if box_project == 1:
-                st.dataframe(df_project)
-            values, description, orient, label = [project, construction, finished], ['Projetado', 'Em construção', 'Finalizado'], 'h', " Instalação de sites"
-            subtitle = {'x':'Quantidade','y':'Status'}
-            fig = graphic(values, description, orient, label, subtitle)
-            st.plotly_chart(fig)
- 
+            # worksheet = "Controle Geral"
+            # sheet = "Sites"
+            # df = leitor(worksheet, sheet)
+            # head = df.iloc[0]
+            # header = list(head[:6])
+            # dfc = df.rename(columns={0: header[0], 1: header[1], 2: header[2], 3: header[3], 4: header[4], 5: header[5]})
+            # adjusted_df = dfc.loc[:,header].drop(0)
+            # df_masked = adjusted_df['Status']=='Finalizado'
+            # df_finished =  adjusted_df[df_masked]
+            # finished = df_finished['Sigla'].count()
+            # df_masked = adjusted_df['Status']=='Projeto'
+            # df_project =  adjusted_df[df_masked]
+            # project = df_project['Sigla'].count()
+            # df_masked = adjusted_df['Status']=='Construção'
+            # df_construction =  adjusted_df[df_masked]
+            # construction = df_construction['Sigla'].count()
+            # box_finished = st.checkbox('Sites finalizados: %s' % (finished))
+            # list_sites = df_finished['Sigla'].tolist()
+            # list_duration = df_finished['Duração'].tolist()
+            # days = [int(val) for val in list_duration]
+            # days.sort()
+            # mean_days = (sum(days) / len(days))
+            # max_day = days[0]
+            # min_day = days[-1]
+            # if box_finished == 1:
+            #     st.markdown('Média de dias de construção dos Sites: **%s** dias' % (int(mean_days)))
+            #     st.markdown('Maior duração: **%s** dias' % (min_day))
+            #     st.markdown('Menor duração: **%s** dias' % (max_day))
+            #     st.table(df_finished)
+            #     values2, description2, orient2, label2 = list_duration, list_sites, 'h', "Duração por Site Finalizado"
+            #     subtitle2 = {'x':'Duração','y':'Site'}
+            #     fig2 = graphic(values2, description2, orient2, label2, subtitle2)
+            #     st.plotly_chart(fig2)
+
+            # box_construction = st.checkbox('Sites em construção: %s' % (construction))
+            # if box_construction == 1:
+            #     st.dataframe(df_construction)
+            # box_project = st.checkbox('Sites em construção: %s' % (project))
+            # if box_project == 1:
+            #     st.dataframe(df_project)
+            # values, description, orient, label = [project, construction, finished], ['Projetado', 'Em construção', 'Finalizado'], 'h', " Instalação de sites"
+            # subtitle = {'x':'Quantidade','y':'Status'}
+            # fig = graphic(values, description, orient, label, subtitle)
+            # st.plotly_chart(fig)
+            st.markdown("----")
+            components.iframe("https://datastudio.google.com/embed/reporting/34fc41f4-dea7-4142-a903-ad13eaf5e113/page/PgiiC", width=900, height=650)
             st.markdown("---")
             st.markdown("<h6 style='text-align: center; color: black;'>Mapa de localização dos Sites</h6>", unsafe_allow_html=True)
-            components.iframe("https://www.google.com/maps/d/embed?mid=1r6xzmsAeiSD3cniV-oXD_MWHGMPyYVZ8&ehbc=2E312F", width=700, height=380)
+            components.iframe("https://www.google.com/maps/d/embed?mid=1r6xzmsAeiSD3cniV-oXD_MWHGMPyYVZ8&ehbc=2E312F", width=900, height=550)
 
         if name in constr_prumadas:
             st.write('Mãaaae')        
