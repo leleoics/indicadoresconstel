@@ -52,7 +52,7 @@ if option == "Dashboard":
             dashboard = st.selectbox('Selecione a dashboard desejada: ', ["Controle Geral dos sites", "Controle Custos dos sites"])
             if dashboard == "Controle Geral dos sites":
                 st.markdown("----")
-                components.iframe("https://datastudio.google.com/embed/reporting/34fc41f4-dea7-4142-a903-ad13eaf5e113/page/PgiiC", width=900, height=650)
+                components.iframe("https://datastudio.google.com/embed/reporting/34fc41f4-dea7-4142-a903-ad13eaf5e113/page/p_1zxcslmxqc", width=900, height=650)
                 st.markdown("---")
             else: 
                 st.markdown("----")
