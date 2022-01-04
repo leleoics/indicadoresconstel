@@ -19,8 +19,8 @@ header_desempenho = Image.open("./thumbnail/header_desempenho.png")
 logo_Cinza = Image.open("./thumbnail/Logo_Site.png")
 
 # Define os acessos para cada colaborador
-huawei_wl = ['Leonardo Oliveira','Daniel Souza']
-constr_prumadas = ['Leandro Scheidt','Nêne']
+huawei_wl = ['Leonardo Melo','Daniel Souza', 'Fernando Cerqueira', 'Iago Iabiku']
+constr_prumadas = ['null']
 
 # Barra lateral
 st.sidebar.image(logo_C, caption=None, width=75)
@@ -37,9 +37,9 @@ if option == "Início":
     st.markdown("<p style='text-align: center; color: black;'>👈 Clique na aba lateral para navegar pelo site.</p>", unsafe_allow_html=True)
 
 if option == "Dashboard":
-    names = ['Leonardo Oliveira','Leandro Scheidt','Nêne','Daniel Souza']
-    usernames = ['loliveira','lscheidt','lwinikes', 'dsouza']
-    passwords = ['plan2022','plan2022','gest2022','coord2022']
+    names = ['Leonardo Melo', 'Daniel Souza', 'Fernando Cerqueira', 'Iago Iabiku']
+    usernames = ['lmelo', 'dsouza', 'fcerqueira', 'iiabiku']
+    passwords = ['plan2022', 'coord2022', 'proj2022', 'proj2022']
     hashed_passwords = stauth.hasher(passwords).generate()
     authenticator = stauth.authenticate(names,usernames,hashed_passwords,
     'some_cookie_name','some_signature_key',cookie_expiry_days=30)
