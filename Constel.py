@@ -1,7 +1,9 @@
+import matplotlib
+import pandas as pd
 import streamlit as st
 from PIL import Image
 from functions import leitor, indicador, desempenho_manutencao, desempenho_instalação_rh
-from functions import desempenho_almoxarifado, desempenho_plan_proj, desempenho_seg_trabalho, graphic
+from functions import desempenho_almoxarifado, desempenho_plan_proj, desempenho_seg_trabalho, indicador4t
 import streamlit.components.v1 as components
 import streamlit_authenticator as stauth
 from numpy import sum
@@ -11,96 +13,99 @@ from numpy import sum
 # from matplotlib.backends.backend_pdf import PdfPages
 
 # Abre arquivos de imagem
+
 logo_C = Image.open("./thumbnail/LogoC.png")
 logo_Capa = Image.open("./thumbnail/Logo_C_capa.png")
 header = Image.open("./thumbnail/header.png")
 header_indicadores = Image.open("./thumbnail/header_indicadores.png")
 header_desempenho = Image.open("./thumbnail/header_desempenho.png")
 logo_Cinza = Image.open("./thumbnail/Logo_Site.png")
-
+st.set_page_config(
+page_title="Constel",
+page_icon=logo_C,
+layout="wide",
+initial_sidebar_state="expanded")
 # Define os acessos para cada colaborador
 huawei_wl = ['Leonardo Melo','Daniel Souza', 'Fernando Cerqueira', 'Iago Iabiku']
-constr_prumadas = ['null']
+constr_prumadas = None
 
 # Barra lateral
 st.sidebar.image(logo_C, caption=None, width=75)
 st.sidebar.title('**Constel Engenharia Elétrica**')
-option = st.sidebar.selectbox('Selecione a página desejada', ["Início", "Dashboard", "Indicadores", "Desempenho", "Documentos", "Sobre"])
+option = st.sidebar.selectbox('Selecione a página desejada', ["Início", "Formulários","Indicadores", "Desempenho", "Documentos", "Sobre"])
 
 # Abas da aplicação
 if option == "Início":
     # Página inicial
     st.image(header, caption=None, width=650)
-    st.markdown("<h2 style='text-align: center; color: black;'>Bem vindo!</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: justify; color: black;'>Nesta plataforma você encontrará os indicadores dos processos, desempenho dos processos e também documentos relacionados a Gestão da Qualidade.</p>", unsafe_allow_html=True)
-    st.markdown('       ')
-    st.markdown("<p style='text-align: center; color: black;'>👈 Clique na aba lateral para navegar pelo site.</p>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: black;'>Bem vindo!</h3>", unsafe_allow_html=True)
+    st.markdown("----")
+    st.markdown("<p style='text-align: center; color: black;'>Nesta plataforma você encontrará:</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: left; color: black;'>▪️ Indicadores dos processos;</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: left; color: black;'>▪️ Desempenho dos processos;</p>", unsafe_allow_html=True)
+    # st.markdown("<p style='text-align: left; color: black;'>▪️ Dashboards;</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: left; color: black;'>▪️ Formulários;</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: left; color: black;'>▪️ Documentos relacionados ao Sistema de Gestão da Qualidade</p>", unsafe_allow_html=True)
+    st.markdown("----")
 
-if option == "Dashboard":
-    names = ['Leonardo Melo', 'Daniel Souza', 'Fernando Cerqueira', 'Iago Iabiku']
-    usernames = ['lmelo', 'dsouza', 'fcerqueira', 'iiabiku']
-    passwords = ['plan2022', 'coord2022', 'proj2022', 'proj2022']
-    hashed_passwords = stauth.hasher(passwords).generate()
-    authenticator = stauth.authenticate(names,usernames,hashed_passwords,
-    'some_cookie_name','some_signature_key',cookie_expiry_days=30)
-    name, authentication_status = authenticator.login('Login','main')
-    if st.session_state['authentication_status']:
-        st.write('Olá **%s**' % (st.session_state['name']))
-        if name in huawei_wl:
-            st.markdown("")
-            st.markdown("<h3 style='text-align: center; color: black;'>Dashboard Huawei WL</h3>", unsafe_allow_html=True)
-            dashboard = st.selectbox('Selecione a dashboard desejada: ', ["Controle Geral dos sites", "Controle Custos dos sites"])
-            if dashboard == "Controle Geral dos sites":
-                st.markdown("----")
-                components.iframe("https://datastudio.google.com/embed/reporting/34fc41f4-dea7-4142-a903-ad13eaf5e113/page/p_1zxcslmxqc", width=900, height=650)
-                st.markdown("---")
-            else: 
-                st.markdown("----")
-                components.iframe("https://datastudio.google.com/embed/reporting/68bf276e-80cb-4d8e-9362-c64802376710/page/PgiiC", width=900, height=650)
-                st.markdown("---")
-            st.markdown("<h6 style='text-align: center; color: black;'>Mapa de localização dos Sites</h6>", unsafe_allow_html=True)
-            components.iframe("https://www.google.com/maps/d/embed?mid=1r6xzmsAeiSD3cniV-oXD_MWHGMPyYVZ8&ehbc=2E312F", width=900, height=550)
+# if option == "Dashboard":
+#     names = ['Leonardo Melo', 'Daniel Souza', 'Fernando Cerqueira', 'Iago Iabiku']
+#     usernames = ['lmelo', 'dsouza', 'fcerqueira', 'iiabiku']
+#     passwords = ['plan2022', 'coord2022', 'proj2022', 'proj2022']
+#     hashed_passwords = stauth.hasher(passwords).generate()
+#     authenticator = stauth.authenticate(names,usernames,hashed_passwords,
+#     'some_cookie_name','some_signature_key',cookie_expiry_days=30)
+#     name, authentication_status = authenticator.login('Login','main')
+#     if st.session_state['authentication_status']:
+#         st.write('Olá **%s**' % (st.session_state['name']))
+#         if name in huawei_wl:
+#             st.markdown("")
+#             st.markdown("<h3 style='text-align: center; color: black;'>Dashboard Huawei WL</h3>", unsafe_allow_html=True)
+#             dashboard = st.selectbox('Selecione a dashboard desejada: ', ["Controle Geral dos sites", "Controle Custos dos sites"])
+#             if dashboard == "Controle Geral dos sites":
+#                 st.markdown("----")
+#                 components.iframe("https://datastudio.google.com/embed/reporting/34fc41f4-dea7-4142-a903-ad13eaf5e113/page/p_1zxcslmxqc", width=900, height=650)
+#                 st.markdown("---")
+#             else: 
+#                 st.markdown("----")
+#                 components.iframe("https://datastudio.google.com/embed/reporting/68bf276e-80cb-4d8e-9362-c64802376710/page/PgiiC", width=900, height=650)
+#                 st.markdown("---")
+#             st.markdown("<h6 style='text-align: center; color: black;'>Mapa de localização dos Sites</h6>", unsafe_allow_html=True)
+#             components.iframe("https://www.google.com/maps/d/embed?mid=1r6xzmsAeiSD3cniV-oXD_MWHGMPyYVZ8&ehbc=2E312F", width=900, height=550)
 
-        if name in constr_prumadas:
-            st.write('Mãaaae')        
-            st.write('E o coxa?')        
-            st.write('Vim de moto hoje, minha moto faz ran dan dan')        
+#         if name in constr_prumadas:
+#             st.write('Mãaaae')        
+#             st.write('E o coxa?')        
+#             st.write('Vim de moto hoje, minha moto faz ran dan dan')        
         
     
-    elif st.session_state['authentication_status'] == False:
-        st.error('Usuário ou senha incorretos')
-    elif st.session_state['authentication_status'] == None:
-        st.warning('Por favor entre com o usuário e senha!')
+#     elif st.session_state['authentication_status'] == False:
+#         st.error('Usuário ou senha incorretos')
+#     elif st.session_state['authentication_status'] == None:
+#         st.warning('Por favor entre com o usuário e senha!')
+
+if option == "Formulários":
+    st.markdown("<h3 style='text-align: center; color: black;'>Formulários</h3>", unsafe_allow_html=True)       
+    st.markdown("----")
+    components.iframe("https://docs.google.com/forms/d/e/1FAIpQLSeoJkyF1mkJIeA9kcrKGHswg68SGcEYjGc4i4kKKoZXieIxKw/viewform?embedded=true", width=640, height=1550)
+    st.markdown("---")
 
 if option == 'Indicadores':
     st.image(header_indicadores, caption=None, width=650)
     year = st.selectbox('Selecione o ano desejado: ',('Selecione','2021','2022'))
     if year != "Selecione":
         if year == '2021':
-            st.markdown("<h6 style='text-align: center; color: black;'>⚠️ Observação!</h6>", unsafe_allow_html=True)
+            st.warning("""
+            Em 2021 ocorreu uma reestruturação da empresa, devido ao encerramento do contrato com a Copel Telecom.\n
+            Foram então remodelados os indicadores de alguns processos atendendo as novas demandas da empresa.""")
             st.markdown("")
-            st.markdown("<p style='text-align: justify; color: black;'>Em 2021 ocorreu uma reestruturação da empresa, com o encerramento do contrato com a Copel Telecom.</p>", unsafe_allow_html=True)
-            st.markdown("<p style='text-align: justify; color: black;'>Foram então remodelados os indicadores atendendo as novas demandas da empresa.</p>", unsafe_allow_html=True)
-            st.markdown("")
-            period = st.selectbox('Selecione o período para visualizar: ',('Selecione','1º ao 3º trimestre','4º trimestre'))
-                        
-            if period != 'Selecione':
-                
-                if period == '1º ao 3º trimestre':
-                    worksheet = "Plano de Objetivos e Metas 2021"
-                    choice = st.selectbox('Selecione o processo: ',('Selecione', 'Instalação', 'Manutenção','Planejamento','Comercial','Controle de Qualidade', 
-                    'Seg. do Trabalho', 'Fechamento', 'Projetos', 'RH'))
-                    sheet = choice
-
-                if period == '4º trimestre':
-                    st.markdown("<p style='text-align: center; color: black;'> Em definição...</p>", unsafe_allow_html=True)
-                    worksheet = "Plano de Objetivos e Metas 2021" #inserir planilha readequação
-                    choice = 'Selecione'
-                    # choice = st.selectbox('Selecione o processo: ',('Selecione',''))
-                    sheet = choice
-                
-                if choice == 'Instalação':
-                    sheet = choice
+            choice = st.selectbox('Selecione o processo para visualizar: ', ('Selecione', 'Instalação Wireless', 'Instalação de Prumadas', 'Instalação (Instalação de Internet)', 'Planejamento', 'Projetos', 'Comercial',
+            'RH','Controle de Qualidade', 'Seg. do Trabalho', 'Fechamento (descontinuado)', 'Manutenção (descontinuado)'))
+                        # Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)
+            if choice != 'Selecione':
+                if choice == 'Instalação (Instalação de Internet)':
+                    sheet = 'Instalação de Internet'
+                    worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
                     df = leitor(worksheet, sheet)
                     # Avaliação primeiro trimestre
                     check1t = st.checkbox('1º Trimestre/2021')
@@ -115,36 +120,21 @@ if option == 'Indicadores':
                     # Avaliação terceiro trimestre
                     check3t = st.checkbox('3º Trimestre/2021')
                     if check3t == 1:
+                        st.markdown('**'+list(df.iloc[28])[0]+'**')
+                        st.write(list(df.iloc[29])[0])
+                    # Avaliação quarto trimestre
+                    check4t = st.checkbox('4º Trimestre/2021')
+                    if check4t == 1:
                         st.markdown('**'+list(df.iloc[28])[0]+'**')
                         st.write(list(df.iloc[29])[0])
                     st.markdown('**Indicador:** Instalação')
                     ind = indicador(df)
                     st.table(ind)
-                    
-                if choice == 'Manutenção':
-                    sheet = choice
-                    df = leitor(worksheet, sheet)
-                    # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[19])[0]+'**')
-                        st.write(list(df.iloc[20])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[21])[0]+'**')
-                        st.write(list(df.iloc[22])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[23])[0]+'**')
-                        st.write(list(df.iloc[24])[0])
-                    st.markdown('**Indicador:** Manutenção')
-                    ind = indicador(df)
-                    st.table(ind)
-
+                    st.warning("Após a readequação ocorrida para o 4º trimestre, este processo sofreu alteração no nome, passando de 'Instalação' para 'Instalação de Internet', para diferenciar com os demais tipos de instalação realizados pela empresa.")
+           
                 if choice == 'Planejamento':
                     sheet = choice
+                    worksheet = 'Plano de Objetivos e Metas 2021'
                     df = leitor(worksheet, sheet)
                     # Avaliação primeiro trimestre
                     check1t = st.checkbox('1º Trimestre/2021')
@@ -161,97 +151,17 @@ if option == 'Indicadores':
                     if check3t == 1:
                         st.markdown('**'+list(df.iloc[28])[0]+'**')
                         st.write(list(df.iloc[29])[0])
-                    st.markdown('**Indicador:** Planejamento')
-                    ind = indicador(df)
+                    st.markdown('**Indicador:** Planejamento antes da readequação')
+                    ind = indicador4t(df)
                     st.table(ind)
-
-                if choice == 'Comercial':
-                    sheet = choice
-                    df = leitor(worksheet, sheet)
-                    # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[24])[0]+'**')
-                        st.write(list(df.iloc[25])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[26])[0]+'**')
-                        st.write(list(df.iloc[27])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[28])[0]+'**')
-                        st.write(list(df.iloc[29])[0])
-                    st.markdown('**Indicador:** Comercial')
-                    ind = indicador(df)
-                    st.table(ind)
-
-                if choice == 'Controle de Qualidade':
-                    sheet = choice
-                    df = leitor(worksheet, sheet)
-                    # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[21])[0]+'**')
-                        st.write(list(df.iloc[22])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[23])[0]+'**')
-                        st.write(list(df.iloc[24])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[25])[0]+'**')
-                        st.write(list(df.iloc[26])[0])
-                    st.markdown('**Indicador:** Qualidade')
-                    ind = indicador(df)
-                    st.table(ind)
-
-                if choice == 'Seg. do Trabalho':
-                    sheet = choice
-                    df = leitor(worksheet, sheet)
-                    # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[24])[0]+'**')
-                        st.write(list(df.iloc[25])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[26])[0]+'**')
-                        st.write(list(df.iloc[27])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[28])[0]+'**')
-                        st.write(list(df.iloc[29])[0])
-                    st.markdown('**Indicador:** Seg. do Trabalho')
-                    ind = indicador(df)
-                    st.table(ind)
-
-                if choice == 'Fechamento':
-                    sheet = choice
-                    df = leitor(worksheet, sheet)
-                    # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[24])[0]+'**')
-                        st.write(list(df.iloc[25])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[26])[0]+'**')
-                        st.write(list(df.iloc[27])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[28])[0]+'**')
-                        st.write(list(df.iloc[29])[0])
-                    st.markdown('**Indicador:** Fechamento')
-                    ind = indicador(df)
-                    st.table(ind)
+                    st.warning('    Após a readequação ocorrida, este processo assumiu novos indicadores definidos para o 4º trimestre e para o ano vigente.')
+                    box = st.checkbox('Selecione para visualizar os novos indicadores do processo.')       
+                    if box == 1:
+                        worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
+                        sheet = 'Planejamento 1'
+                        df = leitor(worksheet, sheet)
+                        ind = indicador4t(df)
+                        st.table(ind)
 
                 if choice == 'Projetos':
                     sheet = choice
@@ -275,7 +185,8 @@ if option == 'Indicadores':
                     ind = indicador(df)
                     st.table(ind)
 
-                if choice == 'RH':
+                if choice == 'Comercial':
+                    worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
                     sheet = choice
                     df = leitor(worksheet, sheet)
                     # Avaliação primeiro trimestre
@@ -293,9 +204,148 @@ if option == 'Indicadores':
                     if check3t == 1:
                         st.markdown('**'+list(df.iloc[28])[0]+'**')
                         st.write(list(df.iloc[29])[0])
+                    # Avaliação quarto trimestre
+                    check4t = st.checkbox('4º Trimestre/2021')
+                    if check4t == 1:
+                        st.markdown('**'+list(df.iloc[30])[0]+'**')
+                        st.write(list(df.iloc[31])[0])
+                    st.markdown('**Indicador:** Comercial')
+                    ind = indicador(df)
+                    st.table(ind)
+
+                if choice == 'RH': 
+                    worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
+                    sheet = choice
+                    df = leitor(worksheet, sheet)
+                    # Avaliação primeiro trimestre
+                    check1t = st.checkbox('1º Trimestre/2021')
+                    if check1t == 1:
+                        st.markdown('**'+list(df.iloc[24])[0]+'**')
+                        st.write(list(df.iloc[25])[0])
+                    # Avaliação segundo trimestre
+                    check2t = st.checkbox('2º Trimestre/2021')
+                    if check2t == 1:
+                        st.markdown('**'+list(df.iloc[26])[0]+'**')
+                        st.write(list(df.iloc[27])[0])
+                    # Avaliação terceiro trimestre
+                    check3t = st.checkbox('3º Trimestre/2021')
+                    if check3t == 1:
+                        st.markdown('**'+list(df.iloc[28])[0]+'**')
+                        st.write(list(df.iloc[29])[0])
+                    # Avaliação quarto trimestre
+                    check4t = st.checkbox('4º Trimestre/2021')
+                    if check4t == 1:
+                        st.markdown('**'+list(df.iloc[30])[0]+'**')
+                        st.write(list(df.iloc[31])[0])
                     st.markdown('**Indicador:** RH')
                     ind = indicador(df)
                     st.table(ind)
+
+                if choice == 'Controle de Qualidade':
+                    worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
+                    sheet = choice
+                    df = leitor(worksheet, sheet)
+                    # Avaliação primeiro trimestre
+                    check1t = st.checkbox('1º Trimestre/2021')
+                    if check1t == 1:
+                        st.markdown('**'+list(df.iloc[23])[0]+'**')
+                        st.write(list(df.iloc[24])[0])
+                    # Avaliação segundo trimestre
+                    check2t = st.checkbox('2º Trimestre/2021')
+                    if check2t == 1:
+                        st.markdown('**'+list(df.iloc[25])[0]+'**')
+                        st.write(list(df.iloc[26])[0])
+                    # Avaliação terceiro trimestre
+                    check3t = st.checkbox('3º Trimestre/2021')
+                    if check3t == 1:
+                        st.markdown('**'+list(df.iloc[27])[0]+'**')
+                        st.write(list(df.iloc[28])[0])
+                    # Avaliação quarto trimestre
+                    check4t = st.checkbox('4º Trimestre/2021')
+                    if check4t == 1:
+                        st.markdown('**'+list(df.iloc[29])[0]+'**')
+                        st.write(list(df.iloc[30])[0])
+                    st.markdown('**Indicador:** Qualidade')
+                    ind = indicador(df)
+                    # st.table(ind.style.background_gradient(axis=0, gmap = [135,115,100,90,85,75,60,56,52,49,47,46], cmap='gist_yarg'))
+                    st.table(ind)
+
+                if choice == 'Seg. do Trabalho':
+                    worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
+                    sheet = choice
+                    df = leitor(worksheet, sheet)
+                    # Avaliação primeiro trimestre
+                    check1t = st.checkbox('1º Trimestre/2021')
+                    if check1t == 1:
+                        st.markdown('**'+list(df.iloc[24])[0]+'**')
+                        st.write(list(df.iloc[25])[0])
+                    # Avaliação segundo trimestre
+                    check2t = st.checkbox('2º Trimestre/2021')
+                    if check2t == 1:
+                        st.markdown('**'+list(df.iloc[26])[0]+'**')
+                        st.write(list(df.iloc[27])[0])
+                    # Avaliação terceiro trimestre
+                    check3t = st.checkbox('3º Trimestre/2021')
+                    if check3t == 1:
+                        st.markdown('**'+list(df.iloc[28])[0]+'**')
+                        st.write(list(df.iloc[29])[0])
+                    # Avaliação terceiro trimestre
+                    check4t = st.checkbox('4º Trimestre/2021')
+                    if check4t == 1:
+                        st.markdown('**'+list(df.iloc[30])[0]+'**')
+                        st.write(list(df.iloc[31])[0])
+                    st.markdown('**Indicador:** Seg. do Trabalho')
+                    ind = indicador(df)
+                    st.table(ind)
+
+                if choice == 'Fechamento (descontinuado)':
+                    worksheet = 'Plano de Objetivos e Metas 2021'
+                    sheet = 'Fechamento'
+                    df = leitor(worksheet, sheet)
+                    st.warning('Com a readequação ocorrida na empresa, este processo foi descontinuado para o 4º trimestre e para o ano vigente.')
+                    # Avaliação primeiro trimestre
+                    check1t = st.checkbox('1º Trimestre/2021')
+                    if check1t == 1:
+                        st.markdown('**'+list(df.iloc[24])[0]+'**')
+                        st.write(list(df.iloc[25])[0])
+                    # Avaliação segundo trimestre
+                    check2t = st.checkbox('2º Trimestre/2021')
+                    if check2t == 1:
+                        st.markdown('**'+list(df.iloc[26])[0]+'**')
+                        st.write(list(df.iloc[27])[0])
+                    # Avaliação terceiro trimestre
+                    check3t = st.checkbox('3º Trimestre/2021')
+                    if check3t == 1:
+                        st.markdown('**'+list(df.iloc[28])[0]+'**')
+                        st.write(list(df.iloc[29])[0])
+                    st.markdown('**Indicador:** Fechamento')
+                    ind = indicador(df)
+                    st.table(ind)
+         
+                if choice == 'Manutenção (descontinuado)':
+                    sheet = 'Manutenção'
+                    worksheet = 'Plano de Objetivos e Metas 2021'
+                    df = leitor(worksheet, sheet)
+                    st.warning('Com a readequação ocorrida na empresa, este processo foi descontinuado para o 4º trimestre e para o ano vigente.')
+                    # Avaliação primeiro trimestre
+                    check1t = st.checkbox('1º Trimestre/2021')
+                    if check1t == 1:
+                        st.markdown('**'+list(df.iloc[19])[0]+'**')
+                        st.write(list(df.iloc[20])[0])
+                    # Avaliação segundo trimestre
+                    check2t = st.checkbox('2º Trimestre/2021')
+                    if check2t == 1:
+                        st.markdown('**'+list(df.iloc[21])[0]+'**')
+                        st.write(list(df.iloc[22])[0])
+                    # Avaliação terceiro trimestre
+                    check3t = st.checkbox('3º Trimestre/2021')
+                    if check3t == 1:
+                        st.markdown('**'+list(df.iloc[23])[0]+'**')
+                        st.write(list(df.iloc[24])[0])
+                    st.markdown('**Indicador:** Manutenção')
+                    ind = indicador(df)
+                    st.table(ind)
+
 
         if year == '2022':
             st.markdown('Aguardando a definição.')
@@ -305,7 +355,7 @@ if option == 'Desempenho':
     year = st.selectbox('Selecione o ano desejado: ',('Selecione','2021','2022'))
     if year != "Selecione":
         if year == '2021':
-            st.markdown("<h6 style='text-align: center; color: black;'>⚠️ Observação!</h6>", unsafe_allow_html=True)
+            st.markdown("<h6 style='text-align: center; color: black;'>⚠️ Informação!</h6>", unsafe_allow_html=True)
             st.markdown("")
             st.markdown("<p style='text-align: justify; color: black;'>Em 2021 ocorreu uma reestruturação da empresa, com o encerramento do contrato com a Copel Telecom.</p>", unsafe_allow_html=True)
             st.markdown("<p style='text-align: justify; color: black;'>Os indicadores de desempenho sofreram alterações, atendendo as novas demandas da empresa.</p>", unsafe_allow_html=True)
