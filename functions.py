@@ -24,10 +24,20 @@ def leitor(worksheet,sheet): # Acessa a planilha, a aba específica e retorna um
 def indicador(df):
     head = df.iloc[3]
     header = list(head[:5])
-    dfc = df[4:13]
+    dfc = df[4:16]
     dfc = dfc.rename(columns={0: header[0], 1: header[1], 2: header[2], 3: header[3], 4: header[4]})
     filtered_df = dfc.loc[:,header]
     return filtered_df
+    
+    
+def indicador4t(df):
+    head = df.iloc[3]
+    header = list(head[:5])
+    dfc = df[13:16]
+    dfc = dfc.rename(columns={0: header[0], 1: header[1], 2: header[2], 3: header[3], 4: header[4]})
+    filtered_df = dfc.loc[:,header]
+    return filtered_df
+
 
 def desempenho_manutencao(df):
     head = df.iloc[0]
@@ -73,16 +83,4 @@ def desempenho_seg_trabalho(df):
     filtered_df = dfc.loc[:,header]
     return filtered_df
 
-def graphic(values, description, orient, label, subtitle):
-    if orient == 'h':
-        fig = px.bar(x = values,
-        y = description,
-        orientation=orient, title=label,
-        labels=subtitle)
-    else: 
-        fig = px.bar(x = description,
-        y = values,
-        orientation=orient, title=label,
-        labels=subtitle)
-
-    return fig
+ 
