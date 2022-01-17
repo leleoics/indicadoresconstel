@@ -1,12 +1,10 @@
-import matplotlib
-import pandas as pd
 import streamlit as st
 from PIL import Image
 from functions import leitor, indicador, desempenho_manutencao, desempenho_instalação_rh
 from functions import desempenho_almoxarifado, desempenho_plan_proj, desempenho_seg_trabalho, indicador4t
 import streamlit.components.v1 as components
 import streamlit_authenticator as stauth
-# from matplotlib.backends.backend_pdf import PdfPages
+
 
 # Abre arquivos de imagem
 
