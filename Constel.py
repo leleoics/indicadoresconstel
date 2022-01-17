@@ -105,29 +105,17 @@ if option == 'Indicadores':
                     sheet = 'Instalação Wireless'
                     worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
                     df = leitor(worksheet, sheet)
-                    # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[24])[0]+'**')
-                        st.write(list(df.iloc[25])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[26])[0]+'**')
-                        st.write(list(df.iloc[27])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[28])[0]+'**')
-                        st.write(list(df.iloc[29])[0])
+                    st.markdown("<p style='text-align: justify; color: black;'>Indicador corresponde apenas ao Quarto trimestre de 2021</p>", unsafe_allow_html=True)
                     # Avaliação quarto trimestre
                     check4t = st.checkbox('4º Trimestre/2021')
                     if check4t == 1:
-                        st.markdown('**'+list(df.iloc[28])[0]+'**')
-                        st.write(list(df.iloc[29])[0])
-                    st.markdown('**Indicador:** Instalação')
+                        st.markdown('**'+list(df.iloc[23])[0]+'**')
+                        st.write(list(df.iloc[24])[0])
+                    st.markdown('**Indicador:** Instalação Wireless')
                     ind = indicador(df)
-                    st.table(ind)
+                    mask = ind['SITES FINALIZADOS']!=''
+                    ind_mask = ind[mask]
+                    st.table(ind_mask)
                     st.warning("Atendendo a nova demanda de serviços Wireless, este processo foi integrado a empresa.")
            
                 if choice == 'Instalação de Prumadas':
