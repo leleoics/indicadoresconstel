@@ -213,6 +213,7 @@ if option == 'Indicadores':
                     st.table(ind2[mask2])
 
                 if choice == 'Projetos':
+                    worksheet = 'Plano de Objetivos e Metas 2021'
                     sheet = choice
                     df = leitor(worksheet, sheet)
                     # Avaliação primeiro trimestre
@@ -232,7 +233,9 @@ if option == 'Indicadores':
                         st.write(list(df.iloc[29])[0])
                     st.markdown('**Indicador:** Projetos')
                     ind = indicador(df)
-                    st.table(ind)
+                    mask = ind['Entregas Plan']!=''
+                    ind = ind.drop(columns=[''])
+                    st.table(ind[mask])
 
                 if choice == 'Comercial':
                     worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
@@ -404,29 +407,16 @@ if option == 'Desempenho':
     year = st.selectbox('Selecione o ano desejado: ',('Selecione','2021','2022'))
     if year != "Selecione":
         if year == '2021':
-            st.markdown("<h6 style='text-align: center; color: black;'>⚠️ Informação!</h6>", unsafe_allow_html=True)
-            st.markdown("")
-            st.markdown("<p style='text-align: justify; color: black;'>Em 2021 ocorreu uma reestruturação da empresa, com o encerramento do contrato com a Copel Telecom.</p>", unsafe_allow_html=True)
-            st.markdown("<p style='text-align: justify; color: black;'>Os indicadores de desempenho sofreram alterações, atendendo as novas demandas da empresa.</p>", unsafe_allow_html=True)
-            st.markdown("")
-            period = st.selectbox('Selecione o período para visualizar: ',('Selecione','1º ao 3º trimestre','4º trimestre'))
-                        
-            if period != 'Selecione':
+            st.warning("""
+            Em 2021 ocorreu uma reestruturação da empresa, devido ao encerramento do contrato com a Copel Telecom.\n
+            Foram então remodelados os indicadores de desempenho de alguns processos atendendo as novas demandas da empresa.""")
+            st.markdown('----')
+            st.markdown("----")
+            choice = st.selectbox('Selecione o processo para visualizar: ', ('Selecione'))
+                        # Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)
+            if choice != 'Selecione':
                 
-                if period == '1º ao 3º trimestre':
-                    worksheet = "Desempenho do Processo 2021"
-                    choice = st.selectbox('Escolha o processo: ',('Selecione', 'Instalação','Almoxarifado','Planejamento',
-                    'Seg. Trabalho','Projetos', 'Manutenção', 'RH'))
-                    sheet = choice
-
-                if period == '4º trimestre':
-                    st.markdown("<p style='text-align: center; color: black;'> Em definição...</p>", unsafe_allow_html=True)
-                    worksheet = "Desempenho do Processo 2021" #inserir planilha readequação
-                    choice = 'Selecione'
-                    # choice = st.selectbox('Selecione o processo: ',('Selecione',''))
-                    sheet = choice
-
-                if choice == 'Instalação':
+                if choice == 'Instalação Wireless':
                     df = leitor(worksheet, sheet)
                     st.markdown('**Avaliações de desempenho**')
                     # Avaliação primeiro trimestre
