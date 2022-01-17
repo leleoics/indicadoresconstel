@@ -37,13 +37,12 @@ option = st.sidebar.selectbox('Selecione a página desejada', ["Início", "Formu
 # Abas da aplicação
 if option == "Início":
     # Página inicial
-    st.image(header, caption=None, width=650)
+    st.image(header, caption=None, use_column_width=True)
     st.markdown("<h3 style='text-align: center; color: black;'>Bem vindo!</h3>", unsafe_allow_html=True)
     st.markdown("----")
     st.markdown("<p style='text-align: center; color: black;'>Nesta plataforma você encontrará:</p>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: left; color: black;'>▪️ Indicadores dos processos;</p>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: left; color: black;'>▪️ Desempenho dos processos;</p>", unsafe_allow_html=True)
-    # st.markdown("<p style='text-align: left; color: black;'>▪️ Dashboards;</p>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: left; color: black;'>▪️ Formulários;</p>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: left; color: black;'>▪️ Documentos relacionados ao Sistema de Gestão da Qualidade</p>", unsafe_allow_html=True)
     st.markdown("----")
@@ -89,7 +88,7 @@ if option == "Formulários":
     st.markdown("---")
 
 if option == 'Indicadores':
-    st.image(header_indicadores, caption=None, width=650)
+    st.image(header_indicadores, caption=None, use_column_width=True)
     year = st.selectbox('Selecione o ano desejado: ',('Selecione','2021','2022'))
     if year != "Selecione":
         if year == '2021':
@@ -135,21 +134,7 @@ if option == 'Indicadores':
                     sheet = 'Instalação de Prumadas'
                     worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
                     df = leitor(worksheet, sheet)
-                    # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[24])[0]+'**')
-                        st.write(list(df.iloc[25])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[26])[0]+'**')
-                        st.write(list(df.iloc[27])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[28])[0]+'**')
-                        st.write(list(df.iloc[29])[0])
+                    st.markdown("<p style='text-align: justify; color: black;'>Indicador corresponde apenas ao Quarto Trimestre de 2021.</p>", unsafe_allow_html=True)
                     # Avaliação quarto trimestre
                     check4t = st.checkbox('4º Trimestre/2021')
                     if check4t == 1:
@@ -157,9 +142,11 @@ if option == 'Indicadores':
                         st.write(list(df.iloc[31])[0])
                     st.markdown('**Indicador:** Instalação')
                     ind = indicador(df)
-                    st.table(ind)
+                    mask = ind['Atividades Concluídas']!= '0'
+                    ind_mask = ind[mask]
+                    st.table(ind_mask)
                     st.warning("Atendendo a nova demanda de serviços de prumada, este processo foi integrado a empresa.")
-           # CONTINUAR DAQUI
+
                 if choice == 'Instalação (Instalação de Internet)':
                     sheet = 'Instalação de Internet'
                     worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
