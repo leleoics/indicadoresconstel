@@ -73,10 +73,8 @@ if option == "Início":
 #             st.markdown("<h6 style='text-align: center; color: black;'>Mapa de localização dos Sites</h6>", unsafe_allow_html=True)
 #             components.iframe("https://www.google.com/maps/d/embed?mid=1r6xzmsAeiSD3cniV-oXD_MWHGMPyYVZ8&ehbc=2E312F", width=900, height=550)
 
-#         if name in constr_prumadas:
-#             st.write('Mãaaae')        
-#             st.write('E o coxa?')        
-#             st.write('Vim de moto hoje, minha moto faz ran dan dan')        
+#         if name in constr_prumadas:   
+#             st.write('Em desenvolvimento...')        
         
     
 #     elif st.session_state['authentication_status'] == False:
@@ -98,13 +96,14 @@ if option == 'Indicadores':
             st.warning("""
             Em 2021 ocorreu uma reestruturação da empresa, devido ao encerramento do contrato com a Copel Telecom.\n
             Foram então remodelados os indicadores de alguns processos atendendo as novas demandas da empresa.""")
-            st.markdown("")
+            st.markdown("----")
             choice = st.selectbox('Selecione o processo para visualizar: ', ('Selecione', 'Instalação Wireless', 'Instalação de Prumadas', 'Instalação (Instalação de Internet)', 'Planejamento', 'Projetos', 'Comercial',
             'RH','Controle de Qualidade', 'Seg. do Trabalho', 'Fechamento (descontinuado)', 'Manutenção (descontinuado)'))
                         # Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)
             if choice != 'Selecione':
-                if choice == 'Instalação (Instalação de Internet)':
-                    sheet = 'Instalação de Internet'
+
+                if choice == 'Instalação Wireless':
+                    sheet = 'Instalação Wireless'
                     worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
                     df = leitor(worksheet, sheet)
                     # Avaliação primeiro trimestre
@@ -127,6 +126,64 @@ if option == 'Indicadores':
                     if check4t == 1:
                         st.markdown('**'+list(df.iloc[28])[0]+'**')
                         st.write(list(df.iloc[29])[0])
+                    st.markdown('**Indicador:** Instalação')
+                    ind = indicador(df)
+                    st.table(ind)
+                    st.warning("Atendendo a nova demanda de serviços Wireless, este processo foi integrado a empresa.")
+           
+                if choice == 'Instalação de Prumadas':
+                    sheet = 'Instalação de Prumadas'
+                    worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
+                    df = leitor(worksheet, sheet)
+                    # Avaliação primeiro trimestre
+                    check1t = st.checkbox('1º Trimestre/2021')
+                    if check1t == 1:
+                        st.markdown('**'+list(df.iloc[24])[0]+'**')
+                        st.write(list(df.iloc[25])[0])
+                    # Avaliação segundo trimestre
+                    check2t = st.checkbox('2º Trimestre/2021')
+                    if check2t == 1:
+                        st.markdown('**'+list(df.iloc[26])[0]+'**')
+                        st.write(list(df.iloc[27])[0])
+                    # Avaliação terceiro trimestre
+                    check3t = st.checkbox('3º Trimestre/2021')
+                    if check3t == 1:
+                        st.markdown('**'+list(df.iloc[28])[0]+'**')
+                        st.write(list(df.iloc[29])[0])
+                    # Avaliação quarto trimestre
+                    check4t = st.checkbox('4º Trimestre/2021')
+                    if check4t == 1:
+                        st.markdown('**'+list(df.iloc[30])[0]+'**')
+                        st.write(list(df.iloc[31])[0])
+                    st.markdown('**Indicador:** Instalação')
+                    ind = indicador(df)
+                    st.table(ind)
+                    st.warning("Atendendo a nova demanda de serviços de prumada, este processo foi integrado a empresa.")
+           # CONTINUAR DAQUI
+                if choice == 'Instalação (Instalação de Internet)':
+                    sheet = 'Instalação de Internet'
+                    worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
+                    df = leitor(worksheet, sheet)
+                    # Avaliação primeiro trimestre
+                    check1t = st.checkbox('1º Trimestre/2021')
+                    if check1t == 1:
+                        st.markdown('**'+list(df.iloc[24])[0]+'**')
+                        st.write(list(df.iloc[25])[0])
+                    # Avaliação segundo trimestre
+                    check2t = st.checkbox('2º Trimestre/2021')
+                    if check2t == 1:
+                        st.markdown('**'+list(df.iloc[26])[0]+'**')
+                        st.write(list(df.iloc[27])[0])
+                    # Avaliação terceiro trimestre
+                    check3t = st.checkbox('3º Trimestre/2021')
+                    if check3t == 1:
+                        st.markdown('**'+list(df.iloc[28])[0]+'**')
+                        st.write(list(df.iloc[29])[0])
+                    # Avaliação quarto trimestre
+                    check4t = st.checkbox('4º Trimestre/2021')
+                    if check4t == 1:
+                        st.markdown('**'+list(df.iloc[30])[0]+'**')
+                        st.write(list(df.iloc[31])[0])
                     st.markdown('**Indicador:** Instalação')
                     ind = indicador(df)
                     st.table(ind)
