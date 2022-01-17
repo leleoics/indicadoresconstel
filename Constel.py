@@ -6,10 +6,6 @@ from functions import leitor, indicador, desempenho_manutencao, desempenho_insta
 from functions import desempenho_almoxarifado, desempenho_plan_proj, desempenho_seg_trabalho, indicador4t
 import streamlit.components.v1 as components
 import streamlit_authenticator as stauth
-from numpy import sum
-# import pandas as pd
-# import numpy as np
-# import matplotlib.pyplot as plt
 # from matplotlib.backends.backend_pdf import PdfPages
 
 # Abre arquivos de imagem
@@ -128,7 +124,7 @@ if option == 'Indicadores':
                     if check4t == 1:
                         st.markdown('**'+list(df.iloc[30])[0]+'**')
                         st.write(list(df.iloc[31])[0])
-                    st.markdown('**Indicador:** Instalação')
+                    st.markdown('**Indicador:** Instalação de prumadas')
                     ind = indicador(df)
                     mask = ind['Atividades Concluídas']!= '0'
                     ind_mask = ind[mask]
@@ -168,6 +164,11 @@ if option == 'Indicadores':
                     sheet = choice
                     worksheet = 'Plano de Objetivos e Metas 2021'
                     df = leitor(worksheet, sheet)
+                    worksheet2 = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
+                    sheet2 = 'Planejamento 1'
+                    df1 = leitor(worksheet2, sheet2)
+                    sheet3 = 'Planejamento 2'
+                    df2 = leitor(worksheet2, sheet3)
                     # Avaliação primeiro trimestre
                     check1t = st.checkbox('1º Trimestre/2021')
                     if check1t == 1:
@@ -183,17 +184,33 @@ if option == 'Indicadores':
                     if check3t == 1:
                         st.markdown('**'+list(df.iloc[28])[0]+'**')
                         st.write(list(df.iloc[29])[0])
-                    st.markdown('**Indicador:** Planejamento antes da readequação')
-                    ind = indicador4t(df)
-                    st.table(ind)
+                    # Avaliação terceiro trimestre
+                    check4t = st.checkbox('4º Trimestre/2021')
+                    if check4t == 1:
+                        st.markdown('**'+list(df1.iloc[30])[0]+'**'+' - Acessos a Site:')
+                        st.write(list(df1.iloc[31])[0])
+                        st.markdown('----')
+                        st.markdown('**'+list(df2.iloc[30])[0]+'**'+' - Projetos de Prumada')
+                        st.write(list(df2.iloc[31])[0])
+                    st.markdown('----')
+                    st.markdown('**Indicador:** Planejamento: Média de Cabo drop (antes da readequação)')
+                    ind = indicador(df)
+                    mask = ind['Quantidade de atividades']!=''
+                    ind = ind.drop(columns=[''])
+                    st.table(ind[mask])
                     st.warning('    Após a readequação ocorrida, este processo assumiu novos indicadores definidos para o 4º trimestre e para o ano vigente.')
-                    box = st.checkbox('Selecione para visualizar os novos indicadores do processo.')       
-                    if box == 1:
-                        worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
-                        sheet = 'Planejamento 1'
-                        df = leitor(worksheet, sheet)
-                        ind = indicador4t(df)
-                        st.table(ind)
+                    st.markdown('----')
+                    st.markdown('**Indicador:** Planejamento: Acessos a Site (após a readequação)')
+                    ind1 = indicador(df1)
+                    mask1 = ind1['Quantidade de solicitações de acessos']!='0'
+                    ind1 = ind1.drop(columns=[''])
+                    st.table(ind1[mask1])
+                    st.markdown('----')
+                    st.markdown('**Indicador:** Planejamento: Projetos de Prumada (após a readequação)')
+                    ind2 = indicador(df2)
+                    mask2 = ind2['Quantidade de vistorias']!='0'
+                    ind2 = ind2.drop(columns=[''])
+                    st.table(ind2[mask2])
 
                 if choice == 'Projetos':
                     sheet = choice
