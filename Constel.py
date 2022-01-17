@@ -5,7 +5,7 @@ from functions import desempenho_almoxarifado, desempenho_plan_proj, desempenho_
 import streamlit.components.v1 as components
 import streamlit_authenticator as stauth
 
-
+# Guilherme
 # Abre arquivos de imagem
 
 logo_C = Image.open("./thumbnail/LogoC.png")
