@@ -5,7 +5,8 @@ from functions import desempenho_almoxarifado, desempenho_plan_proj, desempenho_
 import streamlit.components.v1 as components
 import streamlit_authenticator as stauth
 
-# Guilherme
+
+
 # Abre arquivos de imagem
 
 logo_C = Image.open("./thumbnail/LogoC.png")
@@ -86,13 +87,13 @@ if option == 'Indicadores':
     year = st.selectbox('Selecione o ano desejado: ',('Selecione','2021','2022'))
     if year != "Selecione":
         if year == '2021':
-            st.warning("""
-            Em 2021 ocorreu uma reestruturação da empresa, devido ao encerramento do contrato com a Copel Telecom.\n
-            Foram então remodelados os indicadores de alguns processos atendendo as novas demandas da empresa.""")
+            st.info("""
+                Em 2021 ocorreu uma reestruturação da empresa, devido ao encerramento do contrato com a Copel Telecom.\n
+                Foram então remodelados os indicadores de alguns processos atendendo as novas demandas da empresa.""")
             st.markdown("----")
             choice = st.selectbox('Selecione o processo para visualizar: ', ('Selecione', 'Instalação Wireless', 'Instalação de Prumadas', 'Instalação (Instalação de Internet)', 'Planejamento', 'Projetos', 'Comercial',
             'RH','Controle de Qualidade', 'Seg. do Trabalho', 'Fechamento (descontinuado)', 'Manutenção (descontinuado)'))
-                        # Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)
+    
             if choice != 'Selecione':
 
                 if choice == 'Instalação Wireless':
@@ -110,7 +111,7 @@ if option == 'Indicadores':
                     mask = ind['SITES FINALIZADOS']!=''
                     ind_mask = ind[mask]
                     st.table(ind_mask)
-                    st.warning("Atendendo a nova demanda de serviços Wireless, este processo foi integrado a empresa.")
+                    st.info("Atendendo a nova demanda de serviços Wireless, este processo foi integrado a empresa.")
            
                 if choice == 'Instalação de Prumadas':
                     sheet = 'Instalação de Prumadas'
@@ -127,12 +128,13 @@ if option == 'Indicadores':
                     mask = ind['Atividades Concluídas']!= '0'
                     ind_mask = ind[mask]
                     st.table(ind_mask)
-                    st.warning("Atendendo a nova demanda de serviços de prumada, este processo foi integrado a empresa.")
+                    st.info("Atendendo a nova demanda de serviços de prumada, este processo foi integrado a empresa.")
 
                 if choice == 'Instalação (Instalação de Internet)':
                     sheet = 'Instalação de Internet'
                     worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
                     df = leitor(worksheet, sheet)
+                    st.info("Após a readequação ocorrida para o 4º trimestre, este processo sofreu alteração no nome, passando de **Instalação** para **Instalação de Internet**, para diferenciar com os demais tipos de instalação realizados pela empresa.")
                     # Avaliação primeiro trimestre
                     check1t = st.checkbox('1º Trimestre/2021')
                     if check1t == 1:
@@ -153,11 +155,38 @@ if option == 'Indicadores':
                     if check4t == 1:
                         st.markdown('**'+list(df.iloc[30])[0]+'**')
                         st.write(list(df.iloc[31])[0])
-                    st.markdown('**Indicador:** Instalação')
+                    st.markdown('**Indicador:** Atender a meta trimestral de atividades concluídas x total de instalações')
                     ind = indicador(df)
                     st.table(ind)
-                    st.warning("Após a readequação ocorrida para o 4º trimestre, este processo sofreu alteração no nome, passando de 'Instalação' para 'Instalação de Internet', para diferenciar com os demais tipos de instalação realizados pela empresa.")
-           
+                    st.markdown('----')
+                    with st.info("Os indicadores de desempenho são os responsáveis por ajudar você a atingir suas metas e objetivos."):
+                        time.sleep(5)
+                    worksheet_d = 'Desempenho do Processo 2021_Readequação_4º Trimestre'
+                    sheet_d = 'Instalação'
+                    df_desempenho = leitor(worksheet_d, sheet_d)
+                    df_indicador = leitor(worksheet_d, 'Desempenho do Processo')
+                    head = df_indicador.iloc[0]
+                    header = list(head[:3])
+                    dfc = df_indicador.rename(columns={0: header[0], 1: header[1], 2: header[2]})
+                    descricao = dfc.loc[:,header]
+                    check_desempenho = st.checkbox('Selecione para ver os indicadores de desempenho do processo.')
+                    if check_desempenho == 1:
+                        mask_d = descricao['Processo'] == 'Instalação Internet'
+                        descricao = descricao[mask_d]
+                        st.table(descricao)
+                        desempenho = desempenho_instalação_rh(df_desempenho)
+                        st.table(desempenho)
+                        check_d = st.checkbox('Avaliação:')
+                        if check_d == 1:
+                            st.markdown('**'+list(df_desempenho.iloc[29])[0]+'**')
+                            st.write(list(df_desempenho.iloc[30])[0])
+                            st.markdown('**'+list(df_desempenho.iloc[31])[0]+'**')
+                            st.write(list(df_desempenho.iloc[32])[0])
+                            st.markdown('**'+list(df_desempenho.iloc[33])[0]+'**')
+                            st.write(list(df_desempenho.iloc[34])[0])
+                            st.markdown('**'+list(df_desempenho.iloc[35])[0]+'**')
+                            st.write(list(df_desempenho.iloc[36])[0])
+
                 if choice == 'Planejamento':
                     sheet = choice
                     worksheet = 'Plano de Objetivos e Metas 2021'
@@ -196,7 +225,7 @@ if option == 'Indicadores':
                     mask = ind['Quantidade de atividades']!=''
                     ind = ind.drop(columns=[''])
                     st.table(ind[mask])
-                    st.warning('    Após a readequação ocorrida, este processo assumiu novos indicadores definidos para o 4º trimestre e para o ano vigente.')
+                    st.info('    Após a readequação ocorrida, este processo assumiu novos indicadores definidos para o 4º trimestre e para o ano vigente.')
                     st.markdown('----')
                     st.markdown('**Indicador:** Planejamento: Acessos a Site (após a readequação)')
                     ind1 = indicador(df1)
@@ -406,7 +435,7 @@ if option == 'Desempenho':
     if year != "Selecione":
         if year == '2021':
             st.warning("""
-            Em 2021 ocorreu uma reestruturação da empresa, devido ao encerramento do contrato com a Copel Telecom.\n
+            O desempenho de um processo \n
             Foram então remodelados os indicadores de desempenho de alguns processos atendendo as novas demandas da empresa.""")
             st.markdown('----')
             st.markdown("----")
@@ -437,7 +466,6 @@ if option == 'Desempenho':
                     desempenho = desempenho_instalação_rh(df)
                     st.table(desempenho)
 
-                # Desempenho do setor de Manutenção
                 if choice == 'Manutenção':
                     df = leitor(worksheet, sheet)
                     # Avaliação primeiro trimestre
@@ -504,7 +532,6 @@ if option == 'Desempenho':
                         st.table(desempenho[42:48])
                     if month == 'Setembro':
                         st.table(desempenho[48:54])
-
 
                 if choice == 'Planejamento':
                     sheet = choice

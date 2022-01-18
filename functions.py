@@ -2,6 +2,7 @@ import pandas as pd
 import gspread
 from google.oauth2 import service_account
 import plotly_express as px
+import streamlit as st
 
 json_file = "./json/planejamento-constel123-1b8f07026a82.json"
 scopes = ["https://www.googleapis.com/auth/spreadsheets",
@@ -52,7 +53,7 @@ def desempenho_manutencao(df):
 def desempenho_instalação_rh(df):
     head = df.iloc[0]
     header = list(head[:6])
-    dfc = df[1:10]
+    dfc = df[1:13]
     dfc = dfc.rename(columns={0: header[0], 1: header[1], 2: header[2], 3: header[3], 4: header[4],
     5: header[5]})
     filtered_df = dfc.loc[:,header]
