@@ -97,35 +97,34 @@ if option == 'Indicadores':
                     sheet = 'Instalação Wireless'
                     worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
                     df = leitor(worksheet, sheet)
-                    st.markdown("<p style='text-align: justify; color: black;'>Indicador corresponde apenas ao Quarto trimestre de 2021</p>", unsafe_allow_html=True)
-                    # Avaliação quarto trimestre
-                    check4t = st.checkbox('4º Trimestre/2021')
-                    if check4t == 1:
-                        st.markdown('**'+list(df.iloc[23])[0]+'**')
-                        st.write(list(df.iloc[24])[0])
-                    st.markdown('**Indicador:** Instalação Wireless')
+                    st.markdown("<h4 style='text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
+                    st.info("""Atendendo a nova demanda de serviços wireless, este processo foi integrado a empresa no 4º Trimestre de 2021.\n
+                            """)
+                    st.markdown('**Indicador:** Aumentar a quantidade de sites finalizados no trimestre.')
                     ind = indicador(df)
                     mask = ind['SITES FINALIZADOS']!=''
                     ind_mask = ind[mask]
                     st.table(ind_mask)
-                    st.info("Atendendo a nova demanda de serviços Wireless, este processo foi integrado a empresa.")
-           
+                    check4t = st.checkbox((list(df.iloc[23])[0]).title())
+                    if check4t == 1:
+                        st.write(list(df.iloc[24])[0])
+
                 if choice == 'Instalação de Prumadas':
                     sheet = 'Instalação de Prumadas'
                     worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
                     df = leitor(worksheet, sheet)
-                    st.markdown("<p style='text-align: justify; color: black;'>Indicador corresponde apenas ao Quarto Trimestre de 2021.</p>", unsafe_allow_html=True)
-                    # Avaliação quarto trimestre
-                    check4t = st.checkbox('4º Trimestre/2021')
-                    if check4t == 1:
-                        st.markdown('**'+list(df.iloc[30])[0]+'**')
-                        st.write(list(df.iloc[31])[0])
-                    st.markdown('**Indicador:** Instalação de prumadas')
+                    st.markdown("<h4 style='text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
+                    st.info("""Atendendo a nova demanda de serviços de prumada, este processo foi integrado a empresa no 4º Trimestre de 2021.\n
+                            """)
+                    st.markdown('**Indicador:** Fazer o maior número possível dentre as prumadas liberadas para execução.')
                     ind = indicador(df)
                     mask = ind['Atividades Concluídas']!= '0'
+                    ind = ind.drop(columns=[''])
                     ind_mask = ind[mask]
                     st.table(ind_mask)
-                    st.info("Atendendo a nova demanda de serviços de prumada, este processo foi integrado a empresa.")
+                    check4t = st.checkbox((list(df.iloc[30])[0]).title())
+                    if check4t == 1:
+                        st.write(list(df.iloc[31])[0])
 
                 if choice == 'Instalação (Instalação de Internet)':
                     sheet = 'Instalação de Internet'
@@ -172,7 +171,6 @@ if option == 'Indicadores':
                         if check4_d == 1:
                             st.write(list(df_desempenho.iloc[36])[0])
                             
-
                 if choice == 'Planejamento':
                     sheet = choice
                     worksheet = 'Plano de Objetivos e Metas 2021'
@@ -182,101 +180,96 @@ if option == 'Indicadores':
                     df1 = leitor(worksheet2, sheet2)
                     sheet3 = 'Planejamento 2'
                     df2 = leitor(worksheet2, sheet3)
-                    # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[24])[0]+'**')
-                        st.write(list(df.iloc[25])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[26])[0]+'**')
-                        st.write(list(df.iloc[27])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[28])[0]+'**')
-                        st.write(list(df.iloc[29])[0])
-                    # Avaliação terceiro trimestre
-                    check4t = st.checkbox('4º Trimestre/2021')
-                    if check4t == 1:
-                        st.markdown('**'+list(df1.iloc[30])[0]+'**'+' - Acessos a Site:')
-                        st.write(list(df1.iloc[31])[0])
-                        st.markdown('----')
-                        st.markdown('**'+list(df2.iloc[30])[0]+'**'+' - Projetos de Prumada')
-                        st.write(list(df2.iloc[31])[0])
+                    st.markdown("<h4 style='text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
                     st.markdown('----')
-                    st.markdown('**Indicador:** Planejamento: Média de Cabo drop (antes da readequação)')
+                    st.markdown('**Indicador:** Reduzir a média de cabo óptico drop utilizado por atividade (antes da readequação)')
                     ind = indicador(df)
                     mask = ind['Quantidade de atividades']!=''
                     ind = ind.drop(columns=[''])
                     st.table(ind[mask])
-                    st.info('    Após a readequação ocorrida, este processo assumiu novos indicadores definidos para o 4º trimestre e para o ano vigente.')
+                    check1t = st.checkbox((list(df.iloc[24])[0]).title())
+                    if check1t == 1:
+                        st.write(list(df.iloc[25])[0])
+                    check2t = st.checkbox((list(df.iloc[26])[0]).title())
+                    if check2t == 1:
+                        st.write(list(df.iloc[27])[0])
+                    check3t = st.checkbox((list(df.iloc[28])[0]).title())
+                    if check3t == 1:
+                        st.write(list(df.iloc[29])[0])
                     st.markdown('----')
-                    st.markdown('**Indicador:** Planejamento: Acessos a Site (após a readequação)')
+                    st.info("""Após a readequação ocorrida, este processo assumiu novos indicadores definidos para o 4º trimestre e para o ano vigente.""")
+                    st.markdown('**Indicador:** Planejamento: Solicitação de acessos antecipadamente. (após a readequação)')
                     ind1 = indicador(df1)
                     mask1 = ind1['Quantidade de solicitações de acessos']!='0'
                     ind1 = ind1.drop(columns=[''])
                     st.table(ind1[mask1])
+                    check4t1 = st.checkbox((list(df1.iloc[30])[0]).title() + " - Acessos")
+                    if check4t1 == 1:
+                        st.write(list(df1.iloc[31])[0])
                     st.markdown('----')
-                    st.markdown('**Indicador:** Planejamento: Projetos de Prumada (após a readequação)')
+                    st.markdown('**Indicador:** Planejamento: Elaborar os pré-projetos da prumada em função das vistorias executadas. (após a readequação)')
                     ind2 = indicador(df2)
                     mask2 = ind2['Quantidade de vistorias']!='0'
                     ind2 = ind2.drop(columns=[''])
                     st.table(ind2[mask2])
+                    check4t1 = st.checkbox((list(df2.iloc[30])[0]).title() + " - Prumadas")
+                    if check4t1 == 1:
+                        st.write(list(df2.iloc[31])[0])
+                    st.markdown('----')
+                    st.markdown("<h4 style='text-align: center; color: black'>Desempenho</h4", unsafe_allow_html=True)
+                    st.markdown('**Indicador de Desempenho:** Quantidade de instalações x Quantidade de vendas')
+                    st.info("Os indicadores de desempenho são os responsáveis por ajudar você a atingir suas metas e objetivos.")
+                    worksheet_d = 'Desempenho do Processo 2021_Readequação_4º Trimestre'
+                    sheet_d = 'Instalação'
 
                 if choice == 'Projetos':
-                    worksheet = 'Plano de Objetivos e Metas 2021'
+                    worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
                     sheet = choice
                     df = leitor(worksheet, sheet)
-                    # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[24])[0]+'**')
-                        st.write(list(df.iloc[25])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[26])[0]+'**')
-                        st.write(list(df.iloc[27])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[28])[0]+'**')
-                        st.write(list(df.iloc[29])[0])
-                    st.markdown('**Indicador:** Projetos')
+                    st.markdown("<h4 style='text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
+                    st.markdown('----')
+                    st.markdown('**Indicador:** Entregas executadas x Entregas planejadas')
                     ind = indicador(df)
                     mask = ind['Entregas Plan']!=''
                     ind = ind.drop(columns=[''])
                     st.table(ind[mask])
+                    check1t = st.checkbox((list(df.iloc[24])[0]).title())
+                    if check1t == 1:
+                        st.write(list(df.iloc[25])[0])
+                    check2t = st.checkbox((list(df.iloc[26])[0]).title())
+                    if check2t == 1:
+                        st.write(list(df.iloc[27])[0])
+                    check3t = st.checkbox((list(df.iloc[28])[0]).title())
+                    if check3t == 1:
+                        st.write(list(df.iloc[29])[0])
+                    check4t = st.checkbox((list(df.iloc[30])[0]).title())
+                    if check4t == 1:
+                        st.write(list(df.iloc[31])[0])
+                    st.markdown('----')
+                    st.markdown("<h4 style='text-align: center; color: black'>Desempenho</h4", unsafe_allow_html=True)
 
                 if choice == 'Comercial':
                     worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
                     sheet = choice
                     df = leitor(worksheet, sheet)
-                    # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[24])[0]+'**')
-                        st.write(list(df.iloc[25])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[26])[0]+'**')
-                        st.write(list(df.iloc[27])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[28])[0]+'**')
-                        st.write(list(df.iloc[29])[0])
-                    # Avaliação quarto trimestre
-                    check4t = st.checkbox('4º Trimestre/2021')
-                    if check4t == 1:
-                        st.markdown('**'+list(df.iloc[30])[0]+'**')
-                        st.write(list(df.iloc[31])[0])
+                    st.markdown("<h4 style='text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
+                    st.markdown('----')
                     st.markdown('**Indicador:** Comercial')
                     ind = indicador(df)
+                    ind = ind.drop(columns=[''])
                     st.table(ind)
+                    check1t = st.checkbox((list(df.iloc[24])[0]).title())
+                    if check1t == 1:
+                        st.write(list(df.iloc[25])[0])
+                    check2t = st.checkbox((list(df.iloc[26])[0]).title())
+                    if check2t == 1:
+                        st.write(list(df.iloc[27])[0])
+                    check3t = st.checkbox((list(df.iloc[28])[0]).title())
+                    if check3t == 1:
+                        st.write(list(df.iloc[29])[0])
+                    check4t = st.checkbox((list(df.iloc[30])[0]).title())
+                    if check4t == 1:
+                        st.write(list(df.iloc[31])[0])                    
 
                 if choice == 'RH': 
                     worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
@@ -421,29 +414,6 @@ if option == 'Desempenho':
                         # Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)
             if choice != 'Selecione':
                 
-                if choice == 'Instalação Wireless':
-                    df = leitor(worksheet, sheet)
-                    st.markdown('**Avaliações de desempenho**')
-                    # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[29])[0]+'**')
-                        st.write(list(df.iloc[30])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[31])[0]+'**')
-                        st.write(list(df.iloc[32])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[33])[0]+'**')
-                        st.write(list(df.iloc[34])[0])
-                    # Desempenho
-                    st.markdown('**Tabela do desempenho por mês do ano de 2021**')
-                    desempenho = desempenho_instalação_rh(df)
-                    st.table(desempenho)
-
                 if choice == 'Manutenção':
                     df = leitor(worksheet, sheet)
                     # Avaliação primeiro trimestre
