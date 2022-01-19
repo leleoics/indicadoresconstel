@@ -1,7 +1,7 @@
 import streamlit as st
 from PIL import Image
 from functions import leitor, indicador, desempenho_manutencao, desempenho_instalação_rh
-from functions import desempenho_almoxarifado, desempenho_plan_proj, desempenho_seg_trabalho, indicador4t
+from functions import desempenho_almoxarifado, desempenho_plan_proj
 import streamlit.components.v1 as components
 
 # Abre arquivos de imagem
@@ -24,7 +24,7 @@ constr_prumadas = None
 # Barra lateral
 st.sidebar.image(logo_C, caption=None, width=75)
 st.sidebar.title('**Constel Engenharia Elétrica**')
-option = st.sidebar.selectbox('Selecione a página desejada', ["Início", "Formulários","Indicadores", "Desempenho", "Documentos", "Sobre"])
+option = st.sidebar.selectbox('Selecione a página desejada', ["Início", "Formulários","Indicadores", "Documentos", "Sobre"])
 
 # Abas da aplicação
 if option == "Início":
@@ -360,29 +360,22 @@ if option == 'Indicadores':
                     worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
                     sheet = choice
                     df = leitor(worksheet, sheet)
-                    # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[24])[0]+'**')
-                        st.write(list(df.iloc[25])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[26])[0]+'**')
-                        st.write(list(df.iloc[27])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[28])[0]+'**')
-                        st.write(list(df.iloc[29])[0])
-                    # Avaliação terceiro trimestre
-                    check4t = st.checkbox('4º Trimestre/2021')
-                    if check4t == 1:
-                        st.markdown('**'+list(df.iloc[30])[0]+'**')
-                        st.write(list(df.iloc[31])[0])
-                    st.markdown('**Indicador:** Seg. do Trabalho')
+                    st.markdown("<h4 style='text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
+                    st.markdown('**Indicador:** Quantidade de inspeções x Quantidade de inspeções irregulares')
                     ind = indicador(df)
                     st.table(ind)
+                    check1t = st.checkbox((list(df.iloc[24])[0]).title())
+                    if check1t == 1:
+                        st.write(list(df.iloc[25])[0])
+                    check2t = st.checkbox((list(df.iloc[26])[0]).title())
+                    if check2t == 1:
+                        st.write(list(df.iloc[27])[0])
+                    check3t = st.checkbox((list(df.iloc[28])[0]).title())
+                    if check3t == 1:
+                        st.write(list(df.iloc[29])[0])
+                    check4t = st.checkbox((list(df.iloc[30])[0]).title())
+                    if check4t == 1:
+                        st.write(list(df.iloc[31])[0])
 
                 if choice == 'Fechamento (descontinuado)':
                     worksheet = 'Plano de Objetivos e Metas 2021'
@@ -408,202 +401,42 @@ if option == 'Indicadores':
                     sheet = 'Manutenção'
                     worksheet = 'Plano de Objetivos e Metas 2021'
                     df = leitor(worksheet, sheet)
-                    st.info('Com a readequação ocorrida na empresa, este processo foi descontinuado para o 4º trimestre e para o ano vigente.')
-                    # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[19])[0]+'**')
-                        st.write(list(df.iloc[20])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[21])[0]+'**')
-                        st.write(list(df.iloc[22])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[23])[0]+'**')
-                        st.write(list(df.iloc[24])[0])
-                    st.markdown('**Indicador:** Manutenção')
+                    st.markdown("<h4 style='text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
+                    st.error('Com a readequação ocorrida na empresa, este processo foi descontinuado para o 4º trimestre e para o ano vigente.')
+                    st.markdown('**Indicador:** "Número de Atendimentos Realizados na Janela x Número Total de Atendimentos"')
                     ind = indicador(df)
-                    st.table(ind)
-
-
-        if year == '2022':
-            st.markdown('Aguardando a definição.')
-
-if option == 'Desempenho':
-    st.image(header_desempenho, caption=None, width=650)
-    year = st.selectbox('Selecione o ano desejado: ',('Selecione','2021','2022'))
-    if year != "Selecione":
-        if year == '2021':
-            st.warning("""
-            O desempenho de um processo \n
-            Foram então remodelados os indicadores de desempenho de alguns processos atendendo as novas demandas da empresa.""")
-            st.markdown('----')
-            st.markdown("----")
-            choice = st.selectbox('Selecione o processo para visualizar: ', ('Selecione'))
-                        # Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)
-            if choice != 'Selecione':
-                
-                if choice == 'Manutenção':
-                    df = leitor(worksheet, sheet)
-                    # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
+                    mask = ind['Manutenções (Janela)'] != ''
+                    st.table(ind[mask])
+                    check1t = st.checkbox((list(df.iloc[19])[0]).title())
                     if check1t == 1:
-                        st.markdown('**'+list(df.iloc[42])[0]+'**')
-                        st.write(list(df.iloc[43])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[44])[0]+'**')
-                        st.write(list(df.iloc[45])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[46])[0]+'**')
-                        st.write(list(df.iloc[47])[0])
-                    # Desempenho
-                    st.markdown('**Tabela do desempenho por mês do ano de 2021**')
-                    desempenho = desempenho_manutencao(df)
-                    st.table(desempenho)
-
-                if choice == 'Almoxarifado':
-                    df = leitor(worksheet, sheet)
-                            # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[95])[0]+'**')
-                        st.write(list(df.iloc[96])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[97])[0]+'**')
-                        st.write(list(df.iloc[98])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[99])[0]+'**')
-                        st.write(list(df.iloc[100])[0])
-                    # Desempenho
-                    st.markdown('**Tabela do desempenho por mês do ano de 2021**')
-                    desempenho = desempenho_almoxarifado(df)
-                    # Filtra o df pelo mês e retorna df com base no intervalo mensal
-                    months = ['Selecione', 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
-                    'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
-                    i = st.slider('Arraste para o mês desejado: ', 1, 10)
-                    month = months[i]
-                    st.write("Selecionado o mês de ", month)                  
-                    if month == 'Janeiro':
-                        st.table(desempenho[0:6])
-                    if month == 'Fevereiro':
-                        st.table(desempenho[6:12])
-                    if month == 'Março':
-                        st.table(desempenho[12:18])
-                    if month == 'Abril':
-                        st.table(desempenho[18:24])
-                    if month == 'Maio':
-                        st.table(desempenho[24:30])
-                    if month == 'Junho':
-                        st.table(desempenho[30:36])
-                    if month == 'Julho':
-                        st.table(desempenho[36:42])
-                    if month == 'Agosto':
-                        st.table(desempenho[42:48])
-                    if month == 'Setembro':
-                        st.table(desempenho[48:54])
-
-                if choice == 'Planejamento':
-                    sheet = choice
-                    df = leitor(worksheet, sheet)
-                            # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[38])[0]+'**')
-                        st.write(list(df.iloc[39])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[40])[0]+'**')
-                        st.write(list(df.iloc[41])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[42])[0]+'**')
-                        st.write(list(df.iloc[43])[0])
-                    # Desempenho
-                    st.markdown('**Tabela do desempenho por mês do ano de 2021**')
-                    desempenho = desempenho_plan_proj(df)
-                    st.table(desempenho)
-
-                if choice == 'Projetos':
-                    sheet = choice
-                    df = leitor(worksheet, sheet)
-                            # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[34])[0]+'**')
-                        st.write(list(df.iloc[35])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[36])[0]+'**')
-                        st.write(list(df.iloc[37])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[38])[0]+'**')
-                        st.write(list(df.iloc[39])[0])
-                    # Desempenho
-                    st.markdown('**Tabela do desempenho por mês do ano de 2021**')
-                    desempenho = desempenho_plan_proj(df)
-                    st.table(desempenho)
-
-                if choice == 'Seg. Trabalho':
-                    sheet = choice
-                    df = leitor(worksheet, sheet)
-                            # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[17])[0]+'**')
-                        st.write(list(df.iloc[18])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
-                    if check2t == 1:
-                        st.markdown('**'+list(df.iloc[19])[0]+'**')
                         st.write(list(df.iloc[20])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
-                    if check3t == 1:
-                        st.markdown('**'+list(df.iloc[21])[0]+'**')
-                        st.write(list(df.iloc[22])[0])
-                    # Desempenho
-                    st.markdown('**Tabela do desempenho por mês do ano de 2021**')
-                    desempenho = desempenho_seg_trabalho(df)
-                    st.table(desempenho)
-                
-                if choice == 'RH':
-                    sheet = choice
-                    df = leitor(worksheet, sheet)
-                            # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
-                    if check1t == 1:
-                        st.markdown('**'+list(df.iloc[29])[0]+'**')
-                        st.write(list(df.iloc[30])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
+                    check2t = st.checkbox((list(df.iloc[21])[0]).title())
                     if check2t == 1:
-                        st.markdown('**'+list(df.iloc[31])[0]+'**')
-                        st.write(list(df.iloc[32])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
+                        st.write(list(df.iloc[22])[0])
+                    check3t = st.checkbox((list(df.iloc[23])[0]).title())
                     if check3t == 1:
-                        st.markdown('**'+list(df.iloc[33])[0]+'**')
-                        st.write(list(df.iloc[34])[0])
-                    # Desempenho
-                    st.markdown('**Tabela do desempenho por mês do ano de 2021**')
-                    desempenho = desempenho_instalação_rh(df)
-                    st.table(desempenho)
+                        st.write(list(df.iloc[24])[0])
+                    st.markdown('----')
+                    st.markdown('**Indicador de Desempenho:** Taxa de Reincidência')
+                    st.info("Os indicadores de desempenho são os responsáveis por ajudar você a atingir suas metas e objetivos.")
+                    worksheet_d = 'Desempenho do Processo 2021'
+                    sheet_d = 'Manutenção'
+                    df_desempenho = leitor(worksheet_d, sheet_d)
+                    st.markdown("<h4 style='text-align: center; color: black'>Desempenho</h4", unsafe_allow_html=True)
+                    check_desempenho = st.checkbox('Selecione para ver os indicadores de desempenho do processo.')
+                    if check_desempenho == 1:
+                        desempenho = desempenho_manutencao(df_desempenho)
+                        st.table(desempenho)
+                        check1_d = st.checkbox((list(df_desempenho.iloc[42])[0]).title() + " - Desempenho")
+                        if check1_d == 1:
+                            st.write(list(df_desempenho.iloc[43])[0])
+                        check2_d = st.checkbox((list(df_desempenho.iloc[44])[0]).title() + " - Desempenho")
+                        if check2_d == 1:
+                            st.write(list(df_desempenho.iloc[45])[0])
+                        check3_d = st.checkbox((list(df_desempenho.iloc[46])[0]).title() + " - Desempenho")
+                        if check3_d == 1:
+                            st.write(list(df_desempenho.iloc[47])[0])
+
 
         if year == '2022':
             st.markdown('Aguardando a definição.')
