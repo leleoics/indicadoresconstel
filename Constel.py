@@ -1,7 +1,6 @@
 import streamlit as st
 from PIL import Image
-from functions import leitor, indicador, desempenho_manutencao, desempenho_instalação_rh
-from functions import desempenho_almoxarifado, desempenho_plan_proj
+from functions import leitor, indicador, desempenho_manutencao, desempenho_instalação_rh, desempenho_plan_proj
 import streamlit.components.v1 as components
 
 # Abre arquivos de imagem
