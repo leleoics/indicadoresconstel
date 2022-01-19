@@ -76,12 +76,4 @@ def desempenho_plan_proj(df):
     filtered_df = dfc.loc[:,header]
     return filtered_df
 
-def desempenho_seg_trabalho(df):
-    head = df.iloc[3]
-    header = list(head[:5])
-    dfc = df[4:13]
-    dfc = dfc.rename(columns={0: header[0], 1: header[1], 2: header[2], 3: header[3], 4: header[4]})
-    filtered_df = dfc.loc[:,header]
-    return filtered_df
-
  
