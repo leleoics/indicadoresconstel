@@ -295,30 +295,25 @@ if option == 'Indicadores':
                     worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
                     sheet = choice
                     df = leitor(worksheet, sheet)
-                    # Avaliação primeiro trimestre
-                    check1t = st.checkbox('1º Trimestre/2021')
+                    st.markdown("<h4 style=' text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
+                    st.markdown("**Indicador:** Número de reclamações / avaliações negativas (instalador) x Número de ativações ")
+                    ind = indicador(df)
+                    st.table(ind)
+                    check1t = st.checkbox((list(df.iloc[23])[0]).title())
                     if check1t == 1:
-                        st.markdown('**'+list(df.iloc[23])[0]+'**')
                         st.write(list(df.iloc[24])[0])
                     # Avaliação segundo trimestre
-                    check2t = st.checkbox('2º Trimestre/2021')
+                    check2t = st.checkbox((list(df.iloc[25])[0]).title())
                     if check2t == 1:
-                        st.markdown('**'+list(df.iloc[25])[0]+'**')
                         st.write(list(df.iloc[26])[0])
                     # Avaliação terceiro trimestre
-                    check3t = st.checkbox('3º Trimestre/2021')
+                    check3t = st.checkbox((list(df.iloc[27])[0]).title())
                     if check3t == 1:
-                        st.markdown('**'+list(df.iloc[27])[0]+'**')
                         st.write(list(df.iloc[28])[0])
                     # Avaliação quarto trimestre
-                    check4t = st.checkbox('4º Trimestre/2021')
+                    check4t = st.checkbox((list(df.iloc[29])[0]).title())
                     if check4t == 1:
-                        st.markdown('**'+list(df.iloc[29])[0]+'**')
                         st.write(list(df.iloc[30])[0])
-                    st.markdown('**Indicador:** Qualidade')
-                    ind = indicador(df)
-                    # st.table(ind.style.background_gradient(axis=0, gmap = [135,115,100,90,85,75,60,56,52,49,47,46], cmap='gist_yarg'))
-                    st.table(ind)
 
                 if choice == 'Seg. do Trabalho':
                     worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
