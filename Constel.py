@@ -217,10 +217,24 @@ if option == 'Indicadores':
                         st.write(list(df2.iloc[31])[0])
                     st.markdown('----')
                     st.markdown("<h4 style='text-align: center; color: black'>Desempenho</h4", unsafe_allow_html=True)
-                    st.markdown('**Indicador de Desempenho:** Quantidade de instalações x Quantidade de vendas')
+                    st.markdown('**Indicador de Desempenho:** Planejamentos acertivos')
                     st.info("Os indicadores de desempenho são os responsáveis por ajudar você a atingir suas metas e objetivos.")
-                    worksheet_d = 'Desempenho do Processo 2021_Readequação_4º Trimestre'
-                    sheet_d = 'Instalação'
+                    worksheet_d = 'Desempenho do Processo 2021'
+                    sheet_d = 'Planejamento'
+                    df_desempenho = leitor(worksheet_d, sheet_d)
+                    check_desempenho = st.checkbox('Selecione para ver os indicadores de desempenho do processo.')
+                    if check_desempenho == 1:
+                        desempenho = desempenho_plan_proj(df_desempenho)
+                        st.table(desempenho)
+                        check1_d = st.checkbox((list(df_desempenho.iloc[38])[0]).title() + " - Desempenho")
+                        if check1_d == 1:
+                            st.write(list(df_desempenho.iloc[39])[0])
+                        check2_d = st.checkbox((list(df_desempenho.iloc[40])[0]).title() + " - Desempenho")
+                        if check2_d == 1:
+                            st.write(list(df_desempenho.iloc[41])[0])
+                        check3_d = st.checkbox((list(df_desempenho.iloc[42])[0]).title() + " - Desempenho")
+                        if check3_d == 1:
+                            st.write(list(df_desempenho.iloc[43])[0])
 
                 if choice == 'Projetos':
                     worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
