@@ -445,7 +445,10 @@ if option == 'Indicadores':
 
 
         if year == '2022':
-            st.markdown('Aguardando a definição.')
+            st.markdown("----")
+            st.markdown("<p style=' text-align: justify; color: black'>Aguardando preenchimento...</p>", unsafe_allow_html=True)
+            st.markdown("----")
+                        
 
 if option == 'Documentos':
     st.markdown("<h3 style='text-align: center; color: black;'>Documentos</h3>", unsafe_allow_html=True)
