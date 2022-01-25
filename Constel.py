@@ -75,8 +75,15 @@ if option == "Início":
 if option == "Formulários":
     st.markdown("<h3 style='text-align: center; color: black;'>Formulários</h3>", unsafe_allow_html=True)       
     st.markdown("----")
-    components.iframe("https://docs.google.com/forms/d/e/1FAIpQLSeoJkyF1mkJIeA9kcrKGHswg68SGcEYjGc4i4kKKoZXieIxKw/viewform?embedded=true", width=640, height=1550)
-    st.markdown("---")
+    avaliation = st. selectbox('Selecione a avaliação:', ('Selecione','Avaliação 1', 'Avaliação 2'))
+    if avaliation != 'Selecione':
+        if avaliation == 'Avaliação 1':
+            components.iframe("https://docs.google.com/forms/d/e/1FAIpQLSeoJkyF1mkJIeA9kcrKGHswg68SGcEYjGc4i4kKKoZXieIxKw/viewform?embedded=true", width=640, height=1800)
+        else:
+            components.iframe("https://docs.google.com/forms/d/e/1FAIpQLScZ0VeavfUM2rWkwKkjhCXpVgvPRbs4M3A8a89lV0k4ranKMw/viewform?embedded=true", width=640, height=1800)
+        st.markdown("---")
+    else:
+        st.markdown("<p style=' text-align: center; color: black'>Nesta seção é possível encontrar avaliações relacionadas ao Sistema de Gestão da Qualidade.</p>")
 
 if option == 'Indicadores':
     st.image(header_indicadores, caption=None, use_column_width=True)
