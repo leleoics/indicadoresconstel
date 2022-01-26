@@ -5,16 +5,6 @@ email = \"leonardocartografica@gmail.com\"\n\
 " > ~/.streamlit/credentials.toml
 
 echo "\
-[theme]\n\
-base = "dark"\n\
-primaryColor = "white"\n\
-backgroundColor = "white"\n\
-secondaryBackgroundColor = "purple"\n\
-textColor = "black"\n\
-font = "sans serif"\n\
-" > ~/.streamlit/config.toml
-
-echo "\
 [server]\n\
 headless = true\n\
 enableCORS=false\n\
