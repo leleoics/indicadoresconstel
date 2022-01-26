@@ -33,7 +33,6 @@ if option == "Início":
     st.markdown("----")
     st.markdown("<p style='text-align: center; color: black;'>Nesta plataforma você encontrará:</p>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: left; color: black;'>▪️ Indicadores dos processos;</p>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: left; color: black;'>▪️ Desempenho dos processos;</p>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: left; color: black;'>▪️ Formulários;</p>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: left; color: black;'>▪️ Documentos relacionados ao Sistema de Gestão da Qualidade</p>", unsafe_allow_html=True)
     st.markdown("----")
@@ -78,12 +77,12 @@ if option == "Formulários":
     avaliation = st. selectbox('Selecione a avaliação:', ('Selecione','Avaliação 1', 'Avaliação 2'))
     if avaliation != 'Selecione':
         if avaliation == 'Avaliação 1':
-            components.iframe("https://docs.google.com/forms/d/e/1FAIpQLSeoJkyF1mkJIeA9kcrKGHswg68SGcEYjGc4i4kKKoZXieIxKw/viewform?embedded=true", width=640, height=1800)
+            components.iframe("https://docs.google.com/forms/d/e/1FAIpQLSeoJkyF1mkJIeA9kcrKGHswg68SGcEYjGc4i4kKKoZXieIxKw/viewform?embedded=true", width=860, height=4000)
         else:
-            components.iframe("https://docs.google.com/forms/d/e/1FAIpQLScZ0VeavfUM2rWkwKkjhCXpVgvPRbs4M3A8a89lV0k4ranKMw/viewform?embedded=true", width=640, height=1800)
+            components.iframe("https://docs.google.com/forms/d/e/1FAIpQLScZ0VeavfUM2rWkwKkjhCXpVgvPRbs4M3A8a89lV0k4ranKMw/viewform?embedded=true", width=860, height=4200)
         st.markdown("---")
     else:
-        st.markdown("<p style=' text-align: center; color: black'>Nesta seção é possível encontrar avaliações relacionadas ao Sistema de Gestão da Qualidade.</p>")
+        st.markdown("<p style=' text-align: center; color: black'>Nesta seção é possível encontrar avaliações relacionadas ao Sistema de Gestão da Qualidade.</p>", unsafe_allow_html=True)
 
 if option == 'Indicadores':
     st.image(header_indicadores, caption=None, use_column_width=True)
@@ -443,13 +442,11 @@ if option == 'Indicadores':
                         if check3_d == 1:
                             st.write(list(df_desempenho.iloc[47])[0])
 
-
         if year == '2022':
             st.markdown("----")
             st.markdown("<p style=' text-align: justify; color: black'>Aguardando preenchimento...</p>", unsafe_allow_html=True)
             st.markdown("----")
                         
-
 if option == 'Documentos':
     st.markdown("<h3 style='text-align: center; color: black;'>Documentos</h3>", unsafe_allow_html=True)
 
