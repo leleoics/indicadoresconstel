@@ -177,69 +177,71 @@ if option == 'Indicadores':
                             st.write(list(df_desempenho.iloc[36])[0])
                             
                 if choice == 'Planejamento':
-                    sheet = choice
-                    worksheet = 'Plano de Objetivos e Metas 2021'
-                    df = leitor(worksheet, sheet)
-                    worksheet2 = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
-                    sheet2 = 'Planejamento 1'
-                    df1 = leitor(worksheet2, sheet2)
-                    sheet3 = 'Planejamento 2'
-                    df2 = leitor(worksheet2, sheet3)
-                    st.markdown("<h4 style='text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
-                    st.markdown('----')
-                    st.markdown('**Indicador:** Reduzir a média de cabo óptico drop utilizado por atividade (antes da readequação)')
-                    ind = indicador(df)
-                    mask = ind['Quantidade de atividades']!=''
-                    ind = ind.drop(columns=[''])
-                    st.table(ind[mask])
-                    check1t = st.checkbox((list(df.iloc[24])[0]).title())
-                    if check1t == 1:
-                        st.write(list(df.iloc[25])[0])
-                    check2t = st.checkbox((list(df.iloc[26])[0]).title())
-                    if check2t == 1:
-                        st.write(list(df.iloc[27])[0])
-                    check3t = st.checkbox((list(df.iloc[28])[0]).title())
-                    if check3t == 1:
-                        st.write(list(df.iloc[29])[0])
-                    st.markdown('----')
-                    st.info("""Após a readequação ocorrida, este processo assumiu novos indicadores definidos para o 4º trimestre e para o ano vigente.""")
-                    st.markdown('**Indicador:** Planejamento: Solicitação de acessos antecipadamente. (após a readequação)')
-                    ind1 = indicador(df1)
-                    mask1 = ind1['Quantidade de solicitações de acessos']!='0'
-                    ind1 = ind1.drop(columns=[''])
-                    st.table(ind1[mask1])
-                    check4t1 = st.checkbox((list(df1.iloc[30])[0]).title() + " - Acessos")
-                    if check4t1 == 1:
-                        st.write(list(df1.iloc[31])[0])
-                    st.markdown('----')
-                    st.markdown('**Indicador:** Planejamento: Elaborar os pré-projetos da prumada em função das vistorias executadas. (após a readequação)')
-                    ind2 = indicador(df2)
-                    mask2 = ind2['Quantidade de vistorias']!='0'
-                    ind2 = ind2.drop(columns=[''])
-                    st.table(ind2[mask2])
-                    check4t1 = st.checkbox((list(df2.iloc[30])[0]).title() + " - Prumadas")
-                    if check4t1 == 1:
-                        st.write(list(df2.iloc[31])[0])
-                    st.markdown('----')
-                    st.markdown("<h4 style='text-align: center; color: black'>Desempenho</h4", unsafe_allow_html=True)
-                    st.markdown('**Indicador de Desempenho:** Planejamentos acertivos')
-                    st.info("Os indicadores de desempenho são os responsáveis por ajudar você a atingir suas metas e objetivos.")
-                    worksheet_d = 'Desempenho do Processo 2021'
-                    sheet_d = 'Planejamento'
-                    df_desempenho = leitor(worksheet_d, sheet_d)
-                    check_desempenho = st.checkbox('Selecione para ver os indicadores de desempenho do processo.')
-                    if check_desempenho == 1:
-                        desempenho = desempenho_plan_proj(df_desempenho)
-                        st.table(desempenho)
-                        check1_d = st.checkbox((list(df_desempenho.iloc[38])[0]).title() + " - Desempenho")
-                        if check1_d == 1:
-                            st.write(list(df_desempenho.iloc[39])[0])
-                        check2_d = st.checkbox((list(df_desempenho.iloc[40])[0]).title() + " - Desempenho")
-                        if check2_d == 1:
-                            st.write(list(df_desempenho.iloc[41])[0])
-                        check3_d = st.checkbox((list(df_desempenho.iloc[42])[0]).title() + " - Desempenho")
-                        if check3_d == 1:
-                            st.write(list(df_desempenho.iloc[43])[0])
+                    # sheet = choice
+                    # worksheet = 'Plano de Objetivos e Metas 2021'
+                    # df = leitor(worksheet, sheet)
+                    # worksheet2 = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
+                    # sheet2 = 'Planejamento 1'
+                    # df1 = leitor(worksheet2, sheet2)
+                    # sheet3 = 'Planejamento 2'
+                    # df2 = leitor(worksheet2, sheet3)
+                    # st.markdown("<h4 style='text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
+                    # st.markdown('----')
+                    # st.markdown('**Indicador:** Reduzir a média de cabo óptico drop utilizado por atividade (antes da readequação)')
+                    # ind = indicador(df)
+                    # mask = ind['Quantidade de atividades']!=''
+                    # ind = ind.drop(columns=[''])
+                    # st.table(ind[mask])
+                    # check1t = st.checkbox((list(df.iloc[24])[0]).title())
+                    # if check1t == 1:
+                    #     st.write(list(df.iloc[25])[0])
+                    # check2t = st.checkbox((list(df.iloc[26])[0]).title())
+                    # if check2t == 1:
+                    #     st.write(list(df.iloc[27])[0])
+                    # check3t = st.checkbox((list(df.iloc[28])[0]).title())
+                    # if check3t == 1:
+                    #     st.write(list(df.iloc[29])[0])
+                    # st.markdown('----')
+                    # st.info("""Após a readequação ocorrida, este processo assumiu novos indicadores definidos para o 4º trimestre e para o ano vigente.""")
+                    # st.markdown('**Indicador:** Planejamento: Solicitação de acessos antecipadamente. (após a readequação)')
+                    # ind1 = indicador(df1)
+                    # mask1 = ind1['Quantidade de solicitações de acessos']!='0'
+                    # ind1 = ind1.drop(columns=[''])
+                    # st.table(ind1[mask1])
+                    # check4t1 = st.checkbox((list(df1.iloc[30])[0]).title() + " - Acessos")
+                    # if check4t1 == 1:
+                    #     st.write(list(df1.iloc[31])[0])
+                    # st.markdown('----')
+                    # st.markdown('**Indicador:** Planejamento: Elaborar os pré-projetos da prumada em função das vistorias executadas. (após a readequação)')
+                    # ind2 = indicador(df2)
+                    # mask2 = ind2['Quantidade de vistorias']!='0'
+                    # ind2 = ind2.drop(columns=[''])
+                    # st.table(ind2[mask2])
+                    # check4t1 = st.checkbox((list(df2.iloc[30])[0]).title() + " - Prumadas")
+                    # if check4t1 == 1:
+                    #     st.write(list(df2.iloc[31])[0])
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+                    # st.markdown('----')
+                    # st.markdown("<h4 style='text-align: center; color: black'>Desempenho</h4", unsafe_allow_html=True)
+                    # st.markdown('**Indicador de Desempenho:** Planejamentos acertivos')
+                    # st.info("Os indicadores de desempenho são os responsáveis por ajudar você a atingir suas metas e objetivos.")
+                    # worksheet_d = 'Desempenho do Processo 2021'
+                    # sheet_d = 'Planejamento'
+                    # df_desempenho = leitor(worksheet_d, sheet_d)
+                    # check_desempenho = st.checkbox('Selecione para ver os indicadores de desempenho do processo.')
+                    # if check_desempenho == 1:
+                    #     desempenho = desempenho_plan_proj(df_desempenho)
+                    #     st.table(desempenho)
+                    #     check1_d = st.checkbox((list(df_desempenho.iloc[38])[0]).title() + " - Desempenho")
+                    #     if check1_d == 1:
+                    #         st.write(list(df_desempenho.iloc[39])[0])
+                    #     check2_d = st.checkbox((list(df_desempenho.iloc[40])[0]).title() + " - Desempenho")
+                    #     if check2_d == 1:
+                    #         st.write(list(df_desempenho.iloc[41])[0])
+                    #     check3_d = st.checkbox((list(df_desempenho.iloc[42])[0]).title() + " - Desempenho")
+                    #     if check3_d == 1:
+                    #         st.write(list(df_desempenho.iloc[43])[0])
 
                 if choice == 'Projetos':
                     worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
