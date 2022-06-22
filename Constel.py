@@ -59,12 +59,12 @@ if pagina == "Início":
     with col11:
         st.markdown("<h4 style='text-align: left; color: black;'>Apresentação</h4>", unsafe_allow_html=True)
         st.markdown(" ")
-        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=460, height=295)   
+        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=400, height=295)   
 
     with col12:
         st.markdown("<h4 style='text-align: left; color: black;'>Aniversariantes do mês</h4>", unsafe_allow_html=True)
         st.markdown(" ")
-        components.iframe("https://docs.google.com/spreadsheets/d/e/2PACX-1vRVvM6x4YULHM3MGUYQxDcCS0BgF6xB6p-e2WXnH91joME173m8_Nn1QB9ws7qT3fxCFqqN2B7cAq0_/pubhtml?widget=true&amp;headers=false", width=460, height=500)
+        components.iframe("https://docs.google.com/spreadsheets/d/e/2PACX-1vRVvM6x4YULHM3MGUYQxDcCS0BgF6xB6p-e2WXnH91joME173m8_Nn1QB9ws7qT3fxCFqqN2B7cAq0_/pubhtml?widget=true&amp;headers=false", width=400, height=500)
     st.markdown(texto_inicial(),unsafe_allow_html=True)
                  
 
