@@ -12,6 +12,7 @@ def texto_inicial():
     <p class="card-text">▪️ Indicadores dos processos;</p>
     <p class="card-text">▪️ Formulários;</p>
     <p class="card-text">▪️ Documentos relacionados ao SGQ</p>
+    <p class="card-text"></p>
     <p class="card-text">Para navegar entre as abas, expanda o menu de seleção e selecione a página desejada</p>
   </div>
 </div>
@@ -42,7 +43,7 @@ with menu:
     pagina = st.radio(
         "Selecione a página: ",
         ("Início", "Formulários","Indicadores", "Documentos", "Sobre"))
-st.markdown("----")
+
 
 
 
@@ -59,15 +60,18 @@ if pagina == "Início":
     with col11:
         st.markdown("<h4 style='text-align: left; color: black;'>Apresentação</h4>", unsafe_allow_html=True)
         st.markdown(" ")
-        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=255)   
-
-    with col12:
+        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)   
         st.markdown("<h4 style='text-align: left; color: black;'>Aniversariantes do mês</h4>", unsafe_allow_html=True)
         st.markdown(" ")
-        components.iframe("https://docs.google.com/spreadsheets/d/e/2PACX-1vRVvM6x4YULHM3MGUYQxDcCS0BgF6xB6p-e2WXnH91joME173m8_Nn1QB9ws7qT3fxCFqqN2B7cAq0_/pubhtml?widget=true&amp;headers=false", width=360, height=500)
+        components.iframe("https://docs.google.com/spreadsheets/d/e/2PACX-1vRVvM6x4YULHM3MGUYQxDcCS0BgF6xB6p-e2WXnH91joME173m8_Nn1QB9ws7qT3fxCFqqN2B7cAq0_/pubhtml?gid=304685294&amp;single=true&amp;widget=true&amp;headers=false", width=360, height=500)
+
+    with col12:
+        st.markdown("<h4 style='text-align: left; color: black;'>Mural de avisos</h4>", unsafe_allow_html=True)
+        st.markdown(" ")
+        components.iframe("https://docs.google.com/spreadsheets/d/e/2PACX-1vS5okgUghoWGn4_ZaKN5qvERwm1WGAvtsE-edaqTXsjdjEa9BMo7JLtQCGQJ01EPLpnWHGnEYTXcG4j/pubhtml?gid=304685294&amp;single=true&amp;widget=true&amp;headers=false", width=360, height=500)
+    st.markdown("----")
     st.markdown(texto_inicial(),unsafe_allow_html=True)
                  
-
 
     # st.markdown("<h3 style='text-align: center; color: black;'>Bem vindo!</h3>", unsafe_allow_html=True)
     st.markdown("----")
@@ -138,58 +142,58 @@ if pagina == 'Indicadores':
     
             if choice != 'Selecione':
                 if choice == 'Instalação Wireless':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
 
 
                 if choice == 'Instalação de Prumadas':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
 
 
                 if choice == 'Instalação (Instalação de Internet)':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
     
 
                 if choice == 'Planejamento':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=460, height=295)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
                     # components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
 
 
                 if choice == 'Projetos':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
 
 
                 if choice == 'Comercial':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
                   
 
                 if choice == 'RH': 
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
 
 
                 if choice == 'Controle de Qualidade':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
 
 
                 if choice == 'Seg. do Trabalho':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
 
 
                 if choice == 'Fechamento (descontinuado)':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
 
 
                 if choice == 'Manutenção (descontinuado)':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
 
 
         if year == '2022':
