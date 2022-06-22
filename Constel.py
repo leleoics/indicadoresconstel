@@ -1,7 +1,22 @@
+from turtle import width
 import streamlit as st
 from PIL import Image
-from functions import leitor, indicador, desempenho_manutencao, desempenho_instalação_rh, desempenho_plan_proj
 import streamlit.components.v1 as components
+
+
+def texto_inicial():
+    return """
+<div class="card" style='text-align: justify'>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <h5 class="card-title">Aqui você encontrará:</h5>
+    <p class="card-text">▪️ Indicadores dos processos;</p>
+    <p class="card-text">▪️ Formulários;</p>
+    <p class="card-text">▪️ Documentos relacionados ao SGQ</p>
+    <p class="card-text">Para navegar entre as abas, expanda o menu de seleção e selecione a página desejada</p>
+  </div>
+</div>
+"""
 
 # Abre arquivos de imagem
 
@@ -20,22 +35,48 @@ initial_sidebar_state="expanded")
 huawei_wl = ['Leonardo Melo','Daniel Souza', 'Fernando Cerqueira', 'Iago Iabiku']
 constr_prumadas = None
 
-# Barra lateral
-st.sidebar.image(logo_C, caption=None, width=75)
-st.sidebar.title('**Constel Engenharia Elétrica**')
-option = st.sidebar.selectbox('Selecione a página desejada', ["Início", "Formulários","Indicadores", "Documentos", "Sobre"])
+#CABEÇALHO COM ACESSO AOS APPs
+st.markdown("----")
+menu = st.expander("- Menu de seleção",expanded=False)
+with menu:
+    st.image(logo_Capa, width=75)
+    pagina = st.radio(
+        "Selecione a página: ",
+        ("Início", "Formulários","Indicadores", "Documentos", "Sobre"))
+st.markdown("----")
+
+
+
+# # Barra lateral
+# st.sidebar.image(logo_C, caption=None, width=75)
+# st.sidebar.title('**Constel Engenharia Elétrica**')
+# option = st.sidebar.selectbox('Selecione a página desejada', ["Início", "Formulários","Indicadores", "Documentos", "Sobre"])
 
 # Abas da aplicação
-if option == "Início":
+if pagina == "Início":
     # Página inicial
-    st.image(header, caption=None, use_column_width=True)
-    st.markdown("<h3 style='text-align: center; color: black;'>Bem vindo!</h3>", unsafe_allow_html=True)
+    # st.image(header, caption=None, use_column_width=True)
+    col11, col12 = st.columns([1, 1])
+    with col11:
+        st.markdown("<h4 style='text-align: left; color: black;'>Apresentação</h4>", unsafe_allow_html=True)
+        st.markdown(" ")
+        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=460, height=295)   
+
+    with col12:
+        st.markdown("<h4 style='text-align: left; color: black;'>Aniversariantes do mês</h4>", unsafe_allow_html=True)
+        st.markdown(" ")
+        components.iframe("https://docs.google.com/spreadsheets/d/e/2PACX-1vRVvM6x4YULHM3MGUYQxDcCS0BgF6xB6p-e2WXnH91joME173m8_Nn1QB9ws7qT3fxCFqqN2B7cAq0_/pubhtml?widget=true&amp;headers=false", width=460, height=500)
+    st.markdown(texto_inicial(),unsafe_allow_html=True)
+                 
+
+
+    # st.markdown("<h3 style='text-align: center; color: black;'>Bem vindo!</h3>", unsafe_allow_html=True)
     st.markdown("----")
-    st.markdown("<p style='text-align: center; color: black;'>Nesta plataforma você encontrará:</p>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: left; color: black;'>▪️ Indicadores dos processos;</p>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: left; color: black;'>▪️ Formulários;</p>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: left; color: black;'>▪️ Documentos relacionados ao Sistema de Gestão da Qualidade</p>", unsafe_allow_html=True)
-    st.markdown("----")
+    # st.markdown("<p style='text-align: center; color: black;'>Nesta plataforma você encontrará:</p>", unsafe_allow_html=True)
+    # st.markdown("<p style='text-align: left; color: black;'>▪️ Indicadores dos processos;</p>", unsafe_allow_html=True)
+    # st.markdown("<p style='text-align: left; color: black;'>▪️ Formulários;</p>", unsafe_allow_html=True)
+    # st.markdown("<p style='text-align: left; color: black;'>▪️ Documentos relacionados ao Sistema de Gestão da Qualidade</p>", unsafe_allow_html=True)
+    # st.markdown("----")
 
 # if option == "Dashboard":
 #     names = ['Leonardo Melo', 'Daniel Souza', 'Fernando Cerqueira', 'Iago Iabiku']
@@ -71,7 +112,7 @@ if option == "Início":
 #     elif st.session_state['authentication_status'] == None:
 #         st.warning('Por favor entre com o usuário e senha!')
 
-if option == "Formulários":
+if pagina == "Formulários":
     st.markdown("<h3 style='text-align: center; color: black;'>Formulários</h3>", unsafe_allow_html=True)       
     st.markdown("----")
     avaliation = st. selectbox('Selecione a avaliação:', ('Selecione','Avaliação 1', 'Avaliação 2'))
@@ -84,7 +125,7 @@ if option == "Formulários":
     else:
         st.markdown("<p style=' text-align: center; color: black'>Nesta seção é possível encontrar avaliações relacionadas ao Sistema de Gestão da Qualidade.</p>", unsafe_allow_html=True)
 
-if option == 'Indicadores':
+if pagina == 'Indicadores':
     st.image(header_indicadores, caption=None, use_column_width=True)
     year = st.selectbox('Selecione o ano desejado: ',('Selecione','2021','2022'))
     if year != "Selecione":
@@ -97,359 +138,67 @@ if option == 'Indicadores':
             'RH','Controle de Qualidade', 'Seg. do Trabalho', 'Fechamento (descontinuado)', 'Manutenção (descontinuado)'))
     
             if choice != 'Selecione':
-
                 if choice == 'Instalação Wireless':
-                    sheet = 'Instalação Wireless'
-                    worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
-                    df = leitor(worksheet, sheet)
-                    st.markdown("<h4 style='text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
-                    st.info("""Atendendo a nova demanda de serviços wireless, este processo foi integrado a empresa no 4º Trimestre de 2021.\n
-                            """)
-                    st.markdown('**Indicador:** Aumentar a quantidade de sites finalizados no trimestre.')
-                    ind = indicador(df)
-                    mask = ind['SITES FINALIZADOS']!=''
-                    ind_mask = ind[mask]
-                    st.table(ind_mask)
-                    check4t = st.checkbox((list(df.iloc[23])[0]).title())
-                    if check4t == 1:
-                        st.write(list(df.iloc[24])[0])
-
-                if choice == 'Instalação de Prumadas':
-                    sheet = 'Instalação de Prumadas'
-                    worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
-                    df = leitor(worksheet, sheet)
-                    st.markdown("<h4 style='text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
-                    st.info("""Atendendo a nova demanda de serviços de prumada, este processo foi integrado a empresa no 4º Trimestre de 2021.\n
-                            """)
-                    st.markdown('**Indicador:** Fazer o maior número possível dentre as prumadas liberadas para execução.')
-                    ind = indicador(df)
-                    mask = ind['Atividades Concluídas']!= '0'
-                    ind = ind.drop(columns=[''])
-                    ind_mask = ind[mask]
-                    st.table(ind_mask)
-                    check4t = st.checkbox((list(df.iloc[30])[0]).title())
-                    if check4t == 1:
-                        st.write(list(df.iloc[31])[0])
-
-                if choice == 'Instalação (Instalação de Internet)':
-                    sheet = 'Instalação de Internet'
-                    worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
-                    df = leitor(worksheet, sheet)
-                    st.info("Após a readequação ocorrida para o 4º trimestre, este processo sofreu alteração no nome, passando de **Instalação** para **Instalação de Internet**, para diferenciar com os demais tipos de instalação realizados pela empresa.")
-                    st.markdown("<h4 style='text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
-                    st.markdown('**Indicador:** Atender a meta trimestral de atividades concluídas x total de instalações')
-                    ind = indicador(df)
-                    st.table(ind)
-                    check1 = st.checkbox((list(df.iloc[24])[0]).title())
-                    if check1 == 1:
-                        st.write(list(df.iloc[25])[0])
-                    check2 = st.checkbox((list(df.iloc[26])[0].title()))
-                    if check2 == 1:
-                        st.write(list(df.iloc[27])[0])
-                    check3 = st.checkbox((list(df.iloc[28])[0].title()))
-                    if check3 == 1:
-                        st.write(list(df.iloc[29])[0])
-                    check4 = st.checkbox((list(df.iloc[30])[0].title()))
-                    if check4 == 1:
-                        st.write(list(df.iloc[31])[0])
-                    st.markdown('----')
-                    st.markdown('**Indicador de Desempenho:** Quantidade de instalações x Quantidade de vendas')
-                    st.info("Os indicadores de desempenho são os responsáveis por ajudar você a atingir suas metas e objetivos.")
-                    worksheet_d = 'Desempenho do Processo 2021_Readequação_4º Trimestre'
-                    sheet_d = 'Instalação'
-                    df_desempenho = leitor(worksheet_d, sheet_d)
-                    st.markdown("<h4 style='text-align: center; color: black'>Desempenho</h4", unsafe_allow_html=True)
-                    check_desempenho = st.checkbox('Selecione para ver os indicadores de desempenho do processo.')
-                    if check_desempenho == 1:
-                        desempenho = desempenho_instalação_rh(df_desempenho)
-                        st.table(desempenho)
-                        check1_d = st.checkbox((list(df_desempenho.iloc[29])[0]).title() + " - Desempenho")
-                        if check1_d == 1:
-                            st.write(list(df_desempenho.iloc[30])[0])
-                        check2_d = st.checkbox((list(df_desempenho.iloc[31])[0]).title() + " - Desempenho")
-                        if check2_d == 1:
-                            st.write(list(df_desempenho.iloc[32])[0])
-                        check3_d = st.checkbox((list(df_desempenho.iloc[33])[0]).title() + " - Desempenho")
-                        if check3_d == 1:
-                            st.write(list(df_desempenho.iloc[34])[0])
-                        check4_d = st.checkbox((list(df_desempenho.iloc[35])[0]).title() + " - Desempenho")
-                        if check4_d == 1:
-                            st.write(list(df_desempenho.iloc[36])[0])
-                            
-                if choice == 'Planejamento':
-                    # sheet = choice
-                    # worksheet = 'Plano de Objetivos e Metas 2021'
-                    # df = leitor(worksheet, sheet)
-                    # worksheet2 = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
-                    # sheet2 = 'Planejamento 1'
-                    # df1 = leitor(worksheet2, sheet2)
-                    # sheet3 = 'Planejamento 2'
-                    # df2 = leitor(worksheet2, sheet3)
-                    # st.markdown("<h4 style='text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
-                    # st.markdown('----')
-                    # st.markdown('**Indicador:** Reduzir a média de cabo óptico drop utilizado por atividade (antes da readequação)')
-                    # ind = indicador(df)
-                    # mask = ind['Quantidade de atividades']!=''
-                    # ind = ind.drop(columns=[''])
-                    # st.table(ind[mask])
-                    # check1t = st.checkbox((list(df.iloc[24])[0]).title())
-                    # if check1t == 1:
-                    #     st.write(list(df.iloc[25])[0])
-                    # check2t = st.checkbox((list(df.iloc[26])[0]).title())
-                    # if check2t == 1:
-                    #     st.write(list(df.iloc[27])[0])
-                    # check3t = st.checkbox((list(df.iloc[28])[0]).title())
-                    # if check3t == 1:
-                    #     st.write(list(df.iloc[29])[0])
-                    # st.markdown('----')
-                    # st.info("""Após a readequação ocorrida, este processo assumiu novos indicadores definidos para o 4º trimestre e para o ano vigente.""")
-                    # st.markdown('**Indicador:** Planejamento: Solicitação de acessos antecipadamente. (após a readequação)')
-                    # ind1 = indicador(df1)
-                    # mask1 = ind1['Quantidade de solicitações de acessos']!='0'
-                    # ind1 = ind1.drop(columns=[''])
-                    # st.table(ind1[mask1])
-                    # check4t1 = st.checkbox((list(df1.iloc[30])[0]).title() + " - Acessos")
-                    # if check4t1 == 1:
-                    #     st.write(list(df1.iloc[31])[0])
-                    # st.markdown('----')
-                    # st.markdown('**Indicador:** Planejamento: Elaborar os pré-projetos da prumada em função das vistorias executadas. (após a readequação)')
-                    # ind2 = indicador(df2)
-                    # mask2 = ind2['Quantidade de vistorias']!='0'
-                    # ind2 = ind2.drop(columns=[''])
-                    # st.table(ind2[mask2])
-                    # check4t1 = st.checkbox((list(df2.iloc[30])[0]).title() + " - Prumadas")
-                    # if check4t1 == 1:
-                    #     st.write(list(df2.iloc[31])[0])
                     components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
                     components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
-                    # st.markdown('----')
-                    # st.markdown("<h4 style='text-align: center; color: black'>Desempenho</h4", unsafe_allow_html=True)
-                    # st.markdown('**Indicador de Desempenho:** Planejamentos acertivos')
-                    # st.info("Os indicadores de desempenho são os responsáveis por ajudar você a atingir suas metas e objetivos.")
-                    # worksheet_d = 'Desempenho do Processo 2021'
-                    # sheet_d = 'Planejamento'
-                    # df_desempenho = leitor(worksheet_d, sheet_d)
-                    # check_desempenho = st.checkbox('Selecione para ver os indicadores de desempenho do processo.')
-                    # if check_desempenho == 1:
-                    #     desempenho = desempenho_plan_proj(df_desempenho)
-                    #     st.table(desempenho)
-                    #     check1_d = st.checkbox((list(df_desempenho.iloc[38])[0]).title() + " - Desempenho")
-                    #     if check1_d == 1:
-                    #         st.write(list(df_desempenho.iloc[39])[0])
-                    #     check2_d = st.checkbox((list(df_desempenho.iloc[40])[0]).title() + " - Desempenho")
-                    #     if check2_d == 1:
-                    #         st.write(list(df_desempenho.iloc[41])[0])
-                    #     check3_d = st.checkbox((list(df_desempenho.iloc[42])[0]).title() + " - Desempenho")
-                    #     if check3_d == 1:
-                    #         st.write(list(df_desempenho.iloc[43])[0])
+
+
+                if choice == 'Instalação de Prumadas':
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+
+
+                if choice == 'Instalação (Instalação de Internet)':
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+    
+
+                if choice == 'Planejamento':
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=460, height=295)
+                    # components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+
 
                 if choice == 'Projetos':
-                    worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
-                    sheet = choice
-                    df = leitor(worksheet, sheet)
-                    st.markdown("<h4 style='text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
-                    st.markdown('----')
-                    st.markdown('**Indicador:** Entregas executadas x Entregas planejadas')
-                    ind = indicador(df)
-                    mask = ind['Entregas Plan']!=''
-                    ind = ind.drop(columns=[''])
-                    st.table(ind[mask])
-                    check1t = st.checkbox((list(df.iloc[24])[0]).title())
-                    if check1t == 1:
-                        st.write(list(df.iloc[25])[0])
-                    check2t = st.checkbox((list(df.iloc[26])[0]).title())
-                    if check2t == 1:
-                        st.write(list(df.iloc[27])[0])
-                    check3t = st.checkbox((list(df.iloc[28])[0]).title())
-                    if check3t == 1:
-                        st.write(list(df.iloc[29])[0])
-                    check4t = st.checkbox((list(df.iloc[30])[0]).title())
-                    if check4t == 1:
-                        st.write(list(df.iloc[31])[0])
-                    st.markdown('----')
-                    st.markdown("<h4 style='text-align: center; color: black'>Desempenho</h4", unsafe_allow_html=True)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+
 
                 if choice == 'Comercial':
-                    worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
-                    sheet = choice
-                    df = leitor(worksheet, sheet)
-                    st.markdown("<h4 style='text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
-                    st.markdown('----')
-                    st.markdown('**Indicador:** Comercial')
-                    ind = indicador(df)
-                    ind = ind.drop(columns=[''])
-                    st.table(ind)
-                    check1t = st.checkbox((list(df.iloc[24])[0]).title())
-                    if check1t == 1:
-                        st.write(list(df.iloc[25])[0])
-                    check2t = st.checkbox((list(df.iloc[26])[0]).title())
-                    if check2t == 1:
-                        st.write(list(df.iloc[27])[0])
-                    check3t = st.checkbox((list(df.iloc[28])[0]).title())
-                    if check3t == 1:
-                        st.write(list(df.iloc[29])[0])
-                    check4t = st.checkbox((list(df.iloc[30])[0]).title())
-                    if check4t == 1:
-                        st.write(list(df.iloc[31])[0])                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+                  
 
                 if choice == 'RH': 
-                    worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
-                    sheet = choice
-                    df = leitor(worksheet, sheet)
-                    st.markdown("<h4 style=' text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
-                    st.markdown('**Indicador:** Absenteísmo')
-                    ind = indicador(df)
-                    st.table(ind)
-                    st.info("""
-                            Absenteísmo é a falta de pontualidade e assiduidade e está relacionado a faltas e ou atrasos do colaborador. 
-                            """)
-                    check1 = st.checkbox((list(df.iloc[24])[0]).title())
-                    if check1 == 1:
-                        st.write(list(df.iloc[25])[0])
-                    check2 = st.checkbox((list(df.iloc[26])[0]).title())
-                    if check2 == 1:
-                        st.write(list(df.iloc[27])[0])
-                    check3 = st.checkbox((list(df.iloc[28])[0]).title())
-                    if check3 == 1:
-                        st.write(list(df.iloc[29])[0])
-                    check4 = st.checkbox((list(df.iloc[30])[0]).title())
-                    if check4 == 1:
-                        st.write(list(df.iloc[31])[0])  
-                    st.markdown('----')
-                    st.markdown("<h4 style=' text-align: center; color: black'>Desempenho</h4", unsafe_allow_html=True)
-                    st.markdown('**Indicador de Desempenho:** Turnover')
-                    st.info("Os indicadores de desempenho são os responsáveis por ajudar você a atingir suas metas e objetivos.")
-                    worksheet_d = 'Desempenho do Processo 2021_Readequação_4º Trimestre'
-                    sheet_d = 'RH'
-                    df_desempenho = leitor(worksheet_d, sheet_d)
-                    check_desempenho = st.checkbox('Selecione para ver os indicadores de desempenho do processo.')
-                    if check_desempenho == 1:
-                        desempenho = desempenho_instalação_rh(df_desempenho)
-                        st.table(desempenho)
-                        check1_d = st.checkbox((list(df_desempenho.iloc[29])[0]).title() + " - Desempenho")
-                        if check1_d == 1:
-                            st.write(list(df_desempenho.iloc[30])[0])
-                        check2_d = st.checkbox((list(df_desempenho.iloc[31])[0]).title() + " - Desempenho")
-                        if check2_d == 1:
-                            st.write(list(df_desempenho.iloc[32])[0])
-                        check3_d = st.checkbox((list(df_desempenho.iloc[33])[0]).title() + " - Desempenho")
-                        if check3_d == 1:
-                            st.write(list(df_desempenho.iloc[34])[0])
-                        check4_d = st.checkbox((list(df_desempenho.iloc[35])[0]).title() + " - Desempenho")
-                        if check4_d == 1:
-                            st.write(list(df_desempenho.iloc[36])[0])
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+
 
                 if choice == 'Controle de Qualidade':
-                    worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
-                    sheet = choice
-                    df = leitor(worksheet, sheet)
-                    st.markdown("<h4 style=' text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
-                    st.markdown("**Indicador:** Número de reclamações / avaliações negativas (instalador) x Número de ativações ")
-                    ind = indicador(df)
-                    st.table(ind)
-                    check1t = st.checkbox((list(df.iloc[23])[0]).title())
-                    if check1t == 1:
-                        st.write(list(df.iloc[24])[0])
-                    # Avaliação segundo trimestre
-                    check2t = st.checkbox((list(df.iloc[25])[0]).title())
-                    if check2t == 1:
-                        st.write(list(df.iloc[26])[0])
-                    # Avaliação terceiro trimestre
-                    check3t = st.checkbox((list(df.iloc[27])[0]).title())
-                    if check3t == 1:
-                        st.write(list(df.iloc[28])[0])
-                    # Avaliação quarto trimestre
-                    check4t = st.checkbox((list(df.iloc[29])[0]).title())
-                    if check4t == 1:
-                        st.write(list(df.iloc[30])[0])
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+
 
                 if choice == 'Seg. do Trabalho':
-                    worksheet = 'Plano de Objetivos e Metas 2021 (Revisão 01 Readequação devido término do contrato da Copel)'
-                    sheet = choice
-                    df = leitor(worksheet, sheet)
-                    st.markdown("<h4 style='text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
-                    st.markdown('**Indicador:** Quantidade de inspeções x Quantidade de inspeções irregulares')
-                    ind = indicador(df)
-                    st.table(ind)
-                    check1t = st.checkbox((list(df.iloc[24])[0]).title())
-                    if check1t == 1:
-                        st.write(list(df.iloc[25])[0])
-                    check2t = st.checkbox((list(df.iloc[26])[0]).title())
-                    if check2t == 1:
-                        st.write(list(df.iloc[27])[0])
-                    check3t = st.checkbox((list(df.iloc[28])[0]).title())
-                    if check3t == 1:
-                        st.write(list(df.iloc[29])[0])
-                    check4t = st.checkbox((list(df.iloc[30])[0]).title())
-                    if check4t == 1:
-                        st.write(list(df.iloc[31])[0])
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+
 
                 if choice == 'Fechamento (descontinuado)':
-                    worksheet = 'Plano de Objetivos e Metas 2021'
-                    sheet = 'Fechamento'
-                    df = leitor(worksheet, sheet)
-                    st.markdown("<h4 style=' text-align: center; color: black'>Plano de Objetivos e Metas</p", unsafe_allow_html=True)
-                    st.error('Com a readequação ocorrida na empresa, este processo foi descontinuado para o 4º trimestre e para o ano vigente.')
-                    st.markdown('**Indicador:** "Número de ativações aprovadas no mês x Número de ativações realizadas no mês anterior"')
-                    ind = indicador(df)
-                    mask = ind["Ativações aprovadas"] != ''
-                    st.table(ind[mask])
-                    check1t = st.checkbox((list(df.iloc[24])[0]).title())
-                    if check1t == 1:
-                        st.write(list(df.iloc[25])[0])
-                    check2t = st.checkbox((list(df.iloc[26])[0]).title())
-                    if check2t == 1:
-                        st.write(list(df.iloc[27])[0])
-                    check3t = st.checkbox((list(df.iloc[28])[0]).title())
-                    if check3t == 1:
-                        st.write(list(df.iloc[29])[0])
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+
 
                 if choice == 'Manutenção (descontinuado)':
-                    sheet = 'Manutenção'
-                    worksheet = 'Plano de Objetivos e Metas 2021'
-                    df = leitor(worksheet, sheet)
-                    st.markdown("<h4 style='text-align: center; color: black'>Plano de Objetivos e Metas</h4", unsafe_allow_html=True)
-                    st.error('Com a readequação ocorrida na empresa, este processo foi descontinuado para o 4º trimestre e para o ano vigente.')
-                    st.markdown('**Indicador:** "Número de Atendimentos Realizados na Janela x Número Total de Atendimentos"')
-                    ind = indicador(df)
-                    mask = ind['Manutenções (Janela)'] != ''
-                    st.table(ind[mask])
-                    check1t = st.checkbox((list(df.iloc[19])[0]).title())
-                    if check1t == 1:
-                        st.write(list(df.iloc[20])[0])
-                    check2t = st.checkbox((list(df.iloc[21])[0]).title())
-                    if check2t == 1:
-                        st.write(list(df.iloc[22])[0])
-                    check3t = st.checkbox((list(df.iloc[23])[0]).title())
-                    if check3t == 1:
-                        st.write(list(df.iloc[24])[0])
-                    st.markdown('----')
-                    st.markdown('**Indicador de Desempenho:** Taxa de Reincidência')
-                    st.info("Os indicadores de desempenho são os responsáveis por ajudar você a atingir suas metas e objetivos.")
-                    worksheet_d = 'Desempenho do Processo 2021'
-                    sheet_d = 'Manutenção'
-                    df_desempenho = leitor(worksheet_d, sheet_d)
-                    st.markdown("<h4 style='text-align: center; color: black'>Desempenho</h4", unsafe_allow_html=True)
-                    check_desempenho = st.checkbox('Selecione para ver os indicadores de desempenho do processo.')
-                    if check_desempenho == 1:
-                        desempenho = desempenho_manutencao(df_desempenho)
-                        st.table(desempenho)
-                        check1_d = st.checkbox((list(df_desempenho.iloc[42])[0]).title() + " - Desempenho")
-                        if check1_d == 1:
-                            st.write(list(df_desempenho.iloc[43])[0])
-                        check2_d = st.checkbox((list(df_desempenho.iloc[44])[0]).title() + " - Desempenho")
-                        if check2_d == 1:
-                            st.write(list(df_desempenho.iloc[45])[0])
-                        check3_d = st.checkbox((list(df_desempenho.iloc[46])[0]).title() + " - Desempenho")
-                        if check3_d == 1:
-                            st.write(list(df_desempenho.iloc[47])[0])
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=797, height=486)
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+
 
         if year == '2022':
             st.markdown("----")
             st.markdown("<p style=' text-align: justify; color: black'>Aguardando preenchimento...</p>", unsafe_allow_html=True)
             st.markdown("----")
                         
-if option == 'Documentos':
+if pagina == 'Documentos':
     st.markdown("<h3 style='text-align: center; color: black;'>Documentos</h3>", unsafe_allow_html=True)
 
     st.markdown("<h6 style='text-align: left; color: black;'>Diretrizes</h6>", unsafe_allow_html=True)
@@ -500,7 +249,7 @@ if option == 'Documentos':
     st.write("<p style='text-align: justify; color: black;'>    Qual o risco do seu processo para o negócio? Qual é o grau desse risco? Quais as ações que visam mitigá-lo? O plano de ação é para 1 ou 2 anos? A matriz SWOT, ou FOFA é uma ferramenta de planejamento estratégico, a qual contém os pontos fortes e fracos, relacionados ao ambiente interno (Forças e Fraquezas) e externo da empresa (Oportunidades e Ameaças). Assim como os indicadores, as ações presentes no planejamento estratégico devem ser analisadas periodicamente (semestral), fazendo uma análise completa sobre tudo o que foi feito durante o período e quais serão as próximas ações. A planilha está disponível de forma online a fim de facilitar a edição simultânea por parte dos gestores. TODOS que fazem parte do seu processo devem ter conhecimento do(s) risco(s) que pode(m) impactar de forma positiva ou negativa o planejamento estratégico da empresa. </p>", unsafe_allow_html=True)
     st.write('')
 
-if option == "Sobre":
+if pagina == "Sobre":
     st.markdown('**Autor:** Leonardo de Oliveira Melo')
     st.markdown('**Formação:** Graduando em Eng. Cartógrafica e de Agrimensura')
     st.markdown('**Instituição:** Universidade Federal do Paraná')
