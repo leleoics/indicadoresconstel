@@ -24,6 +24,7 @@ logo_C = Image.open("./thumbnail/LogoC.png")
 logo_Capa = Image.open("./thumbnail/Logo_C_capa.png")
 header = Image.open("./thumbnail/header.png")
 header_indicadores = Image.open("./thumbnail/header_indicadores.png")
+header_documentos = Image.open("./thumbnail/header_documentos.png")
 header_desempenho = Image.open("./thumbnail/header_desempenho.png")
 logo_Cinza = Image.open("./thumbnail/Logo_Site.png")
 st.set_page_config(
@@ -142,121 +143,132 @@ if pagina == 'Indicadores':
     
             if choice != 'Selecione':
                 if choice == 'Instalação Wireless':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSf9r-Fa3eHb2hRK7QAlO8tfRzr9yo6jV2VwQoQL0XSMTQWa8Sb5UwGLde96LvkRt9VqhCmqwbLJ487/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
                 if choice == 'Instalação de Prumadas':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vQo6yyBBPA2SPhswZy9LtaIJCyPG4uyb5Rcmk43AdeNv4ZRFJl5Oc7BZgjswAEoiK-q4MQnzPHtdOc2/pub?start=false&loop=false&delayms=3000", width=360, height=239)                
 
 
                 if choice == 'Instalação (Instalação de Internet)':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vRuL0INb5me9CXnM-Qa8Xjimn6yNI6kTQrKePpeOKJzxXIplKiyQG4h9GL3AIBckDTEOtZIv14dQ2V1/pub?start=false&loop=false&delayms=3000", width=360, height=239)                  
     
 
                 if choice == 'Planejamento':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
-                    # components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=797, height=486)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
                 if choice == 'Projetos':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vR8X8lbRZ4wsd95GnqqMxBPzabSDmucjWji33u2vbcu2YzypVveiOgAxYdV4ANsaNAsEdbOetn3l-gf/pub?start=false&loop=false&delayms=3000", width=360, height=239)                   
 
 
                 if choice == 'Comercial':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSLJ0Mam-ZchjJ3sljm40s5EDdyNPLy52lIURT5zyjQkvExLam_cwCW19uVtwp1Ey7CZgO7481QbJGd/pub?start=false&loop=false&delayms=3000", width=360, height=239)                 
                   
 
                 if choice == 'RH': 
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vRCrRbsjGljxFSVRu2ij_JMOLF5UaLG-LNG1ZMpCqzk9qUba_fidw5umvmE2ru6cAsYII_ip2b3SPDW/pub?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
                 if choice == 'Controle de Qualidade':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSpk2g1Eo1Rp7S0706nRhdjC7M1m3P9ROoFcBkcfAjYnT73ckFPa0HYx4iByAOslXI6HsBMZvYZmYwX/pub?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
                 if choice == 'Seg. do Trabalho':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSpk2g1Eo1Rp7S0706nRhdjC7M1m3P9ROoFcBkcfAjYnT73ckFPa0HYx4iByAOslXI6HsBMZvYZmYwX/pub?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
                 if choice == 'Fechamento (descontinuado)':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSqjnR8S738NoMgDBOz9M-4c0SvH-gQEVWEXnnOfgBi_xyKZNzKK26MLWSBDdJOsjzoOQizP8QRIvQa/pub?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
                 if choice == 'Manutenção (descontinuado)':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)                    
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTJ65Gi958pvOegMi6_0uOV4i-TFjSY3OZCS7i7gKTxqiOY3H98or-XWWmZG7fNLYLkaIUMpwL-R2uX/pub?start=false&loop=false&delayms=3000", width=360, height=239)                   
 
 
         if year == '2022':
             st.markdown("----")
-            st.markdown("<p style=' text-align: justify; color: black'>Aguardando preenchimento...</p>", unsafe_allow_html=True)
+            st.markdown("<p style=' text-align: justify; color: black'>Em preenchimento...</p>", unsafe_allow_html=True)
             st.markdown("----")
                         
 if pagina == 'Documentos':
-    st.markdown("<h3 style='text-align: center; color: black;'>Documentos</h3>", unsafe_allow_html=True)
-
+    st.image(header_documentos, caption=None, use_column_width=True)
+    # st.markdown("<h3 style='text-align: center; color: black;'>Documentos</h3>", unsafe_allow_html=True)
+    st.markdown("----")
     st.markdown("<h6 style='text-align: left; color: black;'>Diretrizes</h6>", unsafe_allow_html=True)
-    st.write("<p style='text-align: justify; color: black;'>    A Constel é um barco, em que todos os colaboradores devem remar na mesma direção. Bem como, a Missão, Visão e Valores compõem um conjunto de diretrizes fundamentais que norteiam a empresa. Além disso, são de extrema importância para orientar o planejamento estratégico e construir uma identidade organizacional, portanto leia atentamente e dissemine seu conteúdo a todos.</p>", unsafe_allow_html=True)
+    st.write("<p style='text-align: justify; color: black;'>    Documento que apresenta a Missão, Visão e Valores compõem um conjunto de diretrizes fundamentais que norteiam a empresa.</p>", unsafe_allow_html=True)
     with open("./files/diretrizes.pdf", 'rb') as f:
         st.download_button('Baixar', f, file_name='Diretrizes Constel.pdf')
+    st.markdown("----")
     st.write('')
 
     st.markdown("<h6 style='text-align: left; color: black;'>Política de Qualidade</h6>", unsafe_allow_html=True)
-    st.write("<p style='text-align: justify; color: black;'>    A empresa possuí Política de Qualidade? O que é melhoria contínua? Sabe me dar exemplo? O que são profissionais capacitados e comprometidos? Perguntas que podem ser feitas, e devem ser respondidas com base na Política de Qualidade que é definida a parti de escopo, visando abranger todos os serviços prestados ou que serão prestados pela Constel, então estude, interprete, dissemine e discuta o seu conteúdo com todos da empresa, mas principalmente com os seus subordinados..</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: justify; color: black;'>    - A empresa possuí Política de Qualidade?</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: justify; color: black;'>    - O que é melhoria contínua? Sabe me dar exemplo?</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: justify; color: black;'>    - O que são profissionais capacitados e comprometidos?</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: justify; color: black;'>    São perguntas que podem ser feitas, e devem ser respondidas com base na Política de Qualidade.</p>", unsafe_allow_html=True)
     with open("./files/politica_de_qualidade.pdf", 'rb') as f:
         st.download_button('Baixar', f, file_name='Politica de Qualidade Constel.pdf')
+    st.markdown("----")
     st.write('')
 
     st.markdown("<h6 style='text-align: left; color: black;'>Organograma</h6>", unsafe_allow_html=True)
-    st.write("<p style='text-align: justify; color: black;'>    Quem é seu gestor? Para quem você responde? Onde está escrito pra quem você responde? Essas são algumas das perguntas que podem serem feitas a fim de verificar o conhecimento dos colaboradores sobre o Organograma. Após algumas atualizações a versão definitiva está disponível a todos, por isso consulte-o e veja de forma gráfica a estrutura organizacional da empresa e a hierarquia a ser respeitada. </p>", unsafe_allow_html=True)
+    st.write("<p style='text-align: justify; color: black;'>    - Quem é seu gestor?</p>", unsafe_allow_html=True)
+    st.write("<p style='text-align: justify; color: black;'>    Consulte o organograma e veja de forma gráfica a estrutura organizacional da empresa e a hierarquia a ser respeitada. </p>", unsafe_allow_html=True)
     with open("./files/organograma.pdf", 'rb') as f:
         st.download_button('Baixar', f, file_name='Organograma Constel.pdf')
+    st.markdown("----")
     st.write('')
 
     st.markdown("<h6 style='text-align: left; color: black;'>Fluxograma de Interação de Processos</h6>", unsafe_allow_html=True)
-    st.write("<p style='text-align: justify; color: black;'>    Onde seu processo está inserido no SGQ? É processo de apoio? Processo operacional? O gestor deve saber responder a estas perguntas, por isso é fundamental o entendimento sobre a última versão do Fluxo de Interação dos Processos que visa representar de maneira gráfica o fluxo ideal para a estrutura organizacional da empresa. </p>", unsafe_allow_html=True)
+    st.write("<p style='text-align: justify; color: black;'>    - Onde seu processo está inserido no SGQ?</p>", unsafe_allow_html=True)
+    st.write("<p style='text-align: justify; color: black;'>    - É um processo de apoio? É um processo operacional?</p>", unsafe_allow_html=True)
+    st.write("<p style='text-align: justify; color: black;'>    Consulte onde seu processo está inserido e veja de maneira gráfica o fluxo ideal para a estrutura organizacional da empresa. </p>", unsafe_allow_html=True)
     with open("./files/fluxo_de_interacao.pdf", 'rb') as f:
         st.download_button('Baixar', f, file_name='Fluxo de Interação Constel.pdf')
+    st.markdown("----")
     st.write('')
 
     st.markdown("<h6 style='text-align: left; color: black;'>Fluxograma de Entradas e Saídas</h6>", unsafe_allow_html=True)
-    st.write("<p style='text-align: justify; color: black;'>    Como funciona o seu processo? Quais são as entradas? Quais os recursos necessários? Quais as Saídas? Quais entradas vem de outro processo? As suas saídas são entradas de outros processos? Muitas perguntas que podem ser feitas, mas a resposta é a mesma. Com base no fluxo de interação dos processos, foi gerado a Matriz de Entradas e Saídas a qual contém todas as entradas, recursos e saídas do processo. Você como gestor deve saber, além de manter organizado e ter EVIDÊNCIAS de tudo (planilhas, documentos, sistemas etc.), por isso entender o fluxo entre os processos é fundamental. Para facilitar, pode consultar o grande fluxograma desenvolvido pelo Rafael Andreatta, com todos os processos suas respectivas entradas e saídas. </p>", unsafe_allow_html=True)
+    st.write("<p style='text-align: justify; color: black;'>    Consulte o fluxograma da Matriz de Entradas e Saídas a qual contém todas as entradas, recursos e saídas do processo.</p>", unsafe_allow_html=True)
     with open("./files/Fluxograma.jpg", 'rb') as f:
         st.download_button('Baixar', f, file_name='Fluxograma Constel.jpg')
+    st.markdown("----")
     st.write('')
 
     st.markdown("<h6 style='text-align: left; color: black;'>Plano de Contingência</h6>", unsafe_allow_html=True)
-    st.write("<p style='text-align: justify; color: black;'>    O que fazer em caso de acidente? Acabar a luz? Acabar a água? Greve do transporte coletivo? Acidente de trabalho? Incêndio? Falta de materiais? Problemas com o carro? Para responder a essas perguntas, verificar todos os itens presentes no plano de contingência, dando ênfase aos que são inerentes ao processo e as pessoas envolvidas, disponibilizar cópia impressa no setor e disseminar seu conteúdo a todos (escritório e campo). </p>", unsafe_allow_html=True)
+    st.write("<p style='text-align: justify; color: black;'>    - O que fazer em caso de acidente? o carro?</p>", unsafe_allow_html=True)
+    st.write("<p style='text-align: justify; color: black;'>    - Acabar a luz?</p>", unsafe_allow_html=True)
+    st.write("<p style='text-align: justify; color: black;'>    - Greve do transporte coletivo?</p>", unsafe_allow_html=True)
+    st.write("<p style='text-align: justify; color: black;'>    - Acidente de trabalho?</p>", unsafe_allow_html=True)
+    st.write("<p style='text-align: justify; color: black;'>    - Problemas com o carro?</p>", unsafe_allow_html=True)
+    st.write("<p style='text-align: justify; color: black;'>    Este documento trás as respostas para todas essas perguntas</p>", unsafe_allow_html=True)
     with open("./files/planodecontingencia.pdf", 'rb') as f:
         st.download_button('Baixar', f, file_name='Plano de Contingência Constel.pdf')
-    st.write('')
+    st.markdown("----")
+    # st.write('')
 
-    st.markdown("<h6 style='text-align: left; color: black;'>Controle de Documentos</h6>", unsafe_allow_html=True)
-    st.write("<p style='text-align: justify; color: black;'>    Qual versão está o documento utilizado pelo processo? Quando foi feita última revisão? E propriedade da empresa ou do cliente? Todos os documentos e registros que forem criados ou alterados devem ser comunicados ao responsável pela Gestão da Qualidade a fim de verificar se possuem as informações básicas, como: Processo, data de elaboração, número e data da última revisão. Além disso, TUDO que é criado e utilizado pelo processo deve ser inserido no Controle de Documentos, essa planilha possui informações importantes que visa facilitar a busca de todos os colaboradores a documentos e registros existentes. </p>", unsafe_allow_html=True)
-    st.write('')
+    # st.markdown("<h6 style='text-align: left; color: black;'>Controle de Documentos</h6>", unsafe_allow_html=True)
+    # st.write("<p style='text-align: justify; color: black;'>    Qual versão está o documento utilizado pelo processo? Quando foi feita última revisão? E propriedade da empresa ou do cliente? Todos os documentos e registros que forem criados ou alterados devem ser comunicados ao responsável pela Gestão da Qualidade a fim de verificar se possuem as informações básicas, como: Processo, data de elaboração, número e data da última revisão. Além disso, TUDO que é criado e utilizado pelo processo deve ser inserido no Controle de Documentos, essa planilha possui informações importantes que visa facilitar a busca de todos os colaboradores a documentos e registros existentes. </p>", unsafe_allow_html=True)
+    # st.markdown("----")
+    # st.write('')
 
-    st.markdown("<h6 style='text-align: left; color: black;'>Análise de Risco da Mudança Solicitada</h6>", unsafe_allow_html=True)
-    st.write("<p style='text-align: justify; color: black;'>    Você precisou realizar alguma mudança no processo? Teve algo que mudaram e teve impacto ao SGQ? Quando houver necessidade de mudança no seu processo, o que você faz? Para toda mudança no processo, deve-se analisar quais os riscos associados e o impacto que causará ao Sistema de Gestão da Qualidade (quer realocar a mesa dentro do seu setor – OK, porém se quiser realizar uma melhoria/ alteração que vá influenciar nos demais processos é necessário realizar essa análise). Para isso, deve-se utilizar o documento Análise de Risco da Mudança Solicitada em conjunto com um cronograma de execução, para que as etapas da mudança sejam implementadas. </p>", unsafe_allow_html=True)
-    st.write('')
+    # st.markdown("<h6 style='text-align: left; color: black;'>Análise de Risco da Mudança Solicitada</h6>", unsafe_allow_html=True)
+    # st.write("<p style='text-align: justify; color: black;'>    Você precisou realizar alguma mudança no processo? Teve algo que mudaram e teve impacto ao SGQ? Quando houver necessidade de mudança no seu processo, o que você faz? Para toda mudança no processo, deve-se analisar quais os riscos associados e o impacto que causará ao Sistema de Gestão da Qualidade (quer realocar a mesa dentro do seu setor – OK, porém se quiser realizar uma melhoria/ alteração que vá influenciar nos demais processos é necessário realizar essa análise). Para isso, deve-se utilizar o documento Análise de Risco da Mudança Solicitada em conjunto com um cronograma de execução, para que as etapas da mudança sejam implementadas. </p>", unsafe_allow_html=True)
+    # st.markdown("----")
+    # st.write('')
 
-    st.markdown("<h6 style='text-align: left; color: black;'>Análise SWOT com Riscos</h6>", unsafe_allow_html=True)
-    st.write("<p style='text-align: justify; color: black;'>    Qual o risco do seu processo para o negócio? Qual é o grau desse risco? Quais as ações que visam mitigá-lo? O plano de ação é para 1 ou 2 anos? A matriz SWOT, ou FOFA é uma ferramenta de planejamento estratégico, a qual contém os pontos fortes e fracos, relacionados ao ambiente interno (Forças e Fraquezas) e externo da empresa (Oportunidades e Ameaças). Assim como os indicadores, as ações presentes no planejamento estratégico devem ser analisadas periodicamente (semestral), fazendo uma análise completa sobre tudo o que foi feito durante o período e quais serão as próximas ações. A planilha está disponível de forma online a fim de facilitar a edição simultânea por parte dos gestores. TODOS que fazem parte do seu processo devem ter conhecimento do(s) risco(s) que pode(m) impactar de forma positiva ou negativa o planejamento estratégico da empresa. </p>", unsafe_allow_html=True)
-    st.write('')
+    # st.markdown("<h6 style='text-align: left; color: black;'>Análise SWOT com Riscos</h6>", unsafe_allow_html=True)
+    # st.write("<p style='text-align: justify; color: black;'>    Qual o risco do seu processo para o negócio? Qual é o grau desse risco? Quais as ações que visam mitigá-lo? O plano de ação é para 1 ou 2 anos? A matriz SWOT, ou FOFA é uma ferramenta de planejamento estratégico, a qual contém os pontos fortes e fracos, relacionados ao ambiente interno (Forças e Fraquezas) e externo da empresa (Oportunidades e Ameaças). Assim como os indicadores, as ações presentes no planejamento estratégico devem ser analisadas periodicamente (semestral), fazendo uma análise completa sobre tudo o que foi feito durante o período e quais serão as próximas ações. A planilha está disponível de forma online a fim de facilitar a edição simultânea por parte dos gestores. TODOS que fazem parte do seu processo devem ter conhecimento do(s) risco(s) que pode(m) impactar de forma positiva ou negativa o planejamento estratégico da empresa. </p>", unsafe_allow_html=True)
+    # st.markdown("----")
+    # st.write('')
 
 if pagina == "Sobre":
-    st.markdown('**Autor:** Leonardo de Oliveira Melo')
-    st.markdown('**Formação:** Graduando em Eng. Cartógrafica e de Agrimensura')
-    st.markdown('**Instituição:** Universidade Federal do Paraná')
-    st.markdown('**Linkedin:** https://www.linkedin.com/in/leonardo-oliveira-melo-287593164/')
-    st.markdown('**Projeto:** Desenvolver plataforma com os indicadores da Constel')
-    st.markdown('**Status:** Em desenvolvimento.')
+    st.markdown("<p style='text-align: justify; color: black;'><b>Autor:</b> Leonardo de Oliveira Melo", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: justify; color: black;'><b>Formação:</b> Eng. Cartógrafo e Agrimensor", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: justify; color: black;'><b>Instituição:</b> <a href='https://www.ufpr.br/portalufpr/'> Universidade Federal do Paraná</a>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: justify; color: black;'><b>LinkedIn:</b> <a href='https://www.linkedin.com/in/leonardo-oliveira-287593164/'> Visualizar perfil</a>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: justify; color: black;'><b>Projeto:</b> Disponibilizar através de uma aplicação web, os indicadores dos processos da empresa, visando atingir todos os colaboradores da empresa e facilitando o acesso aos colaboradores externos o contato com os documentos referentes ao SGQ.", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: justify; color: black;'><b>Funcionamento:</b> A aplicação utiliza aplicações do Google para visualização das informações, onde os gestores atualizam as informações presentes na aplicação por meio do Google Planilhas e Google Apresentações. A escolha destas ferramentas se deu pela facilidade de atualização das informações a fim de que os gestores não precisem de conhecimento de programação para publicar atualizações.", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: justify; color: black;'><b>Status:</b> Em desenvolvimento.", unsafe_allow_html=True)
     st.image(logo_Capa, caption=None, width=150)
