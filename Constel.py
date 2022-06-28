@@ -65,6 +65,11 @@ with col02:
             'RH','Controle de Qualidade', 'Seg. do Trabalho', 'Fechamento (descontinuado)', 'Manutenção (descontinuado)')
         else:
             processos_tupla = ('Selecione', 'Instalação', 'Planejamento', 'Projetos', 'Comercial', 'RH','Controle de Qualidade', 'Seg. do Trabalho')
+    
+    if pagina == "Formulários":
+        avaliation = st.radio(
+                "Selecione o ano: ",
+                ('Selecione','Avaliação 1', 'Avaliação 2'))
 
 with col03:
     if pagina == "Indicadores":
@@ -93,26 +98,15 @@ if pagina == "Início":
         st.image(header_apresentacao, caption=None, use_column_width=True)
         st.markdown(" ")
         components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)   
-        st.markdown("----")
         st.image(header_aniversarios, caption=None, use_column_width=True)
         st.markdown(" ")
-        st.image(header_avisos, caption=None, use_column_width=True)
         components.iframe("https://docs.google.com/spreadsheets/d/e/2PACX-1vRVvM6x4YULHM3MGUYQxDcCS0BgF6xB6p-e2WXnH91joME173m8_Nn1QB9ws7qT3fxCFqqN2B7cAq0_/pubhtml?gid=304685294&amp;single=true&amp;widget=true&amp;headers=false", width=360, height=500)
-        st.markdown("----")
+
     with col12:
-        st.markdown("<h6 style='text-align: center; color: black;'>Mural de avisos</h6>", unsafe_allow_html=True)
-        st.image(C_aviso, caption=None, width=75)
+        st.image(header_avisos, caption=None, use_column_width=True)
         st.markdown(" ")
-        components.iframe("https://docs.google.com/spreadsheets/d/e/2PACX-1vS5okgUghoWGn4_ZaKN5qvERwm1WGAvtsE-edaqTXsjdjEa9BMo7JLtQCGQJ01EPLpnWHGnEYTXcG4j/pubhtml?gid=304685294&amp;single=true&amp;widget=true&amp;headers=false", width=360, height=500)
+        components.iframe("https://docs.google.com/spreadsheets/d/e/2PACX-1vS5okgUghoWGn4_ZaKN5qvERwm1WGAvtsE-edaqTXsjdjEa9BMo7JLtQCGQJ01EPLpnWHGnEYTXcG4j/pubhtml?gid=304685294&amp;single=true&amp;widget=true&amp;headers=false", width=360, height=600)
             
-
-    # st.markdown("<h3 style='text-align: center; color: black;'>Bem vindo!</h3>", unsafe_allow_html=True)
-    # st.markdown("<p style='text-align: center; color: black;'>Nesta plataforma você encontrará:</p>", unsafe_allow_html=True)
-    # st.markdown("<p style='text-align: left; color: black;'>▪️ Indicadores dos processos;</p>", unsafe_allow_html=True)
-    # st.markdown("<p style='text-align: left; color: black;'>▪️ Formulários;</p>", unsafe_allow_html=True)
-    # st.markdown("<p style='text-align: left; color: black;'>▪️ Documentos relacionados ao Sistema de Gestão da Qualidade</p>", unsafe_allow_html=True)
-    # st.markdown("----")
-
 # if option == "Dashboard":
 #     names = ['Leonardo Melo', 'Daniel Souza', 'Fernando Cerqueira', 'Iago Iabiku']
 #     usernames = ['lmelo', 'dsouza', 'fcerqueira', 'iiabiku']
@@ -150,7 +144,6 @@ if pagina == "Início":
 if pagina == "Formulários":
     st.image(header_formularios, caption=None, use_column_width=True)       
     st.markdown("----")
-    avaliation = st. selectbox('Selecione a avaliação:', ('Selecione','Avaliação 1', 'Avaliação 2'))
     if avaliation != 'Selecione':
         if avaliation == 'Avaliação 1':
             components.iframe("https://docs.google.com/forms/d/e/1FAIpQLSeoJkyF1mkJIeA9kcrKGHswg68SGcEYjGc4i4kKKoZXieIxKw/viewform?embedded=true", width=360, height=4000)
@@ -169,47 +162,114 @@ if pagina == 'Indicadores':
         if pagina_ind != 'Selecione':
 
             if pagina_ind == 'Instalação Wireless':
-                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSf9r-Fa3eHb2hRK7QAlO8tfRzr9yo6jV2VwQoQL0XSMTQWa8Sb5UwGLde96LvkRt9VqhCmqwbLJ487/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
+                col21, col22 = st.columns([1, 1])
+                with col21:
+                    st.markdown(" ")
+                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    
+                with col22:
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSf9r-Fa3eHb2hRK7QAlO8tfRzr9yo6jV2VwQoQL0XSMTQWa8Sb5UwGLde96LvkRt9VqhCmqwbLJ487/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
+
 
 
             if pagina_ind == 'Instalação de Prumadas':
-                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vQo6yyBBPA2SPhswZy9LtaIJCyPG4uyb5Rcmk43AdeNv4ZRFJl5Oc7BZgjswAEoiK-q4MQnzPHtdOc2/embed?start=false&loop=false&delayms=3000", width=360, height=239)                
+                col21, col22 = st.columns([1, 1])
+                with col21:
+                    st.markdown(" ")
+                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    
+                with col22:
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vQo6yyBBPA2SPhswZy9LtaIJCyPG4uyb5Rcmk43AdeNv4ZRFJl5Oc7BZgjswAEoiK-q4MQnzPHtdOc2/embed?start=false&loop=false&delayms=3000", width=360, height=239)                
 
 
             if pagina_ind == 'Instalação (Instalação de Internet)':
-                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vRuL0INb5me9CXnM-Qa8Xjimn6yNI6kTQrKePpeOKJzxXIplKiyQG4h9GL3AIBckDTEOtZIv14dQ2V1/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
+                col21, col22 = st.columns([1, 1])
+                with col21:
+                    st.markdown(" ")
+                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    
+                with col22:
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vRuL0INb5me9CXnM-Qa8Xjimn6yNI6kTQrKePpeOKJzxXIplKiyQG4h9GL3AIBckDTEOtZIv14dQ2V1/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
             if pagina_ind == 'Planejamento':
-                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
+                col21, col22 = st.columns([1, 1])
+                with col21:
+                    st.markdown(" ")
+                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    
+                with col22:
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
             if pagina_ind == 'Projetos':
-                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vR8X8lbRZ4wsd95GnqqMxBPzabSDmucjWji33u2vbcu2YzypVveiOgAxYdV4ANsaNAsEdbOetn3l-gf/embed?start=false&loop=false&delayms=3000", width=360, height=239)                   
+                col21, col22 = st.columns([1, 1])
+                with col21:
+                    st.markdown(" ")
+                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    
+                with col22:
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vR8X8lbRZ4wsd95GnqqMxBPzabSDmucjWji33u2vbcu2YzypVveiOgAxYdV4ANsaNAsEdbOetn3l-gf/embed?start=false&loop=false&delayms=3000", width=360, height=239)                   
 
 
             if pagina_ind == 'Comercial':
-                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSLJ0Mam-ZchjJ3sljm40s5EDdyNPLy52lIURT5zyjQkvExLam_cwCW19uVtwp1Ey7CZgO7481QbJGd/embed?start=false&loop=false&delayms=3000", width=360, height=239)                 
+                col21, col22 = st.columns([1, 1])
+                with col21:
+                    st.markdown(" ")
+                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    
+                with col22:   
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSLJ0Mam-ZchjJ3sljm40s5EDdyNPLy52lIURT5zyjQkvExLam_cwCW19uVtwp1Ey7CZgO7481QbJGd/embed?start=false&loop=false&delayms=3000", width=360, height=239)                 
                 
 
             if pagina_ind == 'RH': 
-                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vRCrRbsjGljxFSVRu2ij_JMOLF5UaLG-LNG1ZMpCqzk9qUba_fidw5umvmE2ru6cAsYII_ip2b3SPDW/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
+                col21, col22 = st.columns([1, 1])
+                with col21:
+                    st.markdown(" ")
+                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    
+                with col22:
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vRCrRbsjGljxFSVRu2ij_JMOLF5UaLG-LNG1ZMpCqzk9qUba_fidw5umvmE2ru6cAsYII_ip2b3SPDW/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
             if pagina_ind == 'Controle de Qualidade':
-                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSpk2g1Eo1Rp7S0706nRhdjC7M1m3P9ROoFcBkcfAjYnT73ckFPa0HYx4iByAOslXI6HsBMZvYZmYwX/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
+                col21, col22 = st.columns([1, 1])
+                with col21:
+                    st.markdown(" ")
+                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    
+                with col22:
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSpk2g1Eo1Rp7S0706nRhdjC7M1m3P9ROoFcBkcfAjYnT73ckFPa0HYx4iByAOslXI6HsBMZvYZmYwX/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
             if pagina_ind == 'Seg. do Trabalho':
-                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vQFHwZxPOpckZzibgwhSpXe3RlSYVtm8_hJ77eiMzkMdX1Zz80nKyPflSk7gHfnk9KfyAEqSzdu_dur/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
+                col21, col22 = st.columns([1, 1])
+                with col21:
+                    st.markdown(" ")
+                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    
+                with col22:
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vQFHwZxPOpckZzibgwhSpXe3RlSYVtm8_hJ77eiMzkMdX1Zz80nKyPflSk7gHfnk9KfyAEqSzdu_dur/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
             if pagina_ind == 'Fechamento (descontinuado)':
-                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSqjnR8S738NoMgDBOz9M-4c0SvH-gQEVWEXnnOfgBi_xyKZNzKK26MLWSBDdJOsjzoOQizP8QRIvQa/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
+                col21, col22 = st.columns([1, 1])
+                with col21:
+                    st.markdown(" ")
+                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    
+                with col22:
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSqjnR8S738NoMgDBOz9M-4c0SvH-gQEVWEXnnOfgBi_xyKZNzKK26MLWSBDdJOsjzoOQizP8QRIvQa/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
             if pagina_ind == 'Manutenção (descontinuado)':
-                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTJ65Gi958pvOegMi6_0uOV4i-TFjSY3OZCS7i7gKTxqiOY3H98or-XWWmZG7fNLYLkaIUMpwL-R2uX/embed?start=false&loop=false&delayms=3000", width=360, height=239)                   
+                col21, col22 = st.columns([1, 1])
+                with col21:
+                    st.markdown(" ")
+                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    
+                with col22:
+                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTJ65Gi958pvOegMi6_0uOV4i-TFjSY3OZCS7i7gKTxqiOY3H98or-XWWmZG7fNLYLkaIUMpwL-R2uX/embed?start=false&loop=false&delayms=3000", width=360, height=239)                   
 
 
         if pagina_year == '2022':
