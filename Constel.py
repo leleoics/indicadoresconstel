@@ -32,6 +32,9 @@ header_indicadores = Image.open("./thumbnail/header_indicadores.png")
 header_formularios = Image.open("./thumbnail/header_formularios.png")
 header_documentos = Image.open("./thumbnail/header_documento.png")
 header_informacoes = Image.open("./thumbnail/header_informacoes.png")
+header_apresentacao = Image.open("./thumbnail/header_apresentacao.png")
+header_aniversarios = Image.open("./thumbnail/header_aniversarios.png")
+header_avisos = Image.open("./thumbnail/header_avisos.png")
 logo_Cinza = Image.open("./thumbnail/Logo_Site.png")
 st.set_page_config(
 page_title="Constel",
@@ -87,16 +90,15 @@ if pagina == "Início":
     st.markdown("")
     col11, col12 = st.columns([1, 1])
     with col11:
-        st.markdown("<h6 style='text-align: center; color: black;'>Apresentação</h6>", unsafe_allow_html=True)
+        st.image(header_apresentacao, caption=None, use_column_width=True)
         st.markdown(" ")
         components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)   
-        # st.markdown("<h6 style='text-align: center; color: black;'Aniversariantes do mês</h6>", unsafe_allow_html=True)
         st.markdown("----")
-        st.image(C_festa, caption=None, width=75)
-        st.markdown("<h6 style='text-align: center; color: black;'Aniversariantes do mês</h6>", unsafe_allow_html=True)
+        st.image(header_aniversarios, caption=None, use_column_width=True)
         st.markdown(" ")
+        st.image(header_avisos, caption=None, use_column_width=True)
         components.iframe("https://docs.google.com/spreadsheets/d/e/2PACX-1vRVvM6x4YULHM3MGUYQxDcCS0BgF6xB6p-e2WXnH91joME173m8_Nn1QB9ws7qT3fxCFqqN2B7cAq0_/pubhtml?gid=304685294&amp;single=true&amp;widget=true&amp;headers=false", width=360, height=500)
-
+        st.markdown("----")
     with col12:
         st.markdown("<h6 style='text-align: center; color: black;'>Mural de avisos</h6>", unsafe_allow_html=True)
         st.image(C_aviso, caption=None, width=75)
