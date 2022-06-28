@@ -22,10 +22,14 @@ def texto_inicial():
 
 logo_C = Image.open("./thumbnail/LogoC.png")
 logo_Capa = Image.open("./thumbnail/Logo_C_capa.png")
-header = Image.open("./thumbnail/header.png")
+logo_Capa_pagina = Image.open("./thumbnail/Logo_C_capa_pagina.png")
+logo_Capa_calendario = Image.open("./thumbnail/Logo_C_capa_calendario.png")
+logo_Capa_processo = Image.open("./thumbnail/Logo_C_capa_processo.png")
+header = Image.open("./thumbnail/header_inicio.png")
 header_indicadores = Image.open("./thumbnail/header_indicadores.png")
-header_documentos = Image.open("./thumbnail/header_documentos.png")
-header_desempenho = Image.open("./thumbnail/header_desempenho.png")
+header_formularios = Image.open("./thumbnail/header_formularios.png")
+header_documentos = Image.open("./thumbnail/header_documento.png")
+header_informacoes = Image.open("./thumbnail/header_informacoes.png")
 logo_Cinza = Image.open("./thumbnail/Logo_Site.png")
 st.set_page_config(
 page_title="Constel",
@@ -38,13 +42,32 @@ constr_prumadas = None
 
 #CABEÇALHO COM ACESSO AOS APPs
 st.markdown("----")
-menu = st.expander("- Menu de seleção",expanded=False)
-with menu:
-    st.image(logo_Capa, width=75)
+col01, col02, col03 = st.columns([1, 1, 1])
+with col01:
+    st.image(logo_Capa_pagina, width=95)
     pagina = st.radio(
-        "Selecione a página: ",
-        ("Início", "Formulários","Indicadores", "Documentos", "Sobre"))
+    "Selecione a página: ",
+    ("Início","Indicadores", "Formulários", "Documentos", "Informações"))
 
+with col02:
+    if pagina == "Indicadores":
+        st.image(logo_Capa_calendario, width=95)
+        pagina_year = st.radio(
+        "Selecione o ano: ",
+        ('Selecione', '2021', '2022', '2023'))
+        if pagina_year == '2021':
+            processos_tupla = ('Selecione', 'Instalação Wireless', 'Instalação de Prumadas', 'Instalação (Instalação de Internet)', 'Planejamento', 'Projetos', 'Comercial',
+            'RH','Controle de Qualidade', 'Seg. do Trabalho', 'Fechamento (descontinuado)', 'Manutenção (descontinuado)')
+        else:
+            processos_tupla = ('Selecione', 'Instalação', 'Planejamento', 'Projetos', 'Comercial', 'RH','Controle de Qualidade', 'Seg. do Trabalho')
+
+with col03:
+    if pagina == "Indicadores":
+        if pagina_year != 'Selecione':
+            st.image(logo_Capa_processo, width=95)
+            pagina_ind = st.radio(
+            "Selecione o processo: ", processos_tupla)
+st.markdown("----")
 
 
 
@@ -56,7 +79,10 @@ with menu:
 # Abas da aplicação
 if pagina == "Início":
     # Página inicial
-    # st.image(header, caption=None, use_column_width=True)
+    st.image(header, caption=None, use_column_width=True)
+    st.markdown(texto_inicial(),unsafe_allow_html=True)
+    st.markdown("----")     
+    st.markdown("")
     col11, col12 = st.columns([1, 1])
     with col11:
         st.markdown("<h4 style='text-align: left; color: black;'>Apresentação</h4>", unsafe_allow_html=True)
@@ -70,12 +96,9 @@ if pagina == "Início":
         st.markdown("<h4 style='text-align: left; color: black;'>Mural de avisos</h4>", unsafe_allow_html=True)
         st.markdown(" ")
         components.iframe("https://docs.google.com/spreadsheets/d/e/2PACX-1vS5okgUghoWGn4_ZaKN5qvERwm1WGAvtsE-edaqTXsjdjEa9BMo7JLtQCGQJ01EPLpnWHGnEYTXcG4j/pubhtml?gid=304685294&amp;single=true&amp;widget=true&amp;headers=false", width=360, height=500)
-    st.markdown("----")
-    st.markdown(texto_inicial(),unsafe_allow_html=True)
-                 
+            
 
     # st.markdown("<h3 style='text-align: center; color: black;'>Bem vindo!</h3>", unsafe_allow_html=True)
-    st.markdown("----")
     # st.markdown("<p style='text-align: center; color: black;'>Nesta plataforma você encontrará:</p>", unsafe_allow_html=True)
     # st.markdown("<p style='text-align: left; color: black;'>▪️ Indicadores dos processos;</p>", unsafe_allow_html=True)
     # st.markdown("<p style='text-align: left; color: black;'>▪️ Formulários;</p>", unsafe_allow_html=True)
@@ -117,83 +140,77 @@ if pagina == "Início":
 #         st.warning('Por favor entre com o usuário e senha!')
 
 if pagina == "Formulários":
-    st.markdown("<h3 style='text-align: center; color: black;'>Formulários</h3>", unsafe_allow_html=True)       
+    st.image(header_formularios, caption=None, use_column_width=True)       
     st.markdown("----")
     avaliation = st. selectbox('Selecione a avaliação:', ('Selecione','Avaliação 1', 'Avaliação 2'))
     if avaliation != 'Selecione':
         if avaliation == 'Avaliação 1':
-            components.iframe("https://docs.google.com/forms/d/e/1FAIpQLSeoJkyF1mkJIeA9kcrKGHswg68SGcEYjGc4i4kKKoZXieIxKw/viewform?embedded=true", width=860, height=4000)
+            components.iframe("https://docs.google.com/forms/d/e/1FAIpQLSeoJkyF1mkJIeA9kcrKGHswg68SGcEYjGc4i4kKKoZXieIxKw/viewform?embedded=true", width=360, height=4000)
         else:
-            components.iframe("https://docs.google.com/forms/d/e/1FAIpQLScZ0VeavfUM2rWkwKkjhCXpVgvPRbs4M3A8a89lV0k4ranKMw/viewform?embedded=true", width=860, height=4200)
+            components.iframe("https://docs.google.com/forms/d/e/1FAIpQLScZ0VeavfUM2rWkwKkjhCXpVgvPRbs4M3A8a89lV0k4ranKMw/viewform?embedded=true", width=360, height=4200)
         st.markdown("---")
     else:
         st.markdown("<p style=' text-align: center; color: black'>Nesta seção é possível encontrar avaliações relacionadas ao Sistema de Gestão da Qualidade.</p>", unsafe_allow_html=True)
 
 if pagina == 'Indicadores':
+
     st.image(header_indicadores, caption=None, use_column_width=True)
-    year = st.selectbox('Selecione o ano desejado: ',('Selecione','2021','2022'))
-    if year != "Selecione":
-        if year == '2021':
-            st.info("""
-                Em 2021 ocorreu uma reestruturação da empresa, devido ao encerramento do contrato com a Copel Telecom.\n
-                Foram então remodelados os indicadores de alguns processos atendendo as novas demandas da empresa.""")
-            st.markdown("----")
-            choice = st.selectbox('Selecione o processo para visualizar: ', ('Selecione', 'Instalação Wireless', 'Instalação de Prumadas', 'Instalação (Instalação de Internet)', 'Planejamento', 'Projetos', 'Comercial',
-            'RH','Controle de Qualidade', 'Seg. do Trabalho', 'Fechamento (descontinuado)', 'Manutenção (descontinuado)'))
-    
-            if choice != 'Selecione':
-                if choice == 'Instalação Wireless':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSf9r-Fa3eHb2hRK7QAlO8tfRzr9yo6jV2VwQoQL0XSMTQWa8Sb5UwGLde96LvkRt9VqhCmqwbLJ487/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
+
+    if pagina_year != "Selecione":
+
+        if pagina_ind != 'Selecione':
+
+            if pagina_ind == 'Instalação Wireless':
+                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSf9r-Fa3eHb2hRK7QAlO8tfRzr9yo6jV2VwQoQL0XSMTQWa8Sb5UwGLde96LvkRt9VqhCmqwbLJ487/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
-                if choice == 'Instalação de Prumadas':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vQo6yyBBPA2SPhswZy9LtaIJCyPG4uyb5Rcmk43AdeNv4ZRFJl5Oc7BZgjswAEoiK-q4MQnzPHtdOc2/pub?start=false&loop=false&delayms=3000", width=360, height=239)                
+            if pagina_ind == 'Instalação de Prumadas':
+                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vQo6yyBBPA2SPhswZy9LtaIJCyPG4uyb5Rcmk43AdeNv4ZRFJl5Oc7BZgjswAEoiK-q4MQnzPHtdOc2/embed?start=false&loop=false&delayms=3000", width=360, height=239)                
 
 
-                if choice == 'Instalação (Instalação de Internet)':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vRuL0INb5me9CXnM-Qa8Xjimn6yNI6kTQrKePpeOKJzxXIplKiyQG4h9GL3AIBckDTEOtZIv14dQ2V1/pub?start=false&loop=false&delayms=3000", width=360, height=239)                  
-    
-
-                if choice == 'Planejamento':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
+            if pagina_ind == 'Instalação (Instalação de Internet)':
+                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vRuL0INb5me9CXnM-Qa8Xjimn6yNI6kTQrKePpeOKJzxXIplKiyQG4h9GL3AIBckDTEOtZIv14dQ2V1/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
-                if choice == 'Projetos':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vR8X8lbRZ4wsd95GnqqMxBPzabSDmucjWji33u2vbcu2YzypVveiOgAxYdV4ANsaNAsEdbOetn3l-gf/pub?start=false&loop=false&delayms=3000", width=360, height=239)                   
+            if pagina_ind == 'Planejamento':
+                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
-                if choice == 'Comercial':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSLJ0Mam-ZchjJ3sljm40s5EDdyNPLy52lIURT5zyjQkvExLam_cwCW19uVtwp1Ey7CZgO7481QbJGd/pub?start=false&loop=false&delayms=3000", width=360, height=239)                 
-                  
-
-                if choice == 'RH': 
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vRCrRbsjGljxFSVRu2ij_JMOLF5UaLG-LNG1ZMpCqzk9qUba_fidw5umvmE2ru6cAsYII_ip2b3SPDW/pub?start=false&loop=false&delayms=3000", width=360, height=239)                  
+            if pagina_ind == 'Projetos':
+                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vR8X8lbRZ4wsd95GnqqMxBPzabSDmucjWji33u2vbcu2YzypVveiOgAxYdV4ANsaNAsEdbOetn3l-gf/embed?start=false&loop=false&delayms=3000", width=360, height=239)                   
 
 
-                if choice == 'Controle de Qualidade':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSpk2g1Eo1Rp7S0706nRhdjC7M1m3P9ROoFcBkcfAjYnT73ckFPa0HYx4iByAOslXI6HsBMZvYZmYwX/pub?start=false&loop=false&delayms=3000", width=360, height=239)                  
+            if pagina_ind == 'Comercial':
+                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSLJ0Mam-ZchjJ3sljm40s5EDdyNPLy52lIURT5zyjQkvExLam_cwCW19uVtwp1Ey7CZgO7481QbJGd/embed?start=false&loop=false&delayms=3000", width=360, height=239)                 
+                
+
+            if pagina_ind == 'RH': 
+                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vRCrRbsjGljxFSVRu2ij_JMOLF5UaLG-LNG1ZMpCqzk9qUba_fidw5umvmE2ru6cAsYII_ip2b3SPDW/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
-                if choice == 'Seg. do Trabalho':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSpk2g1Eo1Rp7S0706nRhdjC7M1m3P9ROoFcBkcfAjYnT73ckFPa0HYx4iByAOslXI6HsBMZvYZmYwX/pub?start=false&loop=false&delayms=3000", width=360, height=239)                  
+            if pagina_ind == 'Controle de Qualidade':
+                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSpk2g1Eo1Rp7S0706nRhdjC7M1m3P9ROoFcBkcfAjYnT73ckFPa0HYx4iByAOslXI6HsBMZvYZmYwX/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
-                if choice == 'Fechamento (descontinuado)':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSqjnR8S738NoMgDBOz9M-4c0SvH-gQEVWEXnnOfgBi_xyKZNzKK26MLWSBDdJOsjzoOQizP8QRIvQa/pub?start=false&loop=false&delayms=3000", width=360, height=239)                  
+            if pagina_ind == 'Seg. do Trabalho':
+                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vQFHwZxPOpckZzibgwhSpXe3RlSYVtm8_hJ77eiMzkMdX1Zz80nKyPflSk7gHfnk9KfyAEqSzdu_dur/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
-                if choice == 'Manutenção (descontinuado)':
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTJ65Gi958pvOegMi6_0uOV4i-TFjSY3OZCS7i7gKTxqiOY3H98or-XWWmZG7fNLYLkaIUMpwL-R2uX/pub?start=false&loop=false&delayms=3000", width=360, height=239)                   
+            if pagina_ind == 'Fechamento (descontinuado)':
+                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSqjnR8S738NoMgDBOz9M-4c0SvH-gQEVWEXnnOfgBi_xyKZNzKK26MLWSBDdJOsjzoOQizP8QRIvQa/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
 
 
-        if year == '2022':
+            if pagina_ind == 'Manutenção (descontinuado)':
+                components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTJ65Gi958pvOegMi6_0uOV4i-TFjSY3OZCS7i7gKTxqiOY3H98or-XWWmZG7fNLYLkaIUMpwL-R2uX/embed?start=false&loop=false&delayms=3000", width=360, height=239)                   
+
+
+        if pagina_year == '2022':
             st.markdown("----")
             st.markdown("<p style=' text-align: justify; color: black'>Em preenchimento...</p>", unsafe_allow_html=True)
             st.markdown("----")
                         
 if pagina == 'Documentos':
     st.image(header_documentos, caption=None, use_column_width=True)
-    # st.markdown("<h3 style='text-align: center; color: black;'>Documentos</h3>", unsafe_allow_html=True)
     st.markdown("----")
     st.markdown("<h6 style='text-align: left; color: black;'>Diretrizes</h6>", unsafe_allow_html=True)
     st.write("<p style='text-align: justify; color: black;'>    Documento que apresenta a Missão, Visão e Valores compõem um conjunto de diretrizes fundamentais que norteiam a empresa.</p>", unsafe_allow_html=True)
@@ -263,7 +280,8 @@ if pagina == 'Documentos':
     # st.markdown("----")
     # st.write('')
 
-if pagina == "Sobre":
+if pagina == "Informações":
+    st.image(header_informacoes, caption = None, use_column_width=True)
     st.markdown("<p style='text-align: justify; color: black;'><b>Autor:</b> Leonardo de Oliveira Melo", unsafe_allow_html=True)
     st.markdown("<p style='text-align: justify; color: black;'><b>Formação:</b> Eng. Cartógrafo e Agrimensor", unsafe_allow_html=True)
     st.markdown("<p style='text-align: justify; color: black;'><b>Instituição:</b> <a href='https://www.ufpr.br/portalufpr/'> Universidade Federal do Paraná</a>", unsafe_allow_html=True)
