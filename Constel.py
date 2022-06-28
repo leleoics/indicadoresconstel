@@ -1,3 +1,4 @@
+from turtle import width
 import streamlit as st
 from PIL import Image
 import streamlit.components.v1 as components
@@ -21,6 +22,8 @@ def texto_inicial():
 # Abre arquivos de imagem
 
 logo_C = Image.open("./thumbnail/LogoC.png")
+C_festa = Image.open("./thumbnail/C_festa.png")
+C_aviso = Image.open("./thumbnail/C_aviso.png")
 logo_Capa = Image.open("./thumbnail/Logo_C_capa.png")
 logo_Capa_pagina = Image.open("./thumbnail/Logo_C_capa_pagina.png")
 logo_Capa_calendario = Image.open("./thumbnail/Logo_C_capa_calendario.png")
@@ -44,14 +47,14 @@ constr_prumadas = None
 st.markdown("----")
 col01, col02, col03 = st.columns([1, 1, 1])
 with col01:
-    st.image(logo_Capa_pagina, width=95)
+    st.image(logo_Capa_pagina, width=100)
     pagina = st.radio(
     "Selecione a página: ",
     ("Início","Indicadores", "Formulários", "Documentos", "Informações"))
 
 with col02:
     if pagina == "Indicadores":
-        st.image(logo_Capa_calendario, width=95)
+        st.image(logo_Capa_calendario, width=100)
         pagina_year = st.radio(
         "Selecione o ano: ",
         ('Selecione', '2021', '2022', '2023'))
@@ -64,7 +67,7 @@ with col02:
 with col03:
     if pagina == "Indicadores":
         if pagina_year != 'Selecione':
-            st.image(logo_Capa_processo, width=95)
+            st.image(logo_Capa_processo, width=100)
             pagina_ind = st.radio(
             "Selecione o processo: ", processos_tupla)
 st.markdown("----")
@@ -85,15 +88,19 @@ if pagina == "Início":
     st.markdown("")
     col11, col12 = st.columns([1, 1])
     with col11:
-        st.markdown("<h4 style='text-align: left; color: black;'>Apresentação</h4>", unsafe_allow_html=True)
+        st.markdown("<h6 style='text-align: center; color: black;'>Apresentação</h6>", unsafe_allow_html=True)
         st.markdown(" ")
         components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTU0773TwwYa249dB9ZbieogaeK8g2h_wlE-fghJvK4V0DTPcWxzzosx-jKO7tNvWJzE-RNCNvsn_ka/embed?start=false&loop=false&delayms=3000", width=360, height=239)   
-        st.markdown("<h4 style='text-align: left; color: black;'>Aniversariantes do mês</h4>", unsafe_allow_html=True)
+        # st.markdown("<h6 style='text-align: center; color: black;'Aniversariantes do mês</h6>", unsafe_allow_html=True)
+        st.markdown("----")
+        st.image(C_festa, caption=None, width=75)
+        st.markdown("<h6 style='text-align: center; color: black;'Aniversariantes do mês</h6>", unsafe_allow_html=True)
         st.markdown(" ")
         components.iframe("https://docs.google.com/spreadsheets/d/e/2PACX-1vRVvM6x4YULHM3MGUYQxDcCS0BgF6xB6p-e2WXnH91joME173m8_Nn1QB9ws7qT3fxCFqqN2B7cAq0_/pubhtml?gid=304685294&amp;single=true&amp;widget=true&amp;headers=false", width=360, height=500)
 
     with col12:
-        st.markdown("<h4 style='text-align: left; color: black;'>Mural de avisos</h4>", unsafe_allow_html=True)
+        st.markdown("<h6 style='text-align: center; color: black;'>Mural de avisos</h6>", unsafe_allow_html=True)
+        st.image(C_aviso, caption=None, width=75)
         st.markdown(" ")
         components.iframe("https://docs.google.com/spreadsheets/d/e/2PACX-1vS5okgUghoWGn4_ZaKN5qvERwm1WGAvtsE-edaqTXsjdjEa9BMo7JLtQCGQJ01EPLpnWHGnEYTXcG4j/pubhtml?gid=304685294&amp;single=true&amp;widget=true&amp;headers=false", width=360, height=500)
             
