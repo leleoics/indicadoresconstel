@@ -354,17 +354,15 @@ if pagina == 'Documentos':
     with open("./files/politica_de_qualidade.pdf", 'rb') as f:
         st.download_button('Baixar', f, file_name='Politica de Qualidade Constel.pdf')
          
-
-
     st.markdown("----")
     st.write('')
 
     st.markdown("<h6 style='text-align: left; color: black;'>Organograma</h6>", unsafe_allow_html=True)
     st.write("<p style='text-align: justify; color: black;'>    - Quem é seu gestor?</p>", unsafe_allow_html=True)
     st.write("<p style='text-align: justify; color: black;'>    Consulte o organograma e veja de forma gráfica a estrutura organizacional da empresa e a hierarquia a ser respeitada. </p>", unsafe_allow_html=True)
-    with open("./files/organograma.pdf", 'rb') as f:
-        st.download_button('Baixar', f, file_name='Organograma Constel.pdf')
-    if st.button('Baixar *'):
+    # with open("./files/organograma.pdf", 'rb') as f:
+    #     st.download_button('Baixar', f, file_name='Organograma Constel.pdf')
+    if st.button('Baixar'):
         components.iframe("https://docs.google.com/spreadsheets/d/e/2PACX-1vQTYvk-XB1HJah2THguHBg4WNNO8xoALpgIBQ0NJmgRhmkOr4oAS370Qyyg26iaPes-y-H6UNjgJqAP/pub?output=pdf")         
         
     st.markdown("----")
@@ -374,15 +372,21 @@ if pagina == 'Documentos':
     st.write("<p style='text-align: justify; color: black;'>    - Onde seu processo está inserido no SGQ?</p>", unsafe_allow_html=True)
     st.write("<p style='text-align: justify; color: black;'>    - É um processo de apoio? É um processo operacional?</p>", unsafe_allow_html=True)
     st.write("<p style='text-align: justify; color: black;'>    Consulte onde seu processo está inserido e veja de maneira gráfica o fluxo ideal para a estrutura organizacional da empresa. </p>", unsafe_allow_html=True)
-    with open("./files/fluxo_de_interacao.pdf", 'rb') as f:
-        st.download_button('Baixar', f, file_name='Fluxo de Interação Constel.pdf')
+    # with open("./files/fluxo_de_interacao.pdf", 'rb') as f:
+    #     st.download_button('Baixar', f, file_name='Fluxo de Interação Constel.pdf')
+    if st.button(' Baixar'):
+        components.iframe("https://docs.google.com/spreadsheets/d/e/2PACX-1vQF0eMn-uvBzvJYptj73Tsjmy8biMdw9YVvVC20jLM8id46JY1sQGrxh5m5T34R0eFyinpuI9CVjgW3/pub?output=pdf")         
+        
     st.markdown("----")
     st.write('')
 
     st.markdown("<h6 style='text-align: left; color: black;'>Fluxograma de Entradas e Saídas</h6>", unsafe_allow_html=True)
     st.write("<p style='text-align: justify; color: black;'>    Consulte o fluxograma da Matriz de Entradas e Saídas a qual contém todas as entradas, recursos e saídas do processo.</p>", unsafe_allow_html=True)
-    with open("./files/Fluxograma.jpg", 'rb') as f:
-        st.download_button('Baixar', f, file_name='Fluxograma Constel.jpg')
+    # with open("./files/Fluxograma.jpg", 'rb') as f:
+    #     st.download_button('Baixar', f, file_name='Fluxograma Constel.jpg')
+    if st.button('  Baixar'):
+        components.iframe("https://docs.google.com/spreadsheets/d/e/2PACX-1vS5_aBcT9fKGQ1jVmEYeJzBgiTTRpTo700ZUWFT9hJii2XmZRUieGo_Z3Mta8gxnyb5Swns8ghcAEBH/pub?output=pdf")         
+    
     st.markdown("----")
     st.write('')
 
