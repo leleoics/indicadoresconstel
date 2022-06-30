@@ -61,10 +61,10 @@ with col02:
         "Selecione o ano: ",
         ('Selecione', '2021', '2022', '2023'))
         if pagina_year == '2021':
-            processos_tupla = ('Selecione', 'Instalação Wireless', 'Instalação de Prumadas', 'Instalação (Instalação de Internet)', 'Planejamento', 'Projetos', 'Comercial',
-            'RH','Controle de Qualidade', 'Seg. do Trabalho', 'Fechamento (descontinuado)', 'Manutenção (descontinuado)')
+            processos_tupla = ('Selecione', 'Instalação Wireless', 'Instalação de Prumadas', 'Instalação de Internet', 'Planejamento', 'Projetos', 'Comercial',
+            'RH','Controle de Qualidade', 'Seg. do Trabalho', 'Financeiro', 'Fechamento (descontinuado)', 'Manutenção (descontinuado)')
         else:
-            processos_tupla = ('Selecione', 'Instalação', 'Planejamento', 'Projetos', 'Comercial', 'RH','Controle de Qualidade', 'Seg. do Trabalho')
+            processos_tupla = ('Selecione', 'Instalação', 'Planejamento', 'Projetos', 'Comercial', 'RH','Controle de Qualidade', 'Seg. do Trabalho', 'Financeiro', 'Almoxarifado')
     
     if pagina == "Formulários":
         avaliation = st.radio(
@@ -79,12 +79,6 @@ with col03:
             "Selecione o processo: ", processos_tupla)
 st.markdown("----")
 
-
-
-# # Barra lateral
-# st.sidebar.image(logo_C, caption=None, width=75)
-# st.sidebar.title('**Constel Engenharia Elétrica**')
-# option = st.sidebar.selectbox('Selecione a página desejada', ["Início", "Formulários","Indicadores", "Documentos", "Sobre"])
 
 # Abas da aplicação
 if pagina == "Início":
@@ -158,14 +152,39 @@ if pagina == 'Indicadores':
     st.image(header_indicadores, caption=None, use_column_width=True)
 
     if pagina_year != "Selecione":
+        if pagina_ind != "Selecione":
+            if pagina_ind == "Instalação":
+                col21, col22 = st.columns([1, 1])
+                with col21:
+                    st.markdown(" ")
+                    st.markdown("Veja os indicadores que correspondem ao ano de **" + pagina_year + "** para o setor de **" + pagina_ind + "**.")
+                with col22:
+                    if pagina_year == '2022':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSTV1IX3doRyd9py-krg1X6JGJPixgI29YNZgEe7iO31DV1rjj9CfSwUeLE4c02mUh1qm3b8jBUrr3C/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    if pagina_year == '2023':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vQ1-nbaXhQsQArUl23hJ0trupQwGlwCE36njrRfnmFvnE00YEVY0FtLRevXWmByCM-3HrcaoMdy-4T9/embed?start=false&loop=false&delayms=3000" , width=360, height=239)                  
+                    
 
-        if pagina_ind != 'Selecione':
+            if pagina_ind == 'Financeiro':
+                col21, col22 = st.columns([1, 1])
+                with col21:
+                    st.markdown(" ")
+                    if pagina_year == '2021':
+                        st.markdown("Indicadores de **" + pagina_year + "**, disponíveis apenas sob solicitação ao gestor.")
+                    else:
+                        st.markdown("Veja os indicadores que correspondem ao ano de **" + pagina_year + "** para o setor de **" + pagina_ind + "**.")
+                with col22:                 
+                    if pagina_year == '2022':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vQ7Vze52RixR7UNDcrwfx7p5t1JM8OhQTfOjolqxmZdK9S8xAjsnWg_r503RidVy20ie_26bCJvh_WJ/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    if pagina_year == '2023':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTzKtIWNG0izGC0uZlOVm2ZkpJL8qX6H_v2umWqFVGxCqmCvl6qAWhq3hcQ-5TvoJOccwLe_JmhryAl/embed?start=false&loop=false&delayms=3000", width=360, height=239)      
+
 
             if pagina_ind == 'Instalação Wireless':
                 col21, col22 = st.columns([1, 1])
                 with col21:
                     st.markdown(" ")
-                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    st.markdown("Veja os indicadores que correspondem ao ano de **" + pagina_year + "** para o setor de **" + pagina_ind + "**.")
                     
                 with col22:
                     components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSf9r-Fa3eHb2hRK7QAlO8tfRzr9yo6jV2VwQoQL0XSMTQWa8Sb5UwGLde96LvkRt9VqhCmqwbLJ487/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
@@ -176,17 +195,17 @@ if pagina == 'Indicadores':
                 col21, col22 = st.columns([1, 1])
                 with col21:
                     st.markdown(" ")
-                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    st.markdown("Veja os indicadores que correspondem ao ano de **" + pagina_year + "** para o setor de **" + pagina_ind + "**.")
                     
                 with col22:
                     components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vQo6yyBBPA2SPhswZy9LtaIJCyPG4uyb5Rcmk43AdeNv4ZRFJl5Oc7BZgjswAEoiK-q4MQnzPHtdOc2/embed?start=false&loop=false&delayms=3000", width=360, height=239)                
 
 
-            if pagina_ind == 'Instalação (Instalação de Internet)':
+            if pagina_ind == 'Instalação de Internet':
                 col21, col22 = st.columns([1, 1])
                 with col21:
                     st.markdown(" ")
-                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    st.markdown("Veja os indicadores que correspondem ao ano de **" + pagina_year + "** para o setor de **" + pagina_ind + "**.")
                     
                 with col22:
                     components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vRuL0INb5me9CXnM-Qa8Xjimn6yNI6kTQrKePpeOKJzxXIplKiyQG4h9GL3AIBckDTEOtZIv14dQ2V1/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
@@ -196,60 +215,104 @@ if pagina == 'Indicadores':
                 col21, col22 = st.columns([1, 1])
                 with col21:
                     st.markdown(" ")
-                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    st.markdown("Veja os indicadores que correspondem ao ano de **" + pagina_year + "** para o setor de **" + pagina_ind + "**.")
                     
                 with col22:
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
+                    if pagina_year == '2021':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTgk6GSKylyIMLmGXGWqHMzAwI1yrT3t-Zc4WGQn2q_HVlAVYzDBcHimceZa4tPe48kG5NVhv_id8su/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    if pagina_year == '2022':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSKph8PgOtLXsFQUaE6ndd5gXqJYYHu4R_V4o6ITXlKRdfG_zzjTcP4RiHpNkf0Khex-eqU-vNRSxnh/embed?start=false&loop=false&delayms=3000" , width=360, height=239)
+                    if pagina_year == '2023':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vR-ER__ugsNwBGCTqTGxRbtkA7_j-LQNlEaE5vIk3LSCRDc4WMok6naOEN58PqZquIspYlLa-LByhxA/embed?start=false&loop=false&delayms=3000", width=360, height=239)            
+
+
 
 
             if pagina_ind == 'Projetos':
                 col21, col22 = st.columns([1, 1])
                 with col21:
                     st.markdown(" ")
-                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    st.markdown("Veja os indicadores que correspondem ao ano de **" + pagina_year + "** para o setor de **" + pagina_ind + "**.")
                     
                 with col22:
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vR8X8lbRZ4wsd95GnqqMxBPzabSDmucjWji33u2vbcu2YzypVveiOgAxYdV4ANsaNAsEdbOetn3l-gf/embed?start=false&loop=false&delayms=3000", width=360, height=239)                   
+                    if pagina_year == '2021':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vR8X8lbRZ4wsd95GnqqMxBPzabSDmucjWji33u2vbcu2YzypVveiOgAxYdV4ANsaNAsEdbOetn3l-gf/embed?start=false&loop=false&delayms=3000", width=360, height=239)                   
+                    if pagina_year == '2022':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vRZjKlOnIkYOrdPXB6c3JVnRPwof9Pzzh4dBf4iemim2BFGEwm86C-exJ2LycTRstEysNMgYPexZbzI/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    if pagina_year == '2023':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTxDQ9rtxT6xQpsF0yWVKRpPEqu92s6F2QV9hbtjim4i6NGrEYVeAP7-qL_QACD6NJHT2GL6Q5GasXJ/embed?start=false&loop=false&delayms=3000", width=360, height=239)      
 
 
             if pagina_ind == 'Comercial':
                 col21, col22 = st.columns([1, 1])
                 with col21:
                     st.markdown(" ")
-                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
-                    
+                    st.markdown("Veja os indicadores que correspondem ao ano de **" + pagina_year + "** para o setor de **" + pagina_ind + "**.")
                 with col22:   
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSLJ0Mam-ZchjJ3sljm40s5EDdyNPLy52lIURT5zyjQkvExLam_cwCW19uVtwp1Ey7CZgO7481QbJGd/embed?start=false&loop=false&delayms=3000", width=360, height=239)                 
-                
+                    if pagina_year == '2021':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSLJ0Mam-ZchjJ3sljm40s5EDdyNPLy52lIURT5zyjQkvExLam_cwCW19uVtwp1Ey7CZgO7481QbJGd/embed?start=false&loop=false&delayms=3000", width=360, height=239)                 
+                    if pagina_year == '2022':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vR1WuMYwbJ9GvBu32heAXQXWdJfnPZ3teC2XJp1E6ODXDF0VL_wCn1LIYQBdvTWN7vSIuD5yDRHfmbf/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    if pagina_year == '2023':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTod7_w3CqW3bmuWhjmW7Vxjn1fQQc21bD7xnTNaiFXW7fkTS_l87w6f-W4AEhWE4MgNMqpElA75wRJ/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+
 
             if pagina_ind == 'RH': 
                 col21, col22 = st.columns([1, 1])
                 with col21:
                     st.markdown(" ")
-                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    st.markdown("Veja os indicadores que correspondem ao ano de **" + pagina_year + "** para o setor de **" + pagina_ind + "**.")
                     
                 with col22:
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vRCrRbsjGljxFSVRu2ij_JMOLF5UaLG-LNG1ZMpCqzk9qUba_fidw5umvmE2ru6cAsYII_ip2b3SPDW/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
+                    if pagina_year == '2021':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vRCrRbsjGljxFSVRu2ij_JMOLF5UaLG-LNG1ZMpCqzk9qUba_fidw5umvmE2ru6cAsYII_ip2b3SPDW/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
+                    if pagina_year == '2022':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vQQ_JzHYdCqimt4cwckpIoetOnZ9hJrIiaq_8GEgbGMtVf_mWfMM7JUAFN1NDn-N7pWANeZV3aLKcDB/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    if pagina_year == '2023':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vT2NG8nlqqzxbUKkPzUN-gSoJNgw5P_1w4OlOP7bxOC-nTxfYBBThpuKz9roh5bW3jBFo9hF6RyrtXd/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+
 
 
             if pagina_ind == 'Controle de Qualidade':
                 col21, col22 = st.columns([1, 1])
                 with col21:
                     st.markdown(" ")
-                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    st.markdown("Veja os indicadores que correspondem ao ano de **" + pagina_year + "** para o setor de **" + pagina_ind + "**.")
                     
                 with col22:
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSpk2g1Eo1Rp7S0706nRhdjC7M1m3P9ROoFcBkcfAjYnT73ckFPa0HYx4iByAOslXI6HsBMZvYZmYwX/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
-
+                    if pagina_year == '2021':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vSpk2g1Eo1Rp7S0706nRhdjC7M1m3P9ROoFcBkcfAjYnT73ckFPa0HYx4iByAOslXI6HsBMZvYZmYwX/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
+                    if pagina_year == '2022':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vQh2nuFFkuFrwL2x65jesfsjx-ApFxP-RI6XfJ3ZD7Ea6KNByaNimH05oAV-NIHeQpRvbmXsNf8NAVQ/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    if pagina_year == '2023':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vR1PcHYIzjcPSqw32J_IBXWRB-6d_L6biYl8FAprHC2NUG4LV0myTPhu2EgDeFFysg8_1_qZXaJnrSQ/embed?start=false&loop=false&delayms=3000", width=360, height=239)
 
             if pagina_ind == 'Seg. do Trabalho':
                 col21, col22 = st.columns([1, 1])
                 with col21:
                     st.markdown(" ")
-                    st.markdown("Veja os indicadores que correspondem ao ano de " + pagina_year + " para o setor de " + pagina_ind + ".")
+                    st.markdown("Veja os indicadores que correspondem ao ano de **" + pagina_year + "** para o setor de **" + pagina_ind + "**.")
                     
                 with col22:
-                    components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vQFHwZxPOpckZzibgwhSpXe3RlSYVtm8_hJ77eiMzkMdX1Zz80nKyPflSk7gHfnk9KfyAEqSzdu_dur/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
+                    if pagina_year == '2021':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vQFHwZxPOpckZzibgwhSpXe3RlSYVtm8_hJ77eiMzkMdX1Zz80nKyPflSk7gHfnk9KfyAEqSzdu_dur/embed?start=false&loop=false&delayms=3000", width=360, height=239)                  
+                    if pagina_year == '2022':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vQWoK3vhKqE-wwlHhyaG0CWzjXqryvdedH6NU_iddoQaPb6r5RS7OZliVXgkQEnN5vnVOCO-gZi6c5w/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    if pagina_year == '2023':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vRsidqU2aQPD-hlZOUagalolN_G_LDjWHSKTVHMG1oYiyOxurm6ghLCNDqOsiVLlU-Ci_HUMLP2QyZM/embed?start=false&loop=false&delayms=3000" , width=360, height=239)
+
+
+            if pagina_ind == 'Almoxarifado':
+                col21, col22 = st.columns([1, 1])
+                with col21:
+                    st.markdown(" ")
+                    st.markdown("Veja os indicadores que correspondem ao ano de **" + pagina_year + "** para o setor de **" + pagina_ind + "**.")
+                    
+                with col22:
+                    if pagina_year == '2022':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vQUZQHSwZQ3Fh1R1Nb7u6IxAYRiLqj_JzHQSXIdM-eN_uA3LQkOHoC-L5KxV6Xxi2AJ1yvK3vFU5H_Y/embed?start=false&loop=false&delayms=3000", width=360, height=239)
+                    if pagina_year == '2023':
+                        components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTHR9LYsSQ-5rNhFsBkUTARCyQdcVUCYmQeVpThUbHH_X-zwcv5k23aQiKsmzpPfzOWBhm_ts-PZLxG/embed?start=false&loop=false&delayms=3000", width=360, height=239)
 
 
             if pagina_ind == 'Fechamento (descontinuado)':
@@ -271,11 +334,6 @@ if pagina == 'Indicadores':
                 with col22:
                     components.iframe("https://docs.google.com/presentation/d/e/2PACX-1vTJ65Gi958pvOegMi6_0uOV4i-TFjSY3OZCS7i7gKTxqiOY3H98or-XWWmZG7fNLYLkaIUMpwL-R2uX/embed?start=false&loop=false&delayms=3000", width=360, height=239)                   
 
-
-        if pagina_year == '2022':
-            st.markdown("----")
-            st.markdown("<p style=' text-align: justify; color: black'>Em preenchimento...</p>", unsafe_allow_html=True)
-            st.markdown("----")
                         
 if pagina == 'Documentos':
     st.image(header_documentos, caption=None, use_column_width=True)
@@ -284,6 +342,7 @@ if pagina == 'Documentos':
     st.write("<p style='text-align: justify; color: black;'>    Documento que apresenta a Missão, Visão e Valores compõem um conjunto de diretrizes fundamentais que norteiam a empresa.</p>", unsafe_allow_html=True)
     with open("./files/diretrizes.pdf", 'rb') as f:
         st.download_button('Baixar', f, file_name='Diretrizes Constel.pdf')
+        
     st.markdown("----")
     st.write('')
 
@@ -294,6 +353,9 @@ if pagina == 'Documentos':
     st.markdown("<p style='text-align: justify; color: black;'>    São perguntas que podem ser feitas, e devem ser respondidas com base na Política de Qualidade.</p>", unsafe_allow_html=True)
     with open("./files/politica_de_qualidade.pdf", 'rb') as f:
         st.download_button('Baixar', f, file_name='Politica de Qualidade Constel.pdf')
+         
+
+
     st.markdown("----")
     st.write('')
 
@@ -302,6 +364,9 @@ if pagina == 'Documentos':
     st.write("<p style='text-align: justify; color: black;'>    Consulte o organograma e veja de forma gráfica a estrutura organizacional da empresa e a hierarquia a ser respeitada. </p>", unsafe_allow_html=True)
     with open("./files/organograma.pdf", 'rb') as f:
         st.download_button('Baixar', f, file_name='Organograma Constel.pdf')
+    if st.button('Baixar *'):
+        components.iframe("https://docs.google.com/spreadsheets/d/e/2PACX-1vQTYvk-XB1HJah2THguHBg4WNNO8xoALpgIBQ0NJmgRhmkOr4oAS370Qyyg26iaPes-y-H6UNjgJqAP/pub?output=pdf")         
+        
     st.markdown("----")
     st.write('')
 
